@@ -16,16 +16,17 @@ Migration is deferred until the new site is ready and its scope is approved.
    verify responsive layout, accessibility, themes, imports and asset loading.
 5. [x] Create the public GitHub repository `artandavoodi` and push the local `main`
    checkpoint. Remote: `git@github.com:artandavoodi/artandavoodi.git`.
-6. [ ] Configure hosting, deploy a verified minimal site and test its hosting URL.
-7. [ ] Connect `artandavoodi.com` and verify DNS, HTTPS and canonical redirects.
+6. [x] Configure GitHub Pages from `main` /docs and verify the generated site URL.
+7. [ ] Configure the custom domain in GitHub Pages, then verify DNS and HTTPS.
+8. [ ] Connect `artandavoodi.com` and verify DNS, HTTPS and canonical redirects.
    Inspect existing DNS first; preserve any existing email records.
-8. [ ] Configure iCloud+ custom email for `artandavoodi.com`: select desired email
+9. [ ] Configure iCloud+ custom email for `artandavoodi.com`: select desired email
    addresses, inspect the account's available domain setup, follow Apple's supplied
    DNS records, and verify incoming/outgoing mail. User handles Apple authentication.
    No addresses, DNS values, or successful email setup are assumed yet.
-9. [ ] Add approved artist portrait, gallery collections, releases, artwork and
+10. [ ] Add approved artist portrait, gallery collections, releases, artwork and
    artistic publications; verify ownership, credits, image metadata and links.
-10. [ ] Plan and approve content migration separately; establish one catalogue
+11. [ ] Plan and approve content migration separately; establish one catalogue
     owner before updating the central hub's links or removing any old content.
 
 ## Current boundaries
