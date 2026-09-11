@@ -14,8 +14,8 @@ Migration is deferred until the new site is ready and its scope is approved.
    and keep an explicit version/source record.
 4. [ ] Build and wire the first public shell, section fragments and JSON renderers;
    verify responsive layout, accessibility, themes, imports and asset loading.
-5. [ ] Create the GitHub repository and connect the local remote; confirm account
-   and repository visibility before creation.
+5. [x] Create the public GitHub repository `artandavoodi` and push the local `main`
+   checkpoint. Remote: `git@github.com:artandavoodi/artandavoodi.git`.
 6. [ ] Configure hosting, deploy a verified minimal site and test its hosting URL.
 7. [ ] Connect `artandavoodi.com` and verify DNS, HTTPS and canonical redirects.
    Inspect existing DNS first; preserve any existing email records.

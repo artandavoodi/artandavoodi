@@ -48,7 +48,8 @@ Do not copy the large site stylesheet wholesale or create approximate local valu
 ## Delivery sequence
 
 1. Local repository and modular folders: created.
-2. GitHub repository and remote: pending account/visibility confirmation.
+2. GitHub repository and remote: public `artandavoodi` created and local `main`
+   pushed on 2026-09-11. GitHub Pages is not enabled yet.
 3. Token-source audit and minimal deployable shell: pending.
 4. Hosting, DNS, custom domain and HTTPS verification: pending.
 5. Catalogue migration and content management: pending.
