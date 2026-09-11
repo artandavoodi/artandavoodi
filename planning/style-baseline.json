@@ -1,0 +1,23 @@
+{
+  "sourceRepository": "artandavoodi/artan-live",
+  "sourceCommit": "ebcf2f0679a0f61bd9fa5be170ee585fdc592bda",
+  "note": "Exact audited working-file snapshots; checksums identify the imported bytes.",
+  "files": [
+    {
+      "file": "docs/assets/css/core/01-tokens/source/control-center.tokens.css",
+      "sha256": "7f6e7027ce87c0d8cdb0a37d1649a5cbe21535f71404831fb852b2f1f569bdcc"
+    },
+    {
+      "file": "docs/assets/css/core/01-tokens/source/neuroartan.tokens.css",
+      "sha256": "2e0ec3c975d273ea73c29d9144f288e6813a551519738ba729e3e3e970281e76"
+    },
+    {
+      "file": "docs/assets/css/core/01-tokens/source/artan-live.aliases.css",
+      "sha256": "d14ddd3a9e73a40bf8ae2e054419e62fb2693b7c0ff09b110c17ea4d93d44dfd"
+    },
+    {
+      "file": "docs/assets/css/core/02-foundation/themes.css",
+      "sha256": "23d80888ad0ec02cfb99da6e9faae1b924ad5f206e421f21d17bd5c2eafdcb98"
+    }
+  ]
+}

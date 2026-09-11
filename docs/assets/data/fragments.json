@@ -1,0 +1,8 @@
+{
+  "navigation": "assets/fragments/navigation.html",
+  "artist": "assets/fragments/artist/index.html",
+  "music": "assets/fragments/music/index.html",
+  "publications": "assets/fragments/publications/index.html",
+  "gallery": "assets/fragments/gallery/index.html",
+  "footer": "assets/fragments/footer.html"
+}

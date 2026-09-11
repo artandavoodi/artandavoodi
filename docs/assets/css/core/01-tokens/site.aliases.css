@@ -1,0 +1,23 @@
+/* ARTANDAVOODI · Semantic bridge to existing approved tokens.
+   Replaces unresolved legacy CV alias targets; defines no new visual values. */
+:root {
+  --cv-page-bg: var(--bg-color);
+  --cv-text-primary: var(--text-primary-color);
+  --cv-text-secondary: var(--text-secondary-color);
+  --cv-border: var(--border-color);
+  --cv-page-width: var(--site-rail-width);
+  --cv-reading-width: min(var(--reading-width-md), var(--site-rail-width));
+  --cv-page-padding-block: var(--section-padding-y);
+  --cv-font-base: var(--font-base);
+  --cv-font-caption: var(--font-size-caption);
+  --cv-line-body: var(--line-height-body);
+  --cv-letter-label: var(--tracking-label);
+}
+/* Breakpoint retained from the audited artan-live semantic bridge. */
+@media (max-width: 860px) {
+  :root {
+    --cv-page-width: var(--site-rail-width-mobile);
+    --cv-reading-width: min(var(--reading-width-md), var(--site-rail-width-mobile));
+    --cv-page-padding-block: var(--section-padding-y-mobile);
+  }
+}

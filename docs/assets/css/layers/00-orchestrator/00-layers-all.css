@@ -1,0 +1,6 @@
+/* ARTANDAVOODI · Domain style importer. */
+@import url('../site/site.css');
+@import url('../site/artist/index.css');
+@import url('../site/music/index.css');
+@import url('../site/publications/index.css');
+@import url('../site/gallery/index.css');

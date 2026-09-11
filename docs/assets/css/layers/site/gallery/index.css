@@ -1,0 +1,2 @@
+/* ARTANDAVOODI · Gallery section owner with canonical caption spacing. */
+#gallery figure { display: grid; gap: var(--spacing-sm); max-inline-size: var(--cv-reading-width); }

@@ -1,0 +1,2 @@
+/* ARTANDAVOODI · Publication section owner, inheriting shared catalogue rules. */
+#publications .catalogue-record { max-inline-size: var(--cv-reading-width); }

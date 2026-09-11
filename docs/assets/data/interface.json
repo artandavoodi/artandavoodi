@@ -1,0 +1,25 @@
+{
+  "navigationLabel": "Main navigation",
+  "skipLabel": "Skip to content",
+  "theme": { "dark": "Dark appearance", "light": "Light appearance" },
+  "sections": [
+    { "id": "artist", "label": "Artist" },
+    { "id": "music", "label": "Music" },
+    { "id": "publications", "label": "Publications" },
+    { "id": "gallery", "label": "Art & Gallery" }
+  ],
+  "artistDescription": "Art · Music · Publications",
+  "hubLabel": "Public hub",
+  "musicCategories": [
+    { "id": "all", "label": "All releases" },
+    { "id": "albums", "label": "Albums" },
+    { "id": "eps", "label": "EPs" },
+    { "id": "singles", "label": "Singles" }
+  ],
+  "empty": {
+    "music": "No releases listed yet.",
+    "publications": "No publications listed yet.",
+    "gallery": "No artwork listed yet."
+  },
+  "error": "This section could not load. Please reload the page or try again later."
+}

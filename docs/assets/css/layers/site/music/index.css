@@ -1,0 +1,2 @@
+/* ARTANDAVOODI · Music section owner, inheriting shared catalogue rules. */
+#music .catalogue-record { max-inline-size: var(--cv-reading-width); }

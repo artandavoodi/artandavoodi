@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "identity": { "name": "Artan Davoodi", "domain": "artandavoodi.com", "hubUrl": "https://artan.live/" },
+  "catalogues": {
+    "artist": "assets/data/artist/profile.json",
+    "gallery": "assets/data/gallery/images.json",
+    "music": "assets/data/music/releases.json",
+    "publications": "assets/data/publications/books.json"
+  }
+}

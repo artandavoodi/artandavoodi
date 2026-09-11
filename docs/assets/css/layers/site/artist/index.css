@@ -1,0 +1,4 @@
+/* ARTANDAVOODI · Artist section using shared typography and reading rail. */
+.artist h1 { font-size: var(--font-size-display-2); font-weight: var(--font-weight-light); line-height: var(--line-height-heading-tight); overflow-wrap: anywhere; }
+.artist [data-biography], .artist [data-portrait] { max-inline-size: var(--cv-reading-width); }
+.artist [data-portrait]:empty, .artist [data-artist-links]:empty { display: none; }

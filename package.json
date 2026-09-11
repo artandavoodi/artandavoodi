@@ -1,0 +1,11 @@
+{
+  "name": "artandavoodi",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Artan Davoodi artistic website",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "check": "node tools/validate-assets.mjs && node tools/check-site.mjs"
+  }
+}
