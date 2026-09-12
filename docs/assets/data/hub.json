@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "title": "Connect",
-  "description": "Music, images, and the places where the work continues.",
+  "title": "Music and visual work gathered in one place",
+  "description": "",
   "links": [
     { "label": "Apple Music", "category": "streaming", "order": 1, "icon": "apple-music", "url": "https://music.apple.com/us/artist/artan-davoodi/1850542780" },
     { "label": "Spotify", "category": "streaming", "order": 2, "icon": "spotify", "url": "https://open.spotify.com/artist/7zUiATkwf1InOGR2J1NG7t?si=Ox_6ucU-S0SW_JYuGr0xsw" },
