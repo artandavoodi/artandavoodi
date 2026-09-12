@@ -1,5 +1,6 @@
 {
   "navigationLabel": "Main navigation",
+  "musicBack": { "label": "Back to Music", "icon": "back", "href": "index.html#music" },
   "menuLabel": "Site menu",
   "menuToggle": { "open": "Open site menu", "close": "Close site menu" },
   "skipLabel": "Skip to content",
@@ -23,11 +24,22 @@
     { "id": "upcoming", "label": "Upcoming" }
   ],
   "musicReadMoreLabel": "Read more",
+  "musicDetailPage": "music/release/",
+  "musicDetailIcon": "chevron-right",
+  "musicReaderCloseLabel": "Close release details",
   "musicStoryFields": [
     { "key": "story", "label": "Story" },
     { "key": "productionProcess", "label": "Production" },
     { "key": "key", "label": "Key" },
     { "key": "notes", "label": "Notes" }
+  ],
+  "musicReaderFields": [
+    { "key": "story", "label": "Story" },
+    { "key": "credits", "label": "Credits" },
+    { "key": "musicalDetails", "label": "Musical details" },
+    { "key": "productionProcess", "label": "Production" },
+    { "key": "archive", "label": "Archive" },
+    { "key": "releaseInformation", "label": "Release information" }
   ],
   "musicDetails": [
     { "key": "type", "label": "Type" },

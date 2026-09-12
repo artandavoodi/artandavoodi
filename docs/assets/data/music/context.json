@@ -1,9 +1,44 @@
 {
   "schemaVersion": 1,
   "disclosureIcon": "chevron-down",
+  "linkIcon": "chevron-right",
+  "detailPage": "music/workspace/",
+  "notFoundLabel": "This item is not available.",
   "sections": [
-    { "id": "labels", "title": "Record label", "items": [{ "id": "artan-records", "title": "Artan Records", "description": "Artan Records is the independent label identity for Artan's music. This section will hold its story, direction, and catalogue." }] },
-    { "id": "projects", "title": "Music projects", "description": "A place for the ideas, collaborations, and works in progress behind the releases.", "items": [] },
-    { "id": "instruments", "title": "Instruments & studio", "items": [{ "id": "piano", "title": "Piano", "description": "Piano is Artan's main instrument." }] }
+    {
+      "id": "labels",
+      "title": "Artan Records",
+      "description": "Artan Records is Artan's independent record label.",
+      "items": []
+    },
+    { "id": "projects", "title": "Music projects", "description": "", "items": [] },
+    {
+      "id": "instruments",
+      "title": "Instruments & studio",
+      "groups": [
+        {
+          "id": "instruments",
+          "title": "Instruments",
+          "items": [
+            { "id": "piano", "title": "Piano", "description": "Artan's main instrument.", "sections": [], "media": [] },
+            { "id": "bongos", "title": "Bongos", "description": "", "sections": [], "media": [] }
+          ]
+        },
+        {
+          "id": "studio",
+          "title": "Studio",
+          "description": "",
+          "items": [
+            {
+              "id": "logic-pro",
+              "title": "Logic Pro",
+              "description": "Artan's digital audio workstation (DAW).",
+              "sections": [],
+              "media": []
+            }
+          ]
+        }
+      ]
+    }
   ]
 }

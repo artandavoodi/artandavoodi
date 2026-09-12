@@ -3,5 +3,5 @@
 .featured__items { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--featured-card-width)), 1fr)); gap: var(--spacing-xl); }
 .featured__item { display: grid; align-content: start; gap: var(--spacing-sm); text-decoration: none; max-inline-size: var(--featured-card-width); }
 .featured__item img { inline-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--shape-card-radius); }
-.featured__item p { color: var(--cv-text-secondary); font-size: var(--cv-font-caption); }
+.featured__item p { color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); }
 .featured__item:hover { opacity: var(--opacity-muted); }

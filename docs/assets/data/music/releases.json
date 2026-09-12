@@ -6,7 +6,7 @@
       "order": 1,
       "title": "Gone (Demo)",
       "subtitle": "Single",
-      "artist": "Artan",
+      "artist": "Artan Davoodi",
       "creator": "Artan Davoodi",
       "type": "Single",
       "format": "Instrumental",
@@ -20,11 +20,21 @@
       "upc": "199951439059",
       "status": "Released",
       "description": "Instrumental single released by Artan through Artan Records.",
-      "story": "",
-      "productionProcess": "",
-      "key": "",
-      "musicSheet": null,
-      "notes": "",
+      "story": "Working notes for this release will describe how the piece began and how its final form developed.",
+      "productionProcess": "Produced by Artan Davoodi.",
+      "key": "Piano-led instrumental; key to be confirmed.",
+      "musicSheet": "Draft piano notation and working sheet.",
+      "notes": "Draft editorial note: replace this text with the original studio and composition notes.",
+      "credits": "Piano and production: Artan Davoodi.",
+      "musicalDetails": "Instrumental recording with piano at the center.",
+      "archive": {
+        "tabs": [
+          { "id": "music-sheet", "label": "Music sheet", "description": "Draft piano notation and working sheet for this release.", "assets": [] },
+          { "id": "working-notes", "label": "Working notes", "description": "Composition and production notes can be added here as the release develops.", "assets": [] },
+          { "id": "related-work", "label": "Related work", "description": "Related artwork, visual studies, and supporting material can be added here.", "assets": [] }
+        ]
+      },
+      "releaseInformation": "Released as a single through Artan Records on 23 November 2025.",
       "category": "singles",
       "icon": "gone-demo",
       "detailHref": "music/gone-demo/",
@@ -36,7 +46,11 @@
       },
       "links": [
         { "label": "Apple Music", "platform": "appleMusic", "icon": "apple-music", "url": "https://music.apple.com/de/album/gone-demo/1855881454?i=1855881455" },
-        { "label": "Spotify", "platform": "spotify", "icon": "spotify", "url": "https://open.spotify.com/track/7a3WsP9uzMd3CcSmsiBaql?si=e845dd1a8fd143a9" }
+        { "label": "Spotify", "platform": "spotify", "icon": "spotify", "url": "https://open.spotify.com/track/7a3WsP9uzMd3CcSmsiBaql?si=e845dd1a8fd143a9" },
+        { "label": "YouTube Music", "platform": "youtubeMusic", "icon": "youtube-music", "url": "https://music.youtube.com/@artandavoodi?si=oul2TF4i8U4HxXxV" },
+        { "label": "Deezer", "platform": "deezer", "icon": "deezer", "url": "https://link.deezer.com/s/34nKznaDieZyRWyyAkDAE" },
+        { "label": "TIDAL", "platform": "tidal", "icon": "tidal", "url": "https://tidal.com/artist/74922399/u" },
+        { "label": "Amazon Music", "platform": "amazonMusic", "icon": "amazon-music", "url": "https://music.amazon.de/artists/B0GPS7DL9V/artan-davoodi?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_zZQ7xXzWSGFM6nZ9TShoqyKuv" }
       ]
     }
   ]

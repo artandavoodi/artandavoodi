@@ -1,6 +1,8 @@
 {
   "schemaVersion": 1,
   "items": [
+    { "id": "back", "src": "assets/icons/navigation/back.svg", "alt": "", "monochrome": true },
+    { "id": "chevron-right", "src": "assets/icons/navigation/chevron-right.svg", "alt": "", "monochrome": true },
     { "id": "instagram", "src": "assets/icons/social/platforms/instagram.svg", "alt": "", "monochrome": true },
     { "id": "chevron-down", "src": "assets/icons/actions/chevron-down.svg", "alt": "", "monochrome": true },
     { "id": "x", "src": "assets/icons/social/platforms/x.svg", "alt": "", "monochrome": true },
@@ -23,6 +25,24 @@
       "alt": ""
     },
     {
+      "id": "archive",
+      "monochrome": true,
+      "src": "assets/icons/actions/archive.svg",
+      "alt": ""
+    },
+    {
+      "id": "amazon",
+      "monochrome": true,
+      "src": "assets/icons/commerce/platforms/amazon/amazon.svg",
+      "alt": ""
+    },
+    {
+      "id": "amazon-music",
+      "monochrome": true,
+      "src": "assets/icons/social/platforms/amazon-music.svg",
+      "alt": ""
+    },
+    {
       "id": "apple-music",
       "monochrome": true,
       "src": "assets/icons/social/platforms/apple-music.svg",
@@ -32,6 +52,24 @@
       "id": "spotify",
       "monochrome": true,
       "src": "assets/icons/social/platforms/spotify.svg",
+      "alt": ""
+    },
+    {
+      "id": "youtube-music",
+      "monochrome": true,
+      "src": "assets/icons/social/platforms/youtube-music.svg",
+      "alt": ""
+    },
+    {
+      "id": "deezer",
+      "monochrome": true,
+      "src": "assets/icons/social/platforms/deezer.svg",
+      "alt": ""
+    },
+    {
+      "id": "tidal",
+      "monochrome": true,
+      "src": "assets/icons/social/platforms/tidal.svg",
       "alt": ""
     }
   ]

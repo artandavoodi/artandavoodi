@@ -1,6 +1,9 @@
 /* ARTANDAVOODI · Semantic bridge to existing approved tokens.
    Replaces unresolved legacy CV alias targets; defines no new visual values. */
 :root {
+  /* Separator motion from artan-live's focus/detail reveal owner. */
+  --site-divider-duration: 920ms;
+  --site-divider-stagger: 90ms;
   /* Reference tooltip geometry shared by icon actions. */
   --site-tooltip-overlap: 0.1rem;
   --site-tooltip-offset: 0.12rem;

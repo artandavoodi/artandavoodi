@@ -1,8 +1,13 @@
 /* ARTANDAVOODI · Release detail renderer; release records remain JSON-owned. */
 import { loadJson, assetUrl } from '../../../core/data.js';
 import { renderIcon } from '../media.js';
+import { bindBackLink } from '../back-link.js';
+import { initializeTheme } from '../../../core/theme.js';
 
-const releaseId = location.pathname.split('/').filter(Boolean).at(-2) || 'gone-demo';
+initializeTheme();
+const segments = location.pathname.split('/').filter(Boolean);
+if (segments.at(-1) === 'index.html') segments.pop();
+const releaseId = new URLSearchParams(location.search).get('item') || segments.at(-1);
 const field = (label, value) => {
   if (!value) return null;
   const row = document.createElement('p');
@@ -22,6 +27,7 @@ const render = async () => {
     loadJson('assets/data/interface.json'),
     loadJson('assets/data/icons.json'),
   ]);
+  bindBackLink(document.querySelector('[data-release-back]'), ui.musicBack, icons);
   const item = catalogue.items.find(record => record.id === releaseId);
   if (!item) throw new Error(`Release not found: ${releaseId}`);
   const root = document.querySelector('[data-release-content]');
@@ -36,7 +42,7 @@ const render = async () => {
   const meta = document.createElement('div'); meta.className = 'music-release-detail__meta';
   for (const record of ui.musicDetails || []) { const row = field(record.label, item[record.key]); if (row) meta.append(row); }
   const story = document.createElement('div'); story.className = 'music-release-detail__story';
-  for (const record of ui.musicStoryFields || []) { const row = field(record.label, item[record.key]); if (row) story.append(row); }
+  for (const record of [...(ui.musicStoryFields || []), { key: 'musicSheet', label: 'Music sheet' }]) { const row = field(record.label, item[record.key]); if (row) story.append(row); }
   const links = document.createElement('div'); links.className = 'music-release-detail__links';
   for (const record of item.links || []) { const link = document.createElement('a'); link.href = record.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.setAttribute('aria-label', record.label); const icon = renderIcon(record.icon, icons); if (icon) link.append(icon); links.append(link); }
   article.append(figure, heading, meta); if (story.children.length) article.append(story); if (links.children.length) article.append(links); root.replaceChildren(article); document.title = `${item.title} · Artan Davoodi`;

@@ -1,0 +1,6 @@
+/* ARTANDAVOODI · Instrument/studio editorial layout; shared typography inherited. */
+.music-workspace { display: grid; gap: var(--spacing-xl); padding-block: var(--cv-page-padding-block); }
+.music-workspace article { display: grid; gap: var(--spacing-lg); max-inline-size: var(--cv-reading-width); }
+.music-workspace section { display: grid; gap: var(--spacing-md); }
+.music-workspace p { white-space: pre-line; }
+.music-workspace img { border-radius: var(--shape-card-radius); }

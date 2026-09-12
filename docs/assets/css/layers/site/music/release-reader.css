@@ -1,0 +1,31 @@
+/* ARTANDAVOODI · Music release reader using the approved publication preview system. */
+.music-release-reader[hidden] { display: none; }
+.music-release-reader { position: fixed; inset: 0; z-index: var(--z-header-controls); display: block; background: var(--cv-page-bg); color: var(--cv-text-primary); }
+.music-release-reader__panel { position: relative; inline-size: 100%; block-size: 100dvh; overflow: auto; overscroll-behavior: contain; padding-block: var(--spacing-4xl); padding-inline: var(--spacing-lg); }
+.music-release-reader .global-close-button { position: fixed; inset-block-start: var(--spacing-xl); inset-inline-end: var(--spacing-xl); z-index: var(--z-overlay-control); }
+.music-release-reader__back { position: fixed; inset-block-start: var(--spacing-xl); inset-inline-start: var(--spacing-xl); z-index: var(--z-overlay-control); }
+.music-release-reader__content { display: grid; gap: var(--spacing-xl); inline-size: min(100%, var(--cv-reading-width)); margin-inline: auto; padding-block: var(--spacing-3xl); }
+.music-release-reader__header { display: grid; justify-items: center; gap: var(--spacing-lg); text-align: center; }
+.music-release-reader__cover { display: block; inline-size: min(100%, var(--spacing-5xl)); block-size: auto; aspect-ratio: 1; object-fit: cover; }
+.music-release-reader__header--detail { grid-template-columns: minmax(0, var(--spacing-4xl)) minmax(0, 1fr); align-items: center; justify-items: stretch; text-align: center; }
+.music-release-reader__header--detail .music-release-reader__cover { inline-size: 100%; border-radius: var(--shape-card-radius); }
+.music-release-reader__header--detail h1 { grid-column: 1 / -1; grid-row: 2; justify-self: start; inline-size: max-content; max-inline-size: 100%; text-align: start; }
+.music-release-reader__header h1 { margin: 0; }
+.music-release-reader__content h2 { color: var(--cv-text-primary); font-size: var(--site-type-heading-size); }
+.music-release-reader__content p { margin: 0; white-space: pre-line; }
+.music-release-reader__section { display: grid; gap: var(--spacing-md); }
+.music-release-reader__section-heading { display: inline-flex; align-items: center; gap: var(--spacing-sm); }
+.music-release-reader__section-heading img { inline-size: var(--icon-size-md); block-size: var(--icon-size-md); object-fit: contain; }
+.music-release-reader__archive-tabs { display: flex; flex-wrap: wrap; gap: var(--spacing-md); border-block-end: var(--border-width-hairline) solid var(--cv-border); }
+.music-release-reader__archive-tabs button { border: 0; border-block-end: var(--border-width-thick) solid transparent; padding: var(--spacing-sm) 0; background: transparent; color: var(--cv-text-secondary); font: inherit; cursor: pointer; opacity: var(--opacity-muted); transition: color var(--cv-motion-duration) var(--cv-motion-ease), opacity var(--cv-motion-duration) var(--cv-motion-ease), border-color var(--cv-motion-duration) var(--cv-motion-ease); }
+.music-release-reader__archive-tabs button[aria-selected='true'], .music-release-reader__archive-tabs button:hover, .music-release-reader__archive-tabs button:focus-visible { border-block-end-color: var(--cv-text-primary); color: var(--cv-text-primary); opacity: var(--opacity-full); }
+.music-release-reader__archive-panel { display: grid; gap: var(--spacing-md); }
+.music-release-reader__archive-panel h3, .music-release-reader__archive-panel p { margin: 0; }
+.music-release-reader__archive-asset { color: var(--cv-text-primary); }
+html[data-music-release-open='true'], html[data-music-release-open='true'] body { overflow: hidden; overscroll-behavior: none; }
+@media (prefers-reduced-motion: reduce) { .music-release-reader__panel { scroll-behavior: auto; } }
+@media (max-width: 860px) {
+  .music-release-reader__header--detail { grid-template-columns: 1fr; justify-items: center; }
+  .music-release-reader__header--detail h1 { grid-column: auto; grid-row: auto; }
+  .music-release-reader__header--detail .music-release-reader__cover { inline-size: var(--spacing-4xl); }
+}

@@ -76,22 +76,20 @@ function renderRelease(item, ui, icons) {
   article.dataset.musicId = item.id;
   const cover = renderReleaseCover(item, icons);
   const content = createElement('div', 'music-release__content');
-  const title = createElement('h3', 'music-release__title', item.title);
+  const title = createElement('h3', 'music-release__title');
+  const titleLink = createElement('button', 'music-release__title-link', item.title);
+  titleLink.type = 'button';
+  titleLink.dataset.releasePreview = item.id;
+  title.append(titleLink);
   const subtitle = createElement('p', 'music-release__subtitle', item.subtitle);
   const artist = createElement('p', 'music-release__artist', item.artist);
   const description = createElement('p', 'music-release__description', item.description);
   const details = renderReleaseDetails(item, ui);
-  const story = createElement('div', 'music-release__story');
-  for (const field of ['story', 'productionProcess', 'key', 'notes']) {
-    if (!item[field]) continue;
-    story.append(createElement('p', 'music-release__story-item', item[field]));
-  }
-  if (item.musicSheet) story.append(createElement('a', 'music-release__sheet', item.musicSheet.label || 'Music sheet'));
-  story.hidden = true;
-  const readMore = createElement('a', 'music-release__read-more', ui.musicReadMoreLabel);
-  readMore.href = item.detailHref || `music/${encodeURIComponent(item.id)}/`;
-  const readMoreIcon = renderIcon('chevron-down', icons);
-  if (readMoreIcon) readMore.append(readMoreIcon);
+  const readMore = createElement('button', 'music-release__read-more', ui.musicReadMoreLabel);
+  readMore.type = 'button';
+  readMore.dataset.releaseReadMore = item.id;
+  readMore.setAttribute('aria-label', `${ui.musicReadMoreLabel}: ${item.title}`);
+  readMore.title = ui.musicReadMoreLabel;
   const links = renderReleaseLinks(item, icons);
   const toggle = () => {
     const open = cover.button.getAttribute('aria-expanded') === 'true';
@@ -99,10 +97,10 @@ function renderRelease(item, ui, icons) {
     cover.button.setAttribute('aria-expanded', next);
     article.dataset.expanded = next;
     details.hidden = open;
-    story.hidden = open;
   };
   cover.button.addEventListener('click', toggle);
-  content.append(title, subtitle, artist, description, readMore, details, story, links);
+  titleLink.addEventListener('click', toggle);
+  content.append(title, subtitle, artist, description, details, readMore, links);
   article.append(cover.figure, content);
   return article;
 }
@@ -146,4 +144,104 @@ export async function render(data, ui, icons) {
   }
   update();
   await renderContext(icons);
+  bindReleaseReader(data, ui, icons);
+}
+
+function bindReleaseReader(data, ui, icons) {
+  const reader = document.querySelector('[data-music-release-reader]');
+  const content = document.querySelector('[data-music-release-content]');
+  if (!reader || !content || reader.dataset.bound === 'true') return;
+  reader.dataset.bound = 'true';
+  const close = () => { reader.hidden = true; reader.setAttribute('aria-hidden', 'true'); back.hidden = true; document.documentElement.removeAttribute('data-music-release-open'); };
+  reader.querySelector('[data-music-release-close]').addEventListener('click', close);
+  document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+  const back = reader.querySelector('[data-music-release-back]');
+  const renderReaderHeader = (item, detail = false) => {
+    const header = createElement('header', `music-release-reader__header${detail ? ' music-release-reader__header--detail' : ''}`);
+    const cover = createElement('img', 'music-release-reader__cover');
+    cover.src = assetUrl(item.cover.src);
+    cover.alt = item.cover.alt;
+    cover.width = item.cover.width;
+    cover.height = item.cover.height;
+    cover.loading = 'eager';
+    cover.decoding = 'async';
+    header.append(cover, createElement('h1', '', item.title));
+    return header;
+  };
+  const showSection = (item, field) => {
+    const section = createElement('section', 'music-release-reader__section');
+    const heading = createElement('h2', 'music-release-reader__section-heading');
+    if (field.key === 'archive') {
+      const icon = renderIcon('archive', icons);
+      if (icon) heading.append(icon);
+    }
+    heading.append(field.label);
+    section.append(heading);
+    if (field.key === 'archive' && item.archive?.tabs) {
+      const tabs = createElement('div', 'music-release-reader__archive-tabs');
+      const panel = createElement('div', 'music-release-reader__archive-panel');
+      const showTab = tab => {
+        tabs.querySelectorAll('button').forEach(button => button.setAttribute('aria-selected', String(button.dataset.archiveTab === tab.id)));
+        panel.replaceChildren(createElement('h3', '', tab.label), createElement('p', '', tab.description));
+        for (const asset of tab.assets || []) {
+          const link = createElement('a', 'music-release-reader__archive-asset', asset.label);
+          link.href = assetUrl(asset.path);
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          panel.append(link);
+        }
+      };
+      for (const tab of item.archive.tabs) {
+        const button = createElement('button', '', tab.label);
+        button.type = 'button';
+        button.dataset.archiveTab = tab.id;
+        button.setAttribute('aria-selected', 'false');
+        button.addEventListener('click', () => showTab(tab));
+        tabs.append(button);
+      }
+      section.append(tabs, panel);
+      showTab(item.archive.tabs[0]);
+    } else {
+      section.append(createElement('p', '', item[field.key]));
+    }
+    content.replaceChildren(renderReaderHeader(item, true), section);
+    back.hidden = false;
+  };
+  const renderSectionList = item => {
+    const fields = ui.musicReaderFields.filter(field => item[field.key]);
+    const sections = createElement('div', 'music-release-reader__sections');
+    for (const field of fields) {
+      const button = createElement('button', 'music-release-reader__section-link', field.label);
+      button.type = 'button';
+      const icon = renderIcon(ui.musicDetailIcon, icons);
+      if (icon) button.append(icon);
+      button.addEventListener('click', () => showSection(item, field));
+      sections.append(button);
+    }
+    return sections;
+  };
+  back.replaceChildren(renderIcon(ui.musicBack?.icon, icons));
+  back.setAttribute('aria-label', ui.musicBack?.label || 'Back to release details');
+  back.title = back.getAttribute('aria-label');
+  back.addEventListener('click', () => {
+    if (back._release) {
+      content.replaceChildren(renderReaderHeader(back._release), renderSectionList(back._release));
+      back.hidden = true;
+    }
+  });
+  const openReader = item => {
+    const header = renderReaderHeader(item);
+    back._release = item;
+    back.hidden = true;
+    content.replaceChildren(header, renderSectionList(item));
+    reader.hidden = false;
+    reader.setAttribute('aria-hidden', 'false');
+    document.documentElement.setAttribute('data-music-release-open', 'true');
+    reader.querySelector('.music-release-reader__panel').scrollTop = 0;
+  };
+  document.querySelectorAll('[data-release-read-more]').forEach(button => button.addEventListener('click', () => {
+    const item = data.items.find(record => record.id === button.dataset.releaseReadMore);
+    if (item) openReader(item);
+  }));
+  reader.querySelector('[data-music-release-close]').setAttribute('aria-label', ui.musicReaderCloseLabel || 'Close release details');
 }
