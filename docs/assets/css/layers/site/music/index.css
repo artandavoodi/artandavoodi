@@ -252,6 +252,7 @@
 }
 
 .music-release__platform {
+  position: relative;
   display: inline-grid;
   place-items: center;
   inline-size: var(--music-platform-size);
@@ -272,6 +273,10 @@
 .music-release__platform:focus-visible {
   opacity: var(--music-visible-opacity);
 }
+
+.music-release__platform-tooltip { position: absolute; inset-block-end: calc(100% - var(--site-tooltip-overlap)); inset-inline-start: 50%; transform: translate(-50%, var(--site-tooltip-offset)); inline-size: max-content; max-inline-size: var(--site-tooltip-width); padding: var(--spacing-xs) var(--spacing-sm); border-radius: var(--radius-md); background: var(--cv-text-primary); color: var(--cv-page-bg); font-size: var(--site-type-caption-size); font-weight: var(--site-type-label-weight); letter-spacing: var(--site-type-label-tracking); line-height: var(--site-type-label-leading); opacity: var(--cv-opacity-none); pointer-events: none; transition: opacity var(--cv-motion-duration) var(--cv-motion-ease), transform var(--cv-motion-duration) var(--cv-motion-ease); }
+.music-release__platform:hover .music-release__platform-tooltip,
+.music-release__platform:focus-visible .music-release__platform-tooltip { opacity: var(--cv-opacity-full); transform: translate(-50%, 0); }
 
 @media (max-width: 860px) {
   .music__controls {
@@ -311,4 +316,5 @@
   .music-release__platform {
     transition: none;
   }
+  .music-release__platform-tooltip { transition: none; }
 }

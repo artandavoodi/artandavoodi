@@ -45,6 +45,9 @@ function renderReleaseLinks(item, icons) {
     link.setAttribute('aria-label', record.label);
     const icon = renderIcon(record.icon, icons);
     if (icon) link.append(icon);
+    const label = createElement('span', 'music-release__platform-tooltip', record.label);
+    label.setAttribute('aria-hidden', 'true');
+    link.append(label);
     links.append(link);
   }
   return links;
