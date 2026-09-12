@@ -1,4 +1,43 @@
 {
   "schemaVersion": 1,
-  "items": []
+  "items": [
+    {
+      "id": "gone-demo",
+      "order": 1,
+      "title": "Gone (Demo)",
+      "subtitle": "Single",
+      "artist": "Artan",
+      "creator": "Artan Davoodi",
+      "type": "Single",
+      "format": "Instrumental",
+      "genre": "Alternative",
+      "language": "Instrumental",
+      "label": "Artan Records",
+      "releaseDate": "2025-11-23",
+      "year": "2025",
+      "duration": "4:50",
+      "isrc": "QT6F42509673",
+      "upc": "199951439059",
+      "status": "Released",
+      "description": "Instrumental single released by Artan through Artan Records.",
+      "story": "",
+      "productionProcess": "",
+      "key": "",
+      "musicSheet": null,
+      "notes": "",
+      "category": "singles",
+      "icon": "gone-demo",
+      "detailHref": "music/gone-demo/",
+      "cover": {
+        "src": "assets/media/music/singles/gone-demo/cover/gone-demo-cover.webp",
+        "alt": "Gone (Demo) cover artwork",
+        "width": 3000,
+        "height": 3000
+      },
+      "links": [
+        { "label": "Apple Music", "platform": "appleMusic", "icon": "apple-music", "url": "https://music.apple.com/de/album/gone-demo/1855881454?i=1855881455" },
+        { "label": "Spotify", "platform": "spotify", "icon": "spotify", "url": "https://open.spotify.com/track/7a3WsP9uzMd3CcSmsiBaql?si=e845dd1a8fd143a9" }
+      ]
+    }
+  ]
 }

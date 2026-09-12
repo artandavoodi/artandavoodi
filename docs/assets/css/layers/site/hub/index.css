@@ -1,0 +1,7 @@
+/* ARTANDAVOODI · Hub connection section using shared site tokens. */
+.hub__description { max-inline-size: var(--cv-reading-width); color: var(--cv-text-secondary); }
+.hub .record-links { justify-content: flex-start; }
+.hub__link { position: relative; display: inline-flex; align-items: center; justify-content: center; min-inline-size: var(--control-height-sm); min-block-size: var(--control-height-sm); text-decoration: none; }
+.hub__link img { inline-size: var(--icon-size-md); block-size: var(--icon-size-md); object-fit: contain; }
+.hub__tooltip { position: absolute; inset-block-end: calc(100% - var(--site-tooltip-overlap)); inset-inline-start: 50%; transform: translate(-50%, var(--site-tooltip-offset)); inline-size: max-content; max-inline-size: var(--site-tooltip-width); padding: var(--spacing-xs) var(--spacing-sm); border-radius: var(--radius-md); background: var(--cv-text-primary); color: var(--cv-page-bg); font-size: var(--cv-font-caption); font-weight: var(--font-weight-medium); letter-spacing: var(--cv-letter-label); line-height: var(--line-height-heading-tight); opacity: var(--cv-opacity-none); pointer-events: none; transition: opacity var(--cv-motion-duration) var(--cv-motion-ease), transform var(--cv-motion-duration) var(--cv-motion-ease); }
+.hub__link:hover .hub__tooltip, .hub__link:focus-visible .hub__tooltip { opacity: var(--cv-opacity-full); transform: translate(-50%, 0); }

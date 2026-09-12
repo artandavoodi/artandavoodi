@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "title": "Artan Davoodi · Music & Art",
+  "description": "Music and visual work by Artan Davoodi.",
+  "keywords": [
+    "Artan Davoodi",
+    "Artan",
+    "music",
+    "art",
+    "artist",
+    "gallery",
+    "music production",
+    "albums",
+    "EPs",
+    "singles",
+    "releases", "Gone (Demo)", "Artan Records"
+  ],
+  "url": "https://artandavoodi.com/",
+  "siteType": "Person",
+  "inLanguage": ["en", "fa"],
+  "creator": {
+    "name": "Artan Davoodi",
+    "alternateName": "Artan",
+    "url": "https://artandavoodi.com/"
+  },
+  "sameAs": [
+    "https://artan.live/", "https://x.com/artandavoodi"
+  ],
+  "pages": {
+    "artist": { "title": "Artan Davoodi · Music & Art", "description": "Music and visual work by Artan Davoodi. Artist portrait and featured work." },
+    "music": { "title": "Music · Artan Davoodi", "description": "Listen to Gone (Demo) by Artan. Releases, Artan Records, and music projects." },
+    "gallery": { "title": "Art & Gallery · Artan Davoodi", "description": "Portraits, photographs and artworks by Artan Davoodi." },
+    "hub": { "title": "Connect · Artan Davoodi", "description": "Contact Artan Davoodi, find his X account, and visit the public hub at artan.live." }
+  }
+}

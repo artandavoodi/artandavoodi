@@ -8,7 +8,7 @@ export function assetUrl(value) {
   return url.href;
 }
 export async function loadJson(value) {
-  const response = await fetch(assetUrl(value));
+  const response = await fetch(assetUrl(value), { cache: 'no-cache' });
   if (!response.ok) throw new Error(`Unable to load ${value}: ${response.status}`);
   return response.json();
 }

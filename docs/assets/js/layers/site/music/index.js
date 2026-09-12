@@ -1,22 +1,149 @@
-/* ARTANDAVOODI · Registry-driven release filtering and rendering. */
-import { renderRecord, renderEmpty } from '../media.js';
-export function render(data, ui) {
-  const target = document.querySelector('[data-music-items]');
-  const filters = document.querySelector('[data-music-filters]');
-  const update = category => {
-    const items = data.items.filter(item => category === 'all' || item.category === category);
-    if (items.length) target.replaceChildren(...items.map(renderRecord));
-    else renderEmpty(target, ui.empty.music);
-    for (const button of filters.children) button.setAttribute('aria-pressed', String(button.dataset.category === category));
-  };
-  for (const category of ui.musicCategories) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'control';
-    button.dataset.category = category.id;
-    button.textContent = category.label;
-    button.addEventListener('click', () => update(category.id));
-    filters.append(button);
+/* ARTANDAVOODI · Music showcase renderer; releases and UI labels are JSON-owned. */
+import { assetUrl } from '../../../core/data.js?v=7';
+import { renderIcon, renderEmpty } from '../media.js?v=5';
+import { renderContext } from './context/index.js?v=2';
+
+const DEFAULT_CATEGORY = 'singles';
+const DEFAULT_STATUS = 'all';
+
+function createElement(tagName, className, textContent) {
+  const element = document.createElement(tagName);
+  if (className) element.className = className;
+  if (textContent !== undefined) element.textContent = textContent;
+  return element;
+}
+
+function sortedItems(items) {
+  return [...(Array.isArray(items) ? items : [])].sort((a, b) => (a.order || 0) - (b.order || 0));
+}
+
+function renderReleaseDetails(item, ui) {
+  const details = createElement('div', 'music-release__details');
+  details.hidden = true;
+  for (const field of ui.musicDetails || []) {
+    if (!item[field.key]) continue;
+    const detail = createElement('p', 'music-release__detail');
+    detail.append(
+      createElement('span', 'music-release__detail-label', field.label),
+      createElement('span', 'music-release__detail-value', item[field.key]),
+    );
+    details.append(detail);
   }
-  update('all');
+  return details;
+}
+
+function renderReleaseLinks(item, icons) {
+  const links = createElement('div', 'music-release__links');
+  for (const record of item.links || []) {
+    const url = new URL(record.url);
+    if (url.protocol !== 'https:' || url.username || url.password) continue;
+    const link = createElement('a', 'music-release__platform');
+    link.href = url.href;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.dataset.platform = record.platform || record.label;
+    link.setAttribute('aria-label', record.label);
+    const icon = renderIcon(record.icon, icons);
+    if (icon) link.append(icon);
+    links.append(link);
+  }
+  return links;
+}
+
+function renderReleaseCover(item, icons) {
+  const figure = createElement('figure', 'music-release__cover');
+  const button = createElement('button', 'music-release__cover-button');
+  button.type = 'button';
+  button.setAttribute('aria-expanded', 'false');
+  button.setAttribute('aria-label', item.title);
+  const image = createElement('img', 'music-release__cover-image');
+  image.src = assetUrl(item.cover.src);
+  image.alt = item.cover.alt;
+  image.width = item.cover.width;
+  image.height = item.cover.height;
+  image.loading = 'lazy';
+  image.decoding = 'async';
+  const icon = renderIcon(item.icon, icons);
+  if (icon) icon.className = 'music-release__cover-icon';
+  button.append(image);
+  if (icon) button.append(icon);
+  figure.append(button);
+  return { figure, button };
+}
+
+function renderRelease(item, ui, icons) {
+  const article = createElement('article', 'music-release');
+  article.dataset.musicId = item.id;
+  const cover = renderReleaseCover(item, icons);
+  const content = createElement('div', 'music-release__content');
+  const title = createElement('h3', 'music-release__title', item.title);
+  const subtitle = createElement('p', 'music-release__subtitle', item.subtitle);
+  const artist = createElement('p', 'music-release__artist', item.artist);
+  const description = createElement('p', 'music-release__description', item.description);
+  const details = renderReleaseDetails(item, ui);
+  const story = createElement('div', 'music-release__story');
+  for (const field of ['story', 'productionProcess', 'key', 'notes']) {
+    if (!item[field]) continue;
+    story.append(createElement('p', 'music-release__story-item', item[field]));
+  }
+  if (item.musicSheet) story.append(createElement('a', 'music-release__sheet', item.musicSheet.label || 'Music sheet'));
+  story.hidden = true;
+  const readMore = createElement('a', 'music-release__read-more', ui.musicReadMoreLabel);
+  readMore.href = item.detailHref || `music/${encodeURIComponent(item.id)}/`;
+  const readMoreIcon = renderIcon('chevron-down', icons);
+  if (readMoreIcon) readMore.append(readMoreIcon);
+  const links = renderReleaseLinks(item, icons);
+  const toggle = () => {
+    const open = cover.button.getAttribute('aria-expanded') === 'true';
+    const next = String(!open);
+    cover.button.setAttribute('aria-expanded', next);
+    article.dataset.expanded = next;
+    details.hidden = open;
+    story.hidden = open;
+  };
+  cover.button.addEventListener('click', toggle);
+  content.append(title, subtitle, artist, description, readMore, details, story, links);
+  article.append(cover.figure, content);
+  return article;
+}
+
+export async function render(data, ui, icons) {
+  const target = document.querySelector('[data-music-items]');
+  const categories = document.querySelector('[data-music-categories]');
+  const status = document.querySelector('[data-music-status]');
+  const filterIcon = renderIcon('filter', icons);
+  if (filterIcon) {
+    filterIcon.className = 'music__filter-icon';
+    filterIcon.setAttribute('aria-hidden', 'true');
+    document.querySelector('[data-music-filter-icon]').append(filterIcon);
+  }
+  let activeCategory = DEFAULT_CATEGORY;
+  let activeStatus = DEFAULT_STATUS;
+  const update = () => {
+    const items = sortedItems(data.items).filter(item => {
+      const categoryMatches = item.category === activeCategory;
+      const statusMatches = activeStatus === DEFAULT_STATUS || String(item.status).toLowerCase() === activeStatus;
+      return categoryMatches && statusMatches;
+    });
+    if (items.length) target.replaceChildren(...items.map(item => renderRelease(item, ui, icons)));
+    else renderEmpty(target, ui.empty.music);
+    for (const button of categories.children) button.setAttribute('aria-pressed', String(button.dataset.category === activeCategory));
+    for (const button of status.children) button.setAttribute('aria-pressed', String(button.dataset.status === activeStatus));
+  };
+  for (const record of ui.musicCategories || []) {
+    const button = createElement('button', 'music__category', record.label);
+    button.type = 'button';
+    button.dataset.category = record.id;
+    button.addEventListener('click', () => { activeCategory = record.id; update(); });
+    categories.append(button);
+  }
+  for (const record of ui.musicStatusFilters || []) {
+    const button = createElement('button', 'music__status-option', record.label);
+    button.type = 'button';
+    button.dataset.status = record.id;
+    button.addEventListener('click', () => { activeStatus = record.id; update(); });
+    status.append(button);
+  }
+  update();
+  await renderContext(icons);
 }

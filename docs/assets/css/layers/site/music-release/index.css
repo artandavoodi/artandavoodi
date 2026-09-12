@@ -1,0 +1,16 @@
+/* ARTANDAVOODI · Release detail presentation using shared site tokens. */
+.music-release-page { display: grid; gap: var(--spacing-2xl); max-inline-size: var(--cv-page-width); margin-inline: auto; padding-block: var(--cv-page-padding-block); }
+.music-release-page__back { color: var(--cv-text-secondary); text-decoration: none; }
+.music-release-page__back:hover, .music-release-page__back:focus-visible { color: var(--cv-text-primary); }
+.music-release-detail { display: grid; gap: var(--spacing-xl); }
+.music-release-detail__cover { inline-size: min(100%, var(--featured-card-width)); margin: 0; }
+.music-release-detail__cover img { display: block; inline-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--shape-card-radius); }
+.music-release-detail__heading { display: grid; gap: var(--spacing-sm); }
+.music-release-detail__title { font-size: var(--title-1-size); font-weight: var(--font-weight-medium); line-height: var(--line-height-heading); }
+.music-release-detail__meta, .music-release-detail__story { display: grid; gap: var(--spacing-md); max-inline-size: var(--cv-reading-width); }
+.music-release-detail__meta p, .music-release-detail__story p { display: grid; grid-template-columns: minmax(0, var(--spacing-4xl)) minmax(0, 1fr); gap: var(--spacing-md); margin: 0; }
+.music-release-detail__label { color: var(--cv-text-secondary); font-size: var(--cv-font-caption); text-transform: uppercase; letter-spacing: var(--cv-letter-label); }
+.music-release-detail__value { color: var(--cv-text-primary); }
+.music-release-detail__links { display: flex; gap: var(--spacing-md); }
+.music-release-detail__links a { color: var(--cv-text-primary); }
+@media (max-width: 860px) { .music-release-page { padding-inline: var(--spacing-lg); } .music-release-detail__meta p, .music-release-detail__story p { grid-template-columns: 1fr; gap: var(--spacing-xs); } }

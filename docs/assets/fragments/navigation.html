@@ -1,7 +1,15 @@
 <!-- ARTANDAVOODI · Shared navigation structure; labels supplied by interface.json. -->
-<header class="site-navigation">
+<header class="site-navigation" data-site-navigation>
   <a class="skip-link" href="#main-content" data-skip></a>
-  <a class="site-brand" href="#artist" data-brand></a>
-  <nav data-navigation></nav>
-  <button type="button" class="control" data-theme-toggle></button>
+  <button type="button" class="site-theme-toggle" data-theme-toggle aria-label="Toggle appearance" aria-pressed="false"></button>
+  <button type="button" class="site-menu-toggle" data-menu-toggle aria-label="Open site menu" aria-expanded="false" aria-controls="site-menu">
+    <span class="site-menu-toggle__line" aria-hidden="true"></span>
+    <span class="site-menu-toggle__line" aria-hidden="true"></span>
+  </button>
 </header>
+
+<section class="site-menu" id="site-menu" data-menu hidden aria-hidden="true">
+  <div class="site-menu__surface">
+    <nav class="site-menu__links" data-menu-navigation aria-label="Site menu"></nav>
+  </div>
+</section>

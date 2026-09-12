@@ -1,4 +1,10 @@
 {
   "schemaVersion": 1,
-  "items": []
+  "collections": [
+    { "id": "portfolio", "title": "Portraits", "empty": "More photographs to come." },
+    { "id": "artworks", "title": "Artworks", "empty": "Artworks will appear here." }
+  ],
+  "items": [
+    { "id": "artan-portrait", "collection": "portfolio", "image": { "src": "assets/media/gallery/portfolio/artan-portrait.jpg", "alt": "Portrait of Artan Davoodi", "width": 2155, "height": 2155 } }
+  ]
 }

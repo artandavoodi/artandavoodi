@@ -1,4 +1,8 @@
 /* ARTANDAVOODI · Artist section using shared typography and reading rail. */
 .artist h1 { font-size: var(--font-size-display-2); font-weight: var(--font-weight-light); line-height: var(--line-height-heading-tight); overflow-wrap: anywhere; }
-.artist [data-biography], .artist [data-portrait] { max-inline-size: var(--cv-reading-width); }
-.artist [data-portrait]:empty, .artist [data-artist-links]:empty { display: none; }
+.artist { justify-items: center; }
+.artist__biography { max-inline-size: var(--cv-reading-width); text-align: center; color: var(--cv-text-secondary); }
+.artist h1 { text-align: center; }
+.artist__portrait { inline-size: min(100%, var(--artist-portrait-width)); }
+.artist__portrait img { inline-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--shape-card-radius); }
+.artist > [data-fragment] { inline-size: 100%; margin-block-start: var(--spacing-xl); }

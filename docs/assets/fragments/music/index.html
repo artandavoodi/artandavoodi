@@ -1,6 +1,15 @@
-<!-- ARTANDAVOODI · Music catalogue structure; releases.json owns records. -->
-<section class="site-section" id="music" aria-labelledby="music-title">
-  <h2 id="music-title" data-section-title="music"></h2>
-  <div class="record-links" role="group" aria-labelledby="music-title" data-music-filters></div>
-  <div class="catalogue" data-music-items aria-live="polite"></div>
+<!-- ARTANDAVOODI · Music showcase structure; releases.json owns records. -->
+<section class="site-section music" id="music" aria-labelledby="music-title" data-page="music">
+  <header class="music__header">
+    <h2 id="music-title" data-section-title="music"></h2>
+  </header>
+  <div class="music__controls">
+    <div class="music__categories" role="group" aria-label="Music release category" data-music-categories></div>
+    <div class="music__status" role="group" aria-label="Music status filter">
+      <span class="music__status-icon" data-music-filter-icon></span>
+      <div class="music__status-options" data-music-status></div>
+    </div>
+  </div>
+  <div class="music__items" data-music-items aria-live="polite"></div>
+  <div data-fragment="music-context"></div>
 </section>

@@ -1,8 +1,11 @@
 {
   "navigation": "assets/fragments/navigation.html",
   "artist": "assets/fragments/artist/index.html",
+  "featured": "assets/fragments/featured/index.html",
+  "music-context": "assets/fragments/music/context/index.html",
   "music": "assets/fragments/music/index.html",
   "publications": "assets/fragments/publications/index.html",
   "gallery": "assets/fragments/gallery/index.html",
+  "hub": "assets/fragments/hub/index.html",
   "footer": "assets/fragments/footer.html"
 }

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "title": "Connect",
+  "description": "Music, images, and the places where the work continues.",
+  "links": [
+    { "label": "artan.live", "icon": "globe", "url": "https://artan.live/" },
+    { "label": "X / Twitter", "icon": "x", "url": "https://x.com/artandavoodi" },
+    { "label": "contact@artandavoodi.com", "icon": "email", "url": "mailto:contact@artandavoodi.com" },
+    { "label": "Instagram", "icon": "instagram", "url": null, "status": "awaiting-profile-url" }
+  ]
+}

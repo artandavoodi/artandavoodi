@@ -74,7 +74,11 @@ async function checkCatalogue(name, file) {
     ids.add(item.id);
     if (name === 'gallery') {
       requireValue(slug(item.collection), `${item.id}: collection ID required`);
-      await image(item.image, `assets/media/gallery/${item.collection}/`, item.id);
+      // A portrait reused in the portfolio keeps its canonical file ownership.
+      const artist = await json(site.catalogues.artist);
+      const prefix = item.image?.src === artist?.portrait?.src
+        ? 'assets/media/portrait/' : `assets/media/gallery/${item.collection}/`;
+      await image(item.image, prefix, item.id);
     } else {
       requireValue(nonempty(item.title), `${item.id}: title required`);
       if (name === 'music') requireValue(['albums', 'eps', 'singles'].includes(item.category), `${item.id}: invalid category`);
@@ -102,6 +106,12 @@ const site = await json('assets/data/site.json');
 if (site) {
   for (const name of ['artist', 'gallery', 'music', 'publications']) {
     await checkCatalogue(name, site.catalogues?.[name]);
+  }
+  const featured = await json(site.featured);
+  for (const selection of featured?.items || []) {
+    const catalogue = await json(site.catalogues[selection.catalogue]);
+    requireValue(catalogue?.items?.some(item => item.id === selection.id), `Unknown featured reference: ${selection.id}`);
+    requireValue(typeof selection.href === 'string' && /^(?:#[a-z-]+|https:\/\/)/.test(selection.href), `Invalid featured destination: ${selection.id}`);
   }
 }
 await scanFiles(path.join(root, 'assets'));

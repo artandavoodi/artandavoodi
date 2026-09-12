@@ -1,2 +1,5 @@
 /* ARTANDAVOODI · Gallery section owner with canonical caption spacing. */
 #gallery figure { display: grid; gap: var(--spacing-sm); max-inline-size: var(--cv-reading-width); }
+.gallery__collection { display: grid; gap: var(--spacing-lg); }
+.gallery__images { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--artist-portrait-width)), 1fr)); gap: var(--spacing-lg); }
+.gallery__images img { max-inline-size: var(--artist-portrait-width); inline-size: 100%; }

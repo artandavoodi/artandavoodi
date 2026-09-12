@@ -37,3 +37,4 @@
 .catalogue-record { display: grid; gap: var(--spacing-md); }
 .catalogue img { border-radius: var(--shape-card-radius); }
 .site-status { padding-block: var(--spacing-lg); }
+img[data-monochrome] { filter: var(--site-monochrome-icon-filter); }

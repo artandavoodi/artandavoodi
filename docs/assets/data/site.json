@@ -1,10 +1,15 @@
 {
   "schemaVersion": 1,
-  "identity": { "name": "Artan Davoodi", "domain": "artandavoodi.com", "hubUrl": "https://artan.live/" },
+  "identity": { "name": "Artan Davoodi", "publicName": "Artan", "domain": "artandavoodi.com", "hubUrl": "https://artan.live/" },
+  "metadata": "assets/data/metadata/site.json",
+  "icons": "assets/data/icons.json",
+  "featured": "assets/data/featured.json",
   "catalogues": {
     "artist": "assets/data/artist/profile.json",
     "gallery": "assets/data/gallery/images.json",
     "music": "assets/data/music/releases.json",
-    "publications": "assets/data/publications/books.json"
+    "publications": "assets/data/publications/books.json",
+    "hub": "assets/data/hub.json",
+    "products": "assets/data/products/items.json"
   }
 }

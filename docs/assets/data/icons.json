@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "items": [
+    { "id": "instagram", "src": "assets/icons/social/platforms/instagram.svg", "alt": "", "monochrome": true },
+    { "id": "chevron-down", "src": "assets/icons/actions/chevron-down.svg", "alt": "", "monochrome": true },
+    { "id": "x", "src": "assets/icons/social/platforms/x.svg", "alt": "", "monochrome": true },
+    { "id": "email", "src": "assets/icons/social/platforms/email.svg", "alt": "", "monochrome": true },
+    { "id": "globe", "src": "assets/icons/navigation/globe.svg", "alt": "", "monochrome": true },
+    {
+      "id": "artist-mark",
+      "src": "assets/brand/logo/symbol-artan.svg",
+      "alt": "Artan symbol"
+    },
+    {
+      "id": "gone-demo",
+      "src": "assets/media/music/singles/gone-demo/icons/gone-demo-icon.svg",
+      "alt": "Gone (Demo) release mark"
+    },
+    {
+      "id": "filter",
+      "monochrome": true,
+      "src": "assets/icons/actions/filter.svg",
+      "alt": ""
+    },
+    {
+      "id": "apple-music",
+      "monochrome": true,
+      "src": "assets/icons/social/platforms/apple-music.svg",
+      "alt": ""
+    },
+    {
+      "id": "spotify",
+      "monochrome": true,
+      "src": "assets/icons/social/platforms/spotify.svg",
+      "alt": ""
+    }
+  ]
+}

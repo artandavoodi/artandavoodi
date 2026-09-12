@@ -1,7 +1,12 @@
 {
   "schemaVersion": 1,
   "name": "Artan Davoodi",
-  "biography": "",
-  "portrait": null,
+  "publicName": "Artan",
+  "headline": "Music and visual work",
+  "subtitle": "Artist · Musician",
+  "summary": "Music and visual work by Artan Davoodi.",
+  "biography": "Artan Davoodi is a musician and artist working with sound, visual work, and the space between them. This site brings together selected releases, films, and images as an evolving record of that work.",
+  "icon": "artist-mark",
+  "portrait": { "src": "assets/media/portrait/artist-home.jpeg", "alt": "Portrait of Artan Davoodi", "width": 2848, "height": 4288 },
   "links": []
 }

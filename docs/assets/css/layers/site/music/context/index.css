@@ -1,0 +1,8 @@
+/* ARTANDAVOODI · Supporting music collections share the site spacing and typography. */
+.music-context { display: grid; gap: var(--spacing-2xl); }
+.music-context section { display: grid; gap: var(--spacing-md); border-block-start: var(--border-width-hairline) solid var(--cv-border); padding-block-start: var(--spacing-xl); }
+.music-context summary { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); cursor: pointer; font-size: var(--body-1-size); list-style: none; }
+.music-context summary::-webkit-details-marker { display: none; }
+.music-context summary img { inline-size: var(--icon-size-sm); block-size: var(--icon-size-sm); }
+.music-context details[open] summary img { rotate: 180deg; }
+.music-context details p { margin-block-start: var(--spacing-md); max-inline-size: var(--cv-reading-width); }

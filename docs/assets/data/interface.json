@@ -1,24 +1,45 @@
 {
   "navigationLabel": "Main navigation",
+  "menuLabel": "Site menu",
+  "menuToggle": { "open": "Open site menu", "close": "Close site menu" },
   "skipLabel": "Skip to content",
   "theme": { "dark": "Dark appearance", "light": "Light appearance" },
   "sections": [
     { "id": "artist", "label": "Artist" },
     { "id": "music", "label": "Music" },
-    { "id": "publications", "label": "Publications" },
-    { "id": "gallery", "label": "Art & Gallery" }
+    { "id": "gallery", "label": "Art & Gallery" },
+    { "id": "hub", "label": "Hub" }
   ],
-  "artistDescription": "Art · Music · Publications",
+  "artistDescription": "Music · Art",
   "hubLabel": "Public hub",
   "musicCategories": [
-    { "id": "all", "label": "All releases" },
     { "id": "albums", "label": "Albums" },
-    { "id": "eps", "label": "EPs" },
-    { "id": "singles", "label": "Singles" }
+    { "id": "singles", "label": "Singles" },
+    { "id": "eps", "label": "EPs" }
+  ],
+  "musicStatusFilters": [
+    { "id": "all", "label": "All" },
+    { "id": "released", "label": "Released" },
+    { "id": "upcoming", "label": "Upcoming" }
+  ],
+  "musicReadMoreLabel": "Read more",
+  "musicStoryFields": [
+    { "key": "story", "label": "Story" },
+    { "key": "productionProcess", "label": "Production" },
+    { "key": "key", "label": "Key" },
+    { "key": "notes", "label": "Notes" }
+  ],
+  "musicDetails": [
+    { "key": "type", "label": "Type" },
+    { "key": "format", "label": "Format" },
+    { "key": "genre", "label": "Genre" },
+    { "key": "label", "label": "Label" },
+    { "key": "releaseDate", "label": "Release Date" },
+    { "key": "duration", "label": "Duration" },
+    { "key": "status", "label": "Status" }
   ],
   "empty": {
     "music": "No releases listed yet.",
-    "publications": "No publications listed yet.",
     "gallery": "No artwork listed yet."
   },
   "error": "This section could not load. Please reload the page or try again later."
