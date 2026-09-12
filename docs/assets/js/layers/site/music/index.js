@@ -34,7 +34,7 @@ function renderReleaseDetails(item, ui) {
 
 function renderReleaseLinks(item, icons) {
   const links = createElement('div', 'music-release__links');
-  for (const record of item.links || []) {
+  for (const record of [...(item.links || [])].sort((a, b) => (a.order || 0) - (b.order || 0))) {
     const url = new URL(record.url);
     if (url.protocol !== 'https:' || url.username || url.password) continue;
     const link = createElement('a', 'music-release__platform');

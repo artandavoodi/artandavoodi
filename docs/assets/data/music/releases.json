@@ -45,12 +45,12 @@
         "height": 3000
       },
       "links": [
-        { "label": "Apple Music", "platform": "appleMusic", "icon": "apple-music", "url": "https://music.apple.com/de/album/gone-demo/1855881454?i=1855881455" },
-        { "label": "Spotify", "platform": "spotify", "icon": "spotify", "url": "https://open.spotify.com/track/7a3WsP9uzMd3CcSmsiBaql?si=e845dd1a8fd143a9" },
-        { "label": "YouTube Music", "platform": "youtubeMusic", "icon": "youtube-music", "url": "https://music.youtube.com/@artandavoodi?si=oul2TF4i8U4HxXxV" },
-        { "label": "Deezer", "platform": "deezer", "icon": "deezer", "url": "https://link.deezer.com/s/34nKznaDieZyRWyyAkDAE" },
-        { "label": "TIDAL", "platform": "tidal", "icon": "tidal", "url": "https://tidal.com/artist/74922399/u" },
-        { "label": "Amazon Music", "platform": "amazonMusic", "icon": "amazon-music", "url": "https://music.amazon.de/artists/B0GPS7DL9V/artan-davoodi?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_zZQ7xXzWSGFM6nZ9TShoqyKuv" }
+        { "label": "Apple Music", "platform": "appleMusic", "order": 1, "icon": "apple-music", "url": "https://music.apple.com/us/album/gone-demo/1855881454?i=1855881455" },
+        { "label": "Spotify", "platform": "spotify", "order": 2, "icon": "spotify", "url": "https://open.spotify.com/track/7a3WsP9uzMd3CcSmsiBaql?si=e845dd1a8fd143a9" },
+        { "label": "YouTube Music", "platform": "youtubeMusic", "order": 3, "icon": "youtube-music", "url": "https://music.youtube.com/watch?v=GeOzp6ELKqI&si=o0JJTzu2wFa4xi5o" },
+        { "label": "Amazon Music", "platform": "amazonMusic", "order": 4, "icon": "amazon-music", "url": "https://music.amazon.de/albums/B0G3L4DN14?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_pPJOXTDJiaNfIGgyleoDKjJGB" },
+        { "label": "Deezer", "platform": "deezer", "order": 5, "icon": "deezer", "url": "https://link.deezer.com/s/34nLWo35LsZ61SRupMd2Q" },
+        { "label": "TIDAL", "platform": "tidal", "order": 6, "icon": "tidal", "url": "https://tidal.com/track/476096359/u" }
       ]
     }
   ]
