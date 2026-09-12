@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://artandavoodi.com/sitemap.xml
