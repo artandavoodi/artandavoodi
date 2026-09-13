@@ -24,6 +24,15 @@
     { "id": "upcoming", "label": "Upcoming" }
   ],
   "musicReadMoreLabel": "Read more",
+  "musicTrackListLabel": "Tracks",
+  "musicDurationPending": "—",
+  "musicDetailsPending": "Details to follow.",
+  "musicFieldLabels": { "format": "Format", "genre": "Genre", "duration": "Duration", "isrc": "ISRC" },
+  "musicArchiveTabs": [
+    { "id": "music-sheet", "label": "Music sheet", "assets": [] },
+    { "id": "working-notes", "label": "Working notes", "assets": [] },
+    { "id": "related-work", "label": "Related work", "assets": [] }
+  ],
   "musicDetailPage": "music/release/",
   "musicDetailIcon": "chevron-right",
   "musicReaderCloseLabel": "Close release details",

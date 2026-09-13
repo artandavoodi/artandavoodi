@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "items": [
+    { "id": "solum", "src": "assets/media/music/albums/solum/icons/solum-icon.svg", "alt": "Solum release mark", "monochrome": true },
     { "id": "back", "src": "assets/icons/navigation/back.svg", "alt": "", "monochrome": true },
     { "id": "chevron-right", "src": "assets/icons/navigation/chevron-right.svg", "alt": "", "monochrome": true },
     { "id": "instagram", "src": "assets/icons/social/platforms/instagram.svg", "alt": "", "monochrome": true },

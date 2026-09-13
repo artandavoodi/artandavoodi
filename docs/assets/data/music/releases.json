@@ -2,6 +2,590 @@
   "schemaVersion": 1,
   "items": [
     {
+      "id": "solum",
+      "order": 1,
+      "title": "Solum",
+      "subtitle": "Album",
+      "artist": "Artan Davoodi",
+      "creator": "Artan Davoodi",
+      "identity": { "stageName": "Artan", "artistName": "Artan Davoodi", "legalName": "Saeed Davoodi" },
+      "type": "Album",
+      "format": "Instrumental",
+      "genre": "Alternative, Classical, New Age",
+      "duration": "49:58",
+      "category": "albums",
+      "label": "Artan Records",
+      "uploadDate": "2026-09-05",
+      "releaseDate": "2026-09-05",
+      "year": "2026",
+      "upc": "700989238578",
+      "status": "Released",
+      "description": "Nine instrumental tracks by Artan Davoodi, released through Artan Records.",
+      "story": "Solum grew after MONAD was made public, during a period of solitude, self-authorship, and a deeper examination of consciousness. Its nine instrumental works move through ideas of origin, presence, and inner formation. The title carries the weight of soul, solitude, and being deeply with oneself, shaped during the period following his father's death.",
+      "credits": "Production, piano and composition: Artan Davoodi.",
+      "musicalDetails": "Tempo follows the feeling of each passage rather than a fixed pulse throughout.",
+      "productionProcess": "Production, mixing and mastering in Logic Pro.",
+      "archive": {
+        "tabs": [
+          { "id": "music-sheet", "label": "Music sheet", "description": "Music sheets to follow.", "assets": [] },
+          { "id": "working-notes", "label": "Working notes", "description": "Working notes to follow.", "assets": [] },
+          { "id": "related-work", "label": "Related work", "assets": [
+            { "label": "MONAD — An Architecture of Awareness", "url": "https://artan.live/publications/" }
+          ] }
+        ]
+      },
+      "releaseInformation": "Released September 5, 2026 through Artan Records. UPC: 700989238578.",
+      "icon": "solum",
+      "detailHref": "music/release/?item=solum",
+      "cover": {
+        "src": "assets/media/music/albums/solum/cover/solum-cover.webp",
+        "alt": "Solum album artwork: sunlight through clouds with the album title",
+        "width": 1280,
+        "height": 1280
+      },
+      "links": [
+        { "label": "Apple Music", "platform": "appleMusic", "order": 1, "icon": "apple-music", "url": "https://music.apple.com/us/album/solum/6809233155" },
+        { "label": "Spotify", "platform": "spotify", "order": 2, "icon": "spotify", "url": "https://open.spotify.com/album/39WyOGvXWtsoRBRI8Jtzp8?si=Q4ch1qQXQfKyq4r6QSFV8Q" },
+        { "label": "YouTube Music", "platform": "youtubeMusic", "order": 3, "icon": "youtube-music", "url": "https://music.youtube.com/playlist?list=OLAK5uy_nokZmP-Xgpk8VLaiGPxmdNvf8jI-990fU&si=_YeE7tjy-wZBnJeJ" },
+        { "label": "Amazon Music", "platform": "amazonMusic", "order": 4, "icon": "amazon-music", "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_53wfQXtJYztDPmT0y5SideS4R" },
+        { "label": "Deezer", "platform": "deezer", "order": 5, "icon": "deezer", "url": "https://link.deezer.com/s/34o3W5AFmW05SsUq3CL8w" },
+        { "label": "TIDAL", "platform": "tidal", "order": 6, "icon": "tidal", "url": "https://tidal.com/album/558942171/u" }
+      ],
+      "tracks": [
+        {
+          "id": "genesis",
+          "position": 1,
+          "title": "Genesis",
+          "isrc": "QT6J42635081",
+          "duration": "7:02",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/genesis/6809233156"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/35NIAB9P8TRHyLcZ6U9JAy"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=-mgbUiRMQYY"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ13SS4X"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4gp9lvg7mQneoDAus1"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942172/u"
+            }
+          ]
+        },
+        {
+          "id": "origin",
+          "position": 2,
+          "title": "Origin",
+          "isrc": "QT6J42635082",
+          "duration": "5:39",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/origin/6809233157"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/0RxxHOjzMRai7wpI3t2SPJ"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=tAEHlhPNj4k"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ14G6FD"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4jyWfCbjmy0eBZ4WT2"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942173/u"
+            }
+          ]
+        },
+        {
+          "id": "source",
+          "position": 3,
+          "title": "Source",
+          "isrc": "QT6J42635083",
+          "duration": "7:14",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/source/6809233158"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/5Zx9bFVbKxBUaVvgXlp57A"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=iD8Ny0jNgl8"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ14BWWS"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4mIEtzOvzfnS5GxJMf"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942174/u"
+            }
+          ]
+        },
+        {
+          "id": "astra",
+          "position": 4,
+          "title": "Astra",
+          "isrc": "QT6J42635084",
+          "duration": "8:51",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/astra/6809233159"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/2wRA2634YXJXlxzZpKEefc"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=-yOjLGeBUjE"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ1BG5YJ"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4pfWbRpfh9JJjC6OdH"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942175/u"
+            }
+          ]
+        },
+        {
+          "id": "prima",
+          "position": 5,
+          "title": "Prima",
+          "isrc": "QT6J42635085",
+          "duration": "3:33",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/prima/6809233160"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/5LLRHkC7MZTr3gJJY7orkL"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=37Pgp1x-ZQY"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ1BF341"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4s31c7lDMpR08y14Xz"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942176/u"
+            }
+          ]
+        },
+        {
+          "id": "arca",
+          "position": 6,
+          "title": "Arca",
+          "isrc": "QT6J42635086",
+          "duration": "3:39",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/arca/6809233161"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/5RBav45c4yExQBiWDSjzvq"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=P0EvUN-pw1Q"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ1BFSD4"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4uGX3c9tHTuXoHRRUI"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942177/u"
+            }
+          ]
+        },
+        {
+          "id": "numa",
+          "position": 7,
+          "title": "Numa",
+          "isrc": "QT6J42635087",
+          "duration": "4:29",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/numa/6809233162"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/6s7e3Nn61qdMclXQvrHmjM"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=D5JARxqdqDU"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ148Q4B"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4x2TWgg8lZW5isoRCC"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942178/u"
+            }
+          ]
+        },
+        {
+          "id": "era",
+          "position": 8,
+          "title": "Era",
+          "isrc": "QT6J42635088",
+          "duration": "4:40",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/era/6809233163"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/7l6jb7C3bUqesfrRJpQNy6"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=sqbzte_ia5U"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ1857D8"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4z99tXFGWzWARepWH0"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942179/u"
+            }
+          ]
+        },
+        {
+          "id": "aeon",
+          "position": 9,
+          "title": "Aeon",
+          "isrc": "QT6J42635089",
+          "duration": "4:51",
+          "credits": "Production, piano and composition: Artan Davoodi.",
+          "metadata": {
+            "composer": {
+              "name": "Artan Davoodi",
+              "alternateName": "Saeed Davoodi"
+            }
+          },
+          "productionProcess": "Production, mixing and mastering in Logic Pro.",
+          "links": [
+            {
+              "label": "Apple Music",
+              "platform": "appleMusic",
+              "order": 1,
+              "icon": "apple-music",
+              "url": "https://music.apple.com/us/song/aeon/6809233164"
+            },
+            {
+              "label": "Spotify",
+              "platform": "spotify",
+              "order": 2,
+              "icon": "spotify",
+              "url": "https://open.spotify.com/track/5pU9KiznYodL5qMMQ4qeO6"
+            },
+            {
+              "label": "YouTube Music",
+              "platform": "youtubeMusic",
+              "order": 3,
+              "icon": "youtube-music",
+              "url": "https://music.youtube.com/watch?v=Fr4m8Bg3oNk"
+            },
+            {
+              "label": "Amazon Music",
+              "platform": "amazonMusic",
+              "order": 4,
+              "icon": "amazon-music",
+              "url": "https://music.amazon.de/albums/B0HJ1BBWH9?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&trackAsin=B0HJ142XSX"
+            },
+            {
+              "label": "Deezer",
+              "platform": "deezer",
+              "order": 5,
+              "icon": "deezer",
+              "url": "https://link.deezer.com/s/34o4Bc3ogKIzmBNt59dfS"
+            },
+            {
+              "label": "TIDAL",
+              "platform": "tidal",
+              "order": 6,
+              "icon": "tidal",
+              "url": "https://tidal.com/track/558942180/u"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "gone-demo",
       "order": 1,
       "title": "Gone (Demo)",

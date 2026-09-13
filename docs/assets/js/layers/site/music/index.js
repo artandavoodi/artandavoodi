@@ -2,6 +2,7 @@
 import { assetUrl } from '../../../core/data.js?v=7';
 import { renderIcon, renderEmpty } from '../media.js?v=5';
 import { renderContext } from './context/index.js?v=2';
+import { renderTracks, trackContext } from './tracks.js';
 
 const DEFAULT_CATEGORY = 'singles';
 const DEFAULT_STATUS = 'all';
@@ -88,6 +89,7 @@ function renderRelease(item, ui, icons) {
   const artist = createElement('p', 'music-release__artist', item.artist);
   const description = createElement('p', 'music-release__description', item.description);
   const details = renderReleaseDetails(item, ui);
+  const tracks = item.tracks?.length ? renderTracks(item, ui) : null;
   const readMore = createElement('button', 'music-release__read-more', ui.musicReadMoreLabel);
   readMore.type = 'button';
   readMore.dataset.releaseReadMore = item.id;
@@ -100,10 +102,13 @@ function renderRelease(item, ui, icons) {
     cover.button.setAttribute('aria-expanded', next);
     article.dataset.expanded = next;
     details.hidden = open;
+    if (tracks) tracks.hidden = open;
   };
   cover.button.addEventListener('click', toggle);
   titleLink.addEventListener('click', toggle);
-  content.append(title, subtitle, artist, description, details, readMore, links);
+  content.append(title, subtitle, artist, description, details);
+  if (tracks) content.append(tracks);
+  content.append(readMore, links);
   article.append(cover.figure, content);
   return article;
 }
@@ -169,6 +174,7 @@ function bindReleaseReader(data, ui, icons) {
     cover.loading = 'eager';
     cover.decoding = 'async';
     header.append(cover, createElement('h1', '', item.title));
+    if (item.albumTitle) header.append(createElement('p', '', item.albumTitle));
     return header;
   };
   const showSection = (item, field) => {
@@ -180,21 +186,24 @@ function bindReleaseReader(data, ui, icons) {
     }
     heading.append(field.label);
     section.append(heading);
-    if (field.key === 'archive' && item.archive?.tabs) {
+    if (field.key === 'archive') {
+      const archiveTabs = item.archive?.tabs?.length ? item.archive.tabs : ui.musicArchiveTabs;
       const tabs = createElement('div', 'music-release-reader__archive-tabs');
       const panel = createElement('div', 'music-release-reader__archive-panel');
       const showTab = tab => {
         tabs.querySelectorAll('button').forEach(button => button.setAttribute('aria-selected', String(button.dataset.archiveTab === tab.id)));
-        panel.replaceChildren(createElement('h3', '', tab.label), createElement('p', '', tab.description));
+        panel.replaceChildren(createElement('h3', '', tab.label), createElement('p', '', tab.description || ui.musicDetailsPending));
         for (const asset of tab.assets || []) {
           const link = createElement('a', 'music-release-reader__archive-asset', asset.label);
-          link.href = assetUrl(asset.path);
+          const url = asset.url ? new URL(asset.url) : assetUrl(asset.path);
+          if (asset.url && (url.protocol !== 'https:' || url.username || url.password)) continue;
+          link.href = url;
           link.target = '_blank';
           link.rel = 'noopener noreferrer';
           panel.append(link);
         }
       };
-      for (const tab of item.archive.tabs) {
+      for (const tab of archiveTabs) {
         const button = createElement('button', '', tab.label);
         button.type = 'button';
         button.dataset.archiveTab = tab.id;
@@ -203,15 +212,21 @@ function bindReleaseReader(data, ui, icons) {
         tabs.append(button);
       }
       section.append(tabs, panel);
-      showTab(item.archive.tabs[0]);
+      showTab(archiveTabs[0]);
     } else {
-      section.append(createElement('p', '', item[field.key]));
+      section.append(createElement('p', '', item[field.key] || ui.musicDetailsPending));
+      if (field.key === 'musicalDetails') {
+        for (const key of ['format', 'genre', 'duration', 'isrc']) {
+          const value = item[key];
+          if (value) section.append(createElement('p', '', `${ui.musicFieldLabels[key]}: ${value}`));
+        }
+      }
     }
     content.replaceChildren(renderReaderHeader(item, true), section);
     back.hidden = false;
   };
   const renderSectionList = item => {
-    const fields = ui.musicReaderFields.filter(field => item[field.key]);
+    const fields = ui.musicReaderFields;
     const sections = createElement('div', 'music-release-reader__sections');
     for (const field of fields) {
       const button = createElement('button', 'music-release-reader__section-link', field.label);
@@ -228,7 +243,7 @@ function bindReleaseReader(data, ui, icons) {
   back.title = back.getAttribute('aria-label');
   back.addEventListener('click', () => {
     if (back._release) {
-      content.replaceChildren(renderReaderHeader(back._release), renderSectionList(back._release));
+      content.replaceChildren(renderReaderHeader(back._release), renderSectionList(back._release), renderReleaseLinks(back._release, icons));
       back.hidden = true;
     }
   });
@@ -236,15 +251,20 @@ function bindReleaseReader(data, ui, icons) {
     const header = renderReaderHeader(item);
     back._release = item;
     back.hidden = true;
-    content.replaceChildren(header, renderSectionList(item));
+    content.replaceChildren(header, renderSectionList(item), renderReleaseLinks(item, icons));
     reader.hidden = false;
     reader.setAttribute('aria-hidden', 'false');
     document.documentElement.setAttribute('data-music-release-open', 'true');
     reader.querySelector('.music-release-reader__panel').scrollTop = 0;
   };
-  document.querySelectorAll('[data-release-read-more]').forEach(button => button.addEventListener('click', () => {
+  document.querySelector('[data-music-items]').addEventListener('click', event => {
+    const button = event.target.closest('[data-release-read-more]');
+    if (!button) return;
     const item = data.items.find(record => record.id === button.dataset.releaseReadMore);
-    if (item) openReader(item);
-  }));
+    if (!item) return;
+    const track = button.dataset.trackId && item.tracks?.find(record => record.id === button.dataset.trackId);
+    if (button.dataset.trackId && !track) return;
+    openReader(track ? trackContext(item, track) : item);
+  });
   reader.querySelector('[data-music-release-close]').setAttribute('aria-label', ui.musicReaderCloseLabel || 'Close release details');
 }
