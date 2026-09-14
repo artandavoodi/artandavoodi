@@ -1,6 +1,7 @@
 /* ARTANDAVOODI · Music context renderer; empty editorial collections stay unpublished. */
 import { loadJson, assetUrl } from '../../../../core/data.js?v=9';
 import { renderImage, renderLinks, renderIcon } from '../../media.js?v=5';
+import { observeDividers } from '../dividers.js';
 
 function renderItem(item, headingTag) {
   const entry = document.createElement('article');
@@ -61,15 +62,5 @@ export async function renderContext(icons) {
     return section;
   });
   document.querySelector('[data-music-context]').replaceChildren(...sections);
-  // Observe each section so long Music pages retain the reference entry behavior.
-  if (!('IntersectionObserver' in window)) {
-    sections.forEach(section => { section.dataset.dividerVisible = 'true'; });
-    return;
-  }
-  const observer = new IntersectionObserver(entries => {
-    for (const entry of entries) {
-      entry.target.dataset.dividerVisible = String(entry.isIntersecting);
-    }
-  }, { root: null, threshold: 0.42 });
-  sections.forEach(section => observer.observe(section));
+  observeDividers(sections);
 }

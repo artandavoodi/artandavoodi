@@ -1,5 +1,6 @@
 /* ARTANDAVOODI · Music showcase interaction and release state owner. */
 @import url('./tracks.css');
+@import url('./dividers.css');
 .music,
 .music-release-reader {
   --music-cover-size: calc(var(--spacing-4xl) + var(--spacing-3xl));
@@ -87,7 +88,7 @@
   align-items: start;
   gap: var(--spacing-2xl);
   padding-block: var(--spacing-xl);
-  border-block-start: var(--border-width-hairline) solid var(--cv-border);
+  border-block-start: var(--border-width-hairline) solid transparent;
 }
 
 .music-release:first-child {
@@ -136,7 +137,7 @@
   pointer-events: none;
 }
 
-.music-release__cover-button[aria-expanded='true'] .music-release__cover-image {
+.music-release__cover-button[aria-expanded='true']:has(.music-release__cover-icon) .music-release__cover-image {
   opacity: var(--music-hidden-opacity);
 }
 

@@ -3,6 +3,7 @@ import { assetUrl } from '../../../core/data.js?v=7';
 import { renderIcon, renderEmpty } from '../media.js?v=5';
 import { renderContext } from './context/index.js?v=2';
 import { renderTracks, trackContext } from './tracks.js';
+import { observeDividers } from './dividers.js';
 
 const DEFAULT_CATEGORY = 'singles';
 const DEFAULT_STATUS = 'all';
@@ -125,7 +126,9 @@ export async function render(data, ui, icons) {
   }
   let activeCategory = DEFAULT_CATEGORY;
   let activeStatus = DEFAULT_STATUS;
+  let disconnectDividers = () => {};
   const update = () => {
+    disconnectDividers();
     const items = sortedItems(data.items).filter(item => {
       const categoryMatches = item.category === activeCategory;
       const statusMatches = activeStatus === DEFAULT_STATUS || String(item.status).toLowerCase() === activeStatus;
@@ -133,6 +136,7 @@ export async function render(data, ui, icons) {
     });
     if (items.length) target.replaceChildren(...items.map(item => renderRelease(item, ui, icons)));
     else renderEmpty(target, ui.empty.music);
+    disconnectDividers = observeDividers([...target.querySelectorAll('.music-release, .music-tracks__link')]);
     for (const button of categories.children) button.setAttribute('aria-pressed', String(button.dataset.category === activeCategory));
     for (const button of status.children) button.setAttribute('aria-pressed', String(button.dataset.status === activeStatus));
   };

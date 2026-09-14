@@ -1,12 +1,6 @@
 /* ARTANDAVOODI · Supporting music collections share the site spacing and typography. */
 .music-context { display: grid; gap: var(--spacing-2xl); }
 .music-context section { position: relative; display: grid; gap: var(--spacing-md); border-block-start: var(--border-width-hairline) solid transparent; padding-block-start: var(--spacing-xl); }
-.music-context section::before { content: ''; position: absolute; inset-block-start: 0; inset-inline-start: 0; inline-size: 100%; block-size: var(--border-width-hairline); background: var(--cv-border); transform: scaleX(0); transform-origin: left center; transition: transform var(--site-divider-duration) var(--cv-motion-ease); }
-.music-context section:nth-child(even)::before { transition-delay: var(--site-divider-stagger); }
-.music-context section[data-divider-visible='true']::before { transform: scaleX(1); }
-@media (prefers-reduced-motion: reduce) {
-  .music-context section::before { transform: scaleX(1); transition: none; }
-}
 .music-context summary { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); cursor: pointer; font-size: var(--site-type-body-size); list-style: none; }
 .music-context summary::-webkit-details-marker { display: none; }
 .music-context__item { margin-block-start: var(--spacing-lg); }
