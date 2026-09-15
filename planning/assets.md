@@ -30,7 +30,7 @@ fake example records and unused per-release folders. Empty category folders use
 `assets/data/site.json` registers catalogue paths. Data owns content; fragment HTML
 owns structure; section JS owns rendering; section CSS consumes approved tokens.
 Asset paths are site-root-relative without a leading slash, such as
-`assets/media/music/singles/gone-demo/cover/gone-demo-cover.webp`.
+`assets/media/music/singles/gone/cover/gone-cover.webp`.
 Renderers must resolve these against the public site base, never the current
 nested page URL. This avoids the relative-image-path problem when reusing a record.
 

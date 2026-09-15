@@ -1,0 +1,7 @@
+/* Track catalogue uses the shared streaming controls and divider system. */
+.music-track-directory { list-style: none; margin: 0; padding: 0; min-inline-size: 0; }
+.music-track-directory__row { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: var(--spacing-sm) var(--spacing-md); padding-block: var(--spacing-lg); }
+.music-track-directory__row .music-release__title-link { justify-self: start; overflow-wrap: anywhere; text-decoration: none; }
+.music-track-directory__context { grid-column: 1 / -1; color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); }
+.music-track-directory__duration { font-variant-numeric: tabular-nums; color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); }
+.music-track-directory__row .music-release__links { grid-column: 1 / -1; justify-content: flex-start; flex-wrap: wrap; }

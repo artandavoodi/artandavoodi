@@ -23,6 +23,12 @@ export async function initializeSite() {
   for (const section of ui.sections) {
     const title = document.querySelector(`[data-section-title="${section.id}"]`);
     if (title) title.textContent = section.label;
+    if (title && section.id === 'music' && document.documentElement.dataset.initialRoute === 'music') {
+      const heading = document.createElement('h1');
+      for (const attribute of title.attributes) heading.setAttribute(attribute.name, attribute.value);
+      heading.textContent = title.textContent;
+      title.replaceWith(heading);
+    }
   }
   document.querySelector('[data-copyright]').textContent = `© ${new Date().getFullYear()} ${site.identity.name}`;
   bindTheme(ui.theme);

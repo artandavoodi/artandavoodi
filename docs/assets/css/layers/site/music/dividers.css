@@ -1,10 +1,12 @@
 /* Music separators share the established context reveal and timing tokens. */
 .music-context section,
 .music-release,
-.music-tracks__link { position: relative; }
+.music-tracks__link,
+.music-track-directory__row { position: relative; }
 .music-context section::before,
 .music-release:not(:first-child)::before,
-.music-tracks__link::before {
+.music-tracks__link::before,
+.music-track-directory__row:not(:first-child)::before {
   content: '';
   position: absolute;
   inset-block-start: 0;
@@ -19,12 +21,15 @@
 .music-tracks__link::before { inset-block-start: auto; inset-block-end: 0; }
 .music-context section:nth-child(even)::before,
 .music-release:nth-child(even)::before,
-.music-tracks li:nth-child(even) .music-tracks__link::before { transition-delay: var(--site-divider-stagger); }
+.music-tracks li:nth-child(even) .music-tracks__link::before,
+.music-track-directory__row:nth-child(even)::before { transition-delay: var(--site-divider-stagger); }
 .music-context section[data-divider-visible='true']::before,
 .music-release[data-divider-visible='true']:not(:first-child)::before,
-.music-tracks__link[data-divider-visible='true']::before { transform: scaleX(1); }
+.music-tracks__link[data-divider-visible='true']::before,
+.music-track-directory__row[data-divider-visible='true']::before { transform: scaleX(1); }
 @media (prefers-reduced-motion: reduce) {
   .music-context section::before,
   .music-release:not(:first-child)::before,
-  .music-tracks__link::before { transform: scaleX(1); transition: none; }
+  .music-tracks__link::before,
+  .music-track-directory__row::before { transform: scaleX(1); transition: none; }
 }

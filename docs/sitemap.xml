@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://artandavoodi.com/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
-    <loc>https://artandavoodi.com/music/gone-demo/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://artandavoodi.com/music/workspace/</loc>
-    <lastmod>2026-09-13</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
+  <url><loc>https://artandavoodi.com/</loc></url>
+  <url><loc>https://artandavoodi.com/music/</loc></url>
+  <url><loc>https://artandavoodi.com/music/salim/</loc></url>
+  <url><loc>https://artandavoodi.com/music/solum/</loc></url>
+  <url><loc>https://artandavoodi.com/music/gone/</loc></url>
 </urlset>

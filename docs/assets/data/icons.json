@@ -16,9 +16,9 @@
       "alt": "Artan symbol"
     },
     {
-      "id": "gone-demo",
-      "src": "assets/media/music/singles/gone-demo/icons/gone-demo-icon.svg",
-      "alt": "Gone (Demo) release mark"
+      "id": "gone",
+      "src": "assets/media/music/singles/gone/icons/gone-icon.svg",
+      "alt": "Gone release mark"
     },
     {
       "id": "filter",

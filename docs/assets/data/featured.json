@@ -1,5 +1,5 @@
 {
   "schemaVersion": 1,
   "title": "Featured",
-  "items": [{ "catalogue": "music", "id": "gone-demo", "href": "#music", "enabled": true }]
+  "items": [{ "catalogue": "music", "id": "gone", "href": "#music", "enabled": true }]
 }

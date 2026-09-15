@@ -6,6 +6,7 @@
   "description": "Artan Davoodi artistic website",
   "engines": { "node": ">=22" },
   "scripts": {
-    "check": "node tools/validate-assets.mjs && node tools/check-site.mjs"
+    "build": "node tools/build-site.mjs",
+    "check": "node tools/validate-assets.mjs && node tools/check-site.mjs && node tools/check-generated.mjs"
   }
 }

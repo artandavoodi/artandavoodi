@@ -13,7 +13,7 @@
     "albums",
     "EPs",
     "singles",
-    "releases", "Gone (Demo)", "Artan Records"
+    "releases", "Gone", "Solum", "Salim", "Artan Records"
   ],
   "url": "https://artandavoodi.com/",
   "siteType": "Person",
@@ -28,7 +28,7 @@
   ],
   "pages": {
     "artist": { "title": "Artan Davoodi · Music & Art", "description": "Music and visual work by Artan Davoodi. Artist portrait and featured work." },
-    "music": { "title": "Music · Artan Davoodi", "description": "Listen to Gone (Demo) by Artan. Releases, Artan Records, and music projects." },
+    "music": { "title": "Music · Artan Davoodi", "description": "Albums, singles and tracks by Artan Davoodi, with release stories, credits and streaming links." },
     "gallery": { "title": "Art & Gallery · Artan Davoodi", "description": "Portraits, photographs and artworks by Artan Davoodi." },
     "hub": { "title": "Connect · Artan Davoodi", "description": "Contact Artan Davoodi, find his X account, and visit the public hub at artan.live." }
   }

@@ -45,7 +45,7 @@
       },
       "releaseInformation": "Released September 10, 2026 through Artan Records. UPC: 700971142326.",
       "icon": "salim",
-      "detailHref": "music/release/?item=salim",
+      "detailHref": "music/salim/",
       "cover": {
         "src": "assets/media/music/albums/salim/cover/salim-cover.webp",
         "alt": "Salim album artwork with the name Salim in Persian lettering",
@@ -170,7 +170,7 @@
       },
       "releaseInformation": "Released September 5, 2026 through Artan Records. UPC: 700989238578.",
       "icon": "solum",
-      "detailHref": "music/release/?item=solum",
+      "detailHref": "music/solum/",
       "cover": {
         "src": "assets/media/music/albums/solum/cover/solum-cover.webp",
         "alt": "Solum album artwork: sunlight through clouds with the album title",
@@ -720,7 +720,8 @@
       ]
     },
     {
-      "id": "gone-demo",
+      "id": "gone",
+      "aliases": ["gone-demo"],
       "order": 1,
       "title": "Gone",
       "subtitle": "Single",
@@ -754,11 +755,11 @@
       },
       "releaseInformation": "Released as a single through Artan Records on 23 November 2025.",
       "category": "singles",
-      "icon": "gone-demo",
-      "detailHref": "music/gone-demo/",
+      "icon": "gone",
+      "detailHref": "music/gone/",
       "cover": {
-        "src": "assets/media/music/singles/gone-demo/cover/gone-demo-cover.webp",
-        "alt": "Gone (Demo) cover artwork",
+        "src": "assets/media/music/singles/gone/cover/gone-cover.webp",
+        "alt": "Gone cover artwork",
         "width": 3000,
         "height": 3000
       },

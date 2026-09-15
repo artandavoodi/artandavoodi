@@ -1,0 +1,25 @@
+<!doctype html>
+<!-- ARTANDAVOODI · Public page shell. Fragments and JSON own page content. -->
+<html lang="en" data-theme="light" data-theme-effective="light" data-generated-page="true">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{HEAD}}
+    <link rel="icon" href="./assets/brand/logo/symbol-artan.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/css/core/00-orchestrator/style.css?v=12">
+  <script type="module" src="./assets/js/core/app.js?v=18"></script>
+  </head>
+  <body>
+    <div data-fragment="navigation"></div>
+    <main id="main-content" tabindex="-1">
+      <div data-fragment="artist">{{ARTIST}}</div>
+      <div data-fragment="music" hidden></div>
+      <div data-fragment="gallery" hidden></div>
+      <div data-fragment="hub" hidden></div>
+    </main>
+    <div data-fragment="music-release-reader"></div>
+    <div data-fragment="footer"></div>
+    <p class="site-status" role="alert" data-error hidden></p>
+
+  </body>
+</html>

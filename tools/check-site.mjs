@@ -19,7 +19,8 @@ async function files(dir) {
 async function checkTarget(base, value) {
   if (/^(?:https?:|mailto:|data:|#)/.test(value)) return;
   if (value.includes('${')) return;
-  const target = path.resolve(base, value.split(/[?#]/)[0]);
+  const decoded = value.replaceAll('&amp;', '&').split(/[?#]/)[0];
+  const target = value.startsWith('/') ? path.join(docs, decoded) : path.resolve(base, decoded);
   if (!target.startsWith(docs + path.sep)) { errors.push(`Path escapes public root: ${value}`); return; }
   try { await stat(target); } catch { errors.push(`Missing: ${target}`); }
 }
@@ -41,7 +42,11 @@ for (const file of await files(docs)) {
   }
   if (ext === '.html') {
     for (const match of source.matchAll(/(?:src|href)="([^"]+)"/g)) await checkTarget(path.dirname(file), match[1]);
-    if (/\sstyle=|<script(?![^>]*\bsrc=)/i.test(source)) errors.push(`Inline styling or script: ${file}`);
+    const withoutData = source.replace(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g, (_, data) => {
+      try { JSON.parse(data); } catch { errors.push(`Invalid JSON-LD: ${file}`); }
+      return '';
+    });
+    if (/\sstyle=|<script(?![^>]*\bsrc=)/i.test(withoutData)) errors.push(`Inline styling or script: ${file}`);
   }
 }
 const fragments = JSON.parse(await readFile(path.join(docs, 'assets/data/fragments.json')));

@@ -4,6 +4,7 @@ import { renderIcon, renderEmpty } from '../media.js?v=5';
 import { renderContext } from './context/index.js?v=2';
 import { renderTracks, trackContext } from './tracks.js';
 import { observeDividers } from './dividers.js';
+import { collectTracks, renderTrackDirectory } from './track-directory.js';
 
 const DEFAULT_CATEGORY = 'singles';
 const DEFAULT_STATUS = 'all';
@@ -91,8 +92,8 @@ function renderRelease(item, ui, icons) {
   const description = createElement('p', 'music-release__description', item.description);
   const details = renderReleaseDetails(item, ui);
   const tracks = item.tracks?.length ? renderTracks(item, ui) : null;
-  const readMore = createElement('button', 'music-release__read-more', ui.musicReadMoreLabel);
-  readMore.type = 'button';
+  const readMore = createElement('a', 'music-release__read-more', ui.musicReadMoreLabel);
+  readMore.href = assetUrl(`music/${item.id}/`);
   readMore.dataset.releaseReadMore = item.id;
   readMore.setAttribute('aria-label', `${ui.musicReadMoreLabel}: ${item.title}`);
   readMore.title = ui.musicReadMoreLabel;
@@ -130,13 +131,14 @@ export async function render(data, ui, icons) {
   const update = () => {
     disconnectDividers();
     const items = sortedItems(data.items).filter(item => {
-      const categoryMatches = item.category === activeCategory;
+      const categoryMatches = activeCategory === 'tracks' || item.category === activeCategory;
       const statusMatches = activeStatus === DEFAULT_STATUS || String(item.status).toLowerCase() === activeStatus;
       return categoryMatches && statusMatches;
     });
-    if (items.length) target.replaceChildren(...items.map(item => renderRelease(item, ui, icons)));
+    if (activeCategory === 'tracks' && collectTracks(items).length) target.replaceChildren(renderTrackDirectory(collectTracks(items), ui, icons, renderReleaseLinks));
+    else if (activeCategory !== 'tracks' && items.length) target.replaceChildren(...items.map(item => renderRelease(item, ui, icons)));
     else renderEmpty(target, ui.empty.music);
-    disconnectDividers = observeDividers([...target.querySelectorAll('.music-release, .music-tracks__link')]);
+    disconnectDividers = observeDividers([...target.querySelectorAll('.music-release, .music-tracks__link, .music-track-directory__row')]);
     for (const button of categories.children) button.setAttribute('aria-pressed', String(button.dataset.category === activeCategory));
     for (const button of status.children) button.setAttribute('aria-pressed', String(button.dataset.status === activeStatus));
   };
@@ -264,8 +266,10 @@ function bindReleaseReader(data, ui, icons) {
   document.querySelector('[data-music-items]').addEventListener('click', event => {
     const button = event.target.closest('[data-release-read-more]');
     if (!button) return;
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     const item = data.items.find(record => record.id === button.dataset.releaseReadMore);
     if (!item) return;
+    event.preventDefault();
     const track = button.dataset.trackId && item.tracks?.find(record => record.id === button.dataset.trackId);
     if (button.dataset.trackId && !track) return;
     openReader(track ? trackContext(item, track) : item);

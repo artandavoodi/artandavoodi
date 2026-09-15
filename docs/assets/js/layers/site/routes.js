@@ -2,7 +2,7 @@
 import { applyMetadata } from '../../core/metadata.js?v=2';
 export function bindRoutes(ui, metadata) {
   const update = () => {
-    const requested = location.hash.slice(1) || 'artist';
+    const requested = location.hash.slice(1) || document.documentElement.dataset.initialRoute || 'artist';
     const route = ui.sections.find(item => item.id === requested) || ui.sections[0];
     for (const section of document.querySelectorAll('main > [data-fragment]')) {
       section.hidden = section.dataset.fragment !== route.id;

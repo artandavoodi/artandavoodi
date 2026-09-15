@@ -1,5 +1,6 @@
 /* ARTANDAVOODI · Search metadata and structured identity owner. */
 export function applyMetadata(metadata) {
+  if (document.documentElement.dataset.generatedPage === 'true') return;
   document.title = metadata.title;
   setMeta('description', metadata.description);
   setMeta('keywords', metadata.keywords.join(', '));

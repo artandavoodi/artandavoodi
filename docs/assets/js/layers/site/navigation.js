@@ -10,7 +10,7 @@ export function bindNavigation(ui) {
   menuNavigation.setAttribute('aria-label', ui.menuLabel);
   for (const section of sections) {
     const link = document.createElement('a');
-    link.href = `#${section.id}`;
+    link.href = section.id === 'music' ? '/music/' : `#${section.id}`;
     link.textContent = section.label;
     link.dataset.menuRoute = section.id;
     menuNavigation.append(link);
@@ -31,7 +31,14 @@ export function bindNavigation(ui) {
     event.preventDefault();
     setOpen(menu.hidden);
   });
-  menuNavigation.addEventListener('click', () => setOpen(false));
+  menuNavigation.addEventListener('click', event => {
+    const link = event.target.closest('[data-menu-route="music"]');
+    if (link && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+      event.preventDefault();
+      location.hash = 'music';
+    }
+    setOpen(false);
+  });
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && !menu.hidden) {
       setOpen(false);

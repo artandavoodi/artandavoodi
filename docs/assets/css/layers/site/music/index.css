@@ -1,5 +1,6 @@
 /* ARTANDAVOODI · Music showcase interaction and release state owner. */
 @import url('./tracks.css');
+@import url('./track-directory.css');
 @import url('./dividers.css');
 .music,
 .music-release-reader {
@@ -180,6 +181,7 @@
 }
 
 .music-release__read-more {
+  text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: var(--spacing-xs);

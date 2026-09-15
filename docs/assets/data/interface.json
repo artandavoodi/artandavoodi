@@ -16,7 +16,8 @@
   "musicCategories": [
     { "id": "albums", "label": "Albums" },
     { "id": "singles", "label": "Singles" },
-    { "id": "eps", "label": "EPs" }
+    { "id": "eps", "label": "EPs" },
+    { "id": "tracks", "label": "Tracks" }
   ],
   "musicStatusFilters": [
     { "id": "all", "label": "All" },

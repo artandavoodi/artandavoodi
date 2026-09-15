@@ -1,0 +1,11 @@
+/* Generated documents use existing typography, cover and streaming controls. */
+.release-document__section, .release-document__tracks { max-inline-size: var(--cv-reading-width); }
+.release-document__section summary, .release-document__tracks summary { display: flex; align-items: center; gap: var(--spacing-md); cursor: pointer; padding-block: var(--spacing-md); list-style: none; }
+.release-document__section summary::-webkit-details-marker, .release-document__tracks summary::-webkit-details-marker { display: none; }
+.release-document__disclosure { inline-size: var(--icon-size-md); block-size: var(--icon-size-md); margin-inline-start: auto; }
+details[open] > summary > .release-document__disclosure { transform: rotate(90deg); }
+.release-document__section p { margin-block: var(--spacing-md); white-space: pre-line; }
+.release-document__tracks > li { border-block-start: var(--border-width-hairline) solid var(--cv-border); }
+.release-document__tracks summary span { margin-inline-start: var(--spacing-md); font-variant-numeric: tabular-nums; }
+.music-release__cover > a > img { inline-size: 100%; block-size: auto; border-radius: var(--shape-card-radius); }
+.music-release__content h2 a { color: inherit; text-decoration: none; }
