@@ -69,7 +69,14 @@
           "isrc": "QT9XG2650665",
           "duration": "4:09",
           "story": "Vahed comes from his full name, Salim Vahed Davoodi.",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/vahed/6811134380"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/3qOiKX6GAvZ7YQKeeXJhzB?si=baa86e19ef654276"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=rYnlxZL0xxI&si=v3E1Zbt5qDCzVpb4"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJM6MJR?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_tsD81sLCB5atjdDMvuIFelztX"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWAv2PM2Q1UNyfge3pV"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404528/u"}
+          ]
         },
         {
           "id": "river",
@@ -79,7 +86,14 @@
           "isrc": "QT9XG2650666",
           "duration": "2:55",
           "story": "",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/river/6811134381"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/1lk7Ehf5P6qWdqOXQxmuaz?si=0b3c0d6658ba40c8"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=fE3QZ5NJ0kk&si=qthS7F-AmoMBVN_r"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJJSGX2?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_r0bs9u4zZivQS9940lVx17NOJ"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWASbxOceDYQ3WhYP76"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404529/u"}
+          ]
         },
         {
           "id": "nari",
@@ -91,7 +105,14 @@
           "isrc": "QT9XG2650667",
           "duration": "5:35",
           "story": "Nari was my father's name for my mother, Narges, the love of his life and the subject of much of his poetry.\n\nThe track brings together his spoken poetry and singing in Baluchi, drawn from interviews and recordings he sent me while I was studying music in 2024. In these words, he calls her to come to him, to hold her in his eyes.",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/nari/6811134382"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/5QEM4LTI17iHJU0WNdsgIA?si=cf58aa896ac345a0"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=-CsXy-3szfQ&si=eo9Mrn294VzCDNuQ"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJNCXFC?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_zu26A42mpQQNF7L4AYqIhj7w5"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWBbqpzyATncjICxQhD"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404530/u"}
+          ]
         },
         {
           "id": "steady",
@@ -101,7 +122,14 @@
           "isrc": "QT9XG2650668",
           "duration": "2:58",
           "story": "",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/steady/6811134384"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/5PTW1SPLxyakeDGf6TBkVO?si=5baeab1d188946af"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=f7HsTu7CLJM&si=aTa_ajOYYa3-24xh"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJX655W?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_PVLh8cUUasadJES1nelOR7P4z"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWBsYzTE8pbp9FO23jj"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404531/u"}
+          ]
         },
         {
           "id": "house",
@@ -111,7 +139,14 @@
           "isrc": "QT9XG2650669",
           "duration": "3:56",
           "story": "",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/house/6811134385"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/3uHo0DfkR57BVMiobQEoqJ?si=2cfbd3199fed423a"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=wnylJbyFf6c&si=wmcU1h9zaCyMBj3U"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJMLW3V?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_WXz4nrMNNq66974bk3YccLP5z"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWBRAkSJaAanuraioFK"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404532/u"}
+          ]
         },
         {
           "id": "silent",
@@ -121,7 +156,14 @@
           "isrc": "QT9XG2650670",
           "duration": "4:50",
           "story": "",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/silent/6811134386"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/6A0kduWkHqRYpKoMkr408Q?si=d1b2c3fe73a14ab0"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=cfdSSVtS19s&si=bXNQJFZgrE_NzbeS"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJD8N2R?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_QzIahx2pUKqPR6Yfsio068lmu"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWCbOq4Y7VyyFYLEm5B"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404533/u"}
+          ]
         },
         {
           "id": "return",
@@ -131,7 +173,14 @@
           "isrc": "QT9XG2650671",
           "duration": "2:03",
           "story": "",
-          "links": []
+          "links": [
+            {"label":"Apple Music","platform":"appleMusic","order":1,"icon":"apple-music","url":"https://music.apple.com/us/song/return/6811134387"},
+            {"label":"Spotify","platform":"spotify","order":2,"icon":"spotify","url":"https://open.spotify.com/track/56AuCM7zOuTv68ye3r71NJ?si=e0e5926745f94317"},
+            {"label":"YouTube Music","platform":"youtubeMusic","order":3,"icon":"youtube-music","url":"https://music.youtube.com/watch?v=fPC-Rho808I&si=3ZhaDQ12r2drKL-E"},
+            {"label":"Amazon Music","platform":"amazonMusic","order":4,"icon":"amazon-music","url":"https://music.amazon.de/tracks/B0HJJR656Q?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_9TA4EIz48rtTyBXZakH9PorvY"},
+            {"label":"Deezer","platform":"deezer","order":5,"icon":"deezer","url":"https://link.deezer.com/s/34pWCrWX92bn5fmGYMV1w"},
+            {"label":"TIDAL","platform":"tidal","order":6,"icon":"tidal","url":"https://tidal.com/track/560404534/u"}
+          ]
         }
       ]
     },
