@@ -6,8 +6,8 @@ export function renderTracks(album, ui) {
   list.setAttribute('aria-label', ui.musicTrackListLabel);
   for (const track of [...(album.tracks || [])].sort((a, b) => a.position - b.position)) {
     const row = document.createElement('li');
-    const button = document.createElement('button');
-    button.type = 'button';
+    const button = document.createElement('a');
+    button.href = `/music/${album.id}/#track-${track.id}`;
     button.className = 'music-tracks__link';
     button.dataset.releaseReadMore = album.id;
     button.dataset.trackId = track.id;

@@ -48,7 +48,7 @@ function sections(item, ui, icons) {
     if(field.key==='archive') body=(item.archive?.tabs || []).filter(tab=>tab.assets?.length).map(tab=>`<h3>${escape(tab.label)}</h3>${paragraphs(tab.description)}${tab.assets.map(a=>`<p><a href="${escape(a.url || '/'+a.path)}">${escape(a.label)}</a></p>`).join('')}`).join('');
     else body=paragraphs(item[field.key]);
     if (!body) return '';
-    return `<details class="release-document__section"><summary>${escape(field.label)}${disclosureIcon(ui,icons)}</summary>${body}</details>`;
+    return `<details class="release-document__section" id="${escape(item.id)}-${escape(field.key)}"><summary>${escape(field.label)}${disclosureIcon(ui,icons)}</summary>${body}</details>`;
   }).join('\n');
 }
 export function releaseBody(item, ui, icons) {
@@ -69,6 +69,6 @@ ${head(metadata,origin)}
 <link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/index.css">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css">
-<script type="module" src="/assets/js/layers/site/music-release/document.js"></script>
+<script type="module" src="/assets/js/layers/site/music-release/document.js?v=2"></script>
 </head><body><main class="music-release-page" id="main-content"><a class="site-back-link" data-document-back href="${metadata.path==='/music/'?'/':'/music/'}" aria-label="${escape(backLabel)}">${escape(backLabel)}</a>${body}</main></body></html>`;
 }

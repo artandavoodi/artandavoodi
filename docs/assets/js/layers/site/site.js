@@ -7,7 +7,7 @@ import { bindRoutes } from './routes.js';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
   artist: () => import('./artist/index.js?v=5'),
-  music: () => import('./music/index.js?v=10'),
+  music: () => import('./music/index.js?v=11'),
   gallery: () => import('./gallery/index.js?v=4'),
   hub: () => import('./hub/index.js?v=5'),
 };

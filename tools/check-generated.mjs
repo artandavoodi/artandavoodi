@@ -7,6 +7,8 @@ const read=p=>readFile(new URL(p,docs),'utf8');
 const data=JSON.parse(await read('assets/data/music/releases.json'));
 const sitemap=await read('sitemap.xml');
 const catalogue=await read('music/index.html');
+assert.ok(!(await read('assets/js/layers/site/music/index.js')).includes('bindReleaseReader'));
+assert.ok((await read('assets/js/layers/site/music/tracks.js')).includes('button.href = `/music/${album.id}/#track-${track.id}`'));
 for(const item of data.items) {
   const html=await read(route(item).slice(1)+'index.html');
   assert.equal((html.match(/<h1\b/g)||[]).length,1);
@@ -14,6 +16,7 @@ for(const item of data.items) {
   assert.ok(html.includes(`rel="canonical" href="https://artandavoodi.com${route(item)}"`));
   assert.ok(catalogue.includes(`href="${route(item)}"`));
   assert.ok(sitemap.includes(`https://artandavoodi.com${route(item)}`));
+  if(item.story) assert.ok(html.includes(`id="${item.id}-story"`));
   for(const alias of item.aliases || []) {
     const redirect=await read(`music/${alias}/index.html`);
     assert.ok(redirect.includes(`content="0;url=${route(item)}"`));

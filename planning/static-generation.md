@@ -15,7 +15,8 @@ and resolve to canonical documents when JavaScript runs.
 
 The homepage and music catalogue are progressively enhanced by existing runtime
 modules. Read-more and track links have genuine destinations; ordinary clicks
-retain the in-page reader. Modified clicks retain native navigation. Generated
+open the canonical release document. Album-track links open their track anchor.
+Story and other populated sections have shareable anchors in that document. Generated
 release documents use native details disclosures and remain readable without JS.
 
 Structured data, social metadata and sitemap are generated from the same content.

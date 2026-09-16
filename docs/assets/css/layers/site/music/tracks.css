@@ -1,5 +1,5 @@
 /* ARTANDAVOODI · Track rows consume the shared music typography and controls. */
 .music-tracks { list-style: none; margin: 0; padding: 0; inline-size: 100%; }
-.music-tracks__link { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: var(--spacing-md); inline-size: 100%; padding: var(--spacing-md) 0; border: 0; border-block-end: var(--border-width-hairline) solid transparent; background: transparent; color: var(--cv-text-primary); font: inherit; text-align: start; cursor: pointer; opacity: var(--opacity-muted); transition: opacity var(--cv-motion-duration) var(--cv-motion-ease); }
+.music-tracks__link { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: baseline; gap: var(--spacing-md); inline-size: 100%; padding: var(--spacing-md) 0; border: 0; border-block-end: var(--border-width-hairline) solid transparent; background: transparent; color: var(--cv-text-primary); font: inherit; text-align: start; text-decoration: none; cursor: pointer; opacity: var(--opacity-muted); transition: opacity var(--cv-motion-duration) var(--cv-motion-ease); }
 .music-tracks__link:hover, .music-tracks__link:focus-visible { opacity: var(--opacity-full); }
 .music-tracks__link span:last-child { font-variant-numeric: tabular-nums; }
