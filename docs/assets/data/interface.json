@@ -52,13 +52,24 @@
     { "key": "releaseInformation", "label": "Release information" }
   ],
   "musicDetails": [
-    { "key": "type", "label": "Type" },
-    { "key": "format", "label": "Format" },
-    { "key": "genre", "label": "Genre" },
-    { "key": "label", "label": "Label" },
     { "key": "releaseDate", "label": "Release Date" },
     { "key": "duration", "label": "Duration" },
-    { "key": "status", "label": "Status" }
+    { "key": "trackCount", "label": "Tracks" },
+    { "key": "status", "label": "Status", "when": "Upcoming" }
+  ],
+  "musicSectionDetails": {
+    "musicalDetails": [
+      { "key": "format", "label": "Format" },
+      { "key": "genre", "label": "Genre" },
+      { "key": "key", "label": "Key" },
+      { "key": "tempo", "label": "Tempo" }
+    ],
+    "releaseInformation": [{ "key": "label", "label": "Label" }]
+  },
+  "musicArchiveAssetDetails": [
+    { "key": "instrument", "label": "Instrument" },
+    { "key": "arrangement", "label": "Arrangement" },
+    { "key": "version", "label": "Version" }
   ],
   "empty": {
     "music": "No releases listed yet.",

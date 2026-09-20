@@ -5,6 +5,7 @@ import { renderContext } from './context/index.js?v=2';
 import { renderTracks } from './tracks.js?v=2';
 import { observeDividers } from './dividers.js';
 import { collectTracks, renderTrackDirectory } from './track-directory.js';
+import { metadataRows } from './publication.js';
 
 const DEFAULT_CATEGORY = 'singles';
 const DEFAULT_STATUS = 'all';
@@ -23,12 +24,11 @@ function sortedItems(items) {
 function renderReleaseDetails(item, ui) {
   const details = createElement('div', 'music-release__details');
   details.hidden = true;
-  for (const field of ui.musicDetails || []) {
-    if (!item[field.key]) continue;
+  for (const field of metadataRows(item, ui.musicDetails)) {
     const detail = createElement('p', 'music-release__detail');
     detail.append(
       createElement('span', 'music-release__detail-label', field.label),
-      createElement('span', 'music-release__detail-value', item[field.key]),
+      createElement('span', 'music-release__detail-value', field.value),
     );
     details.append(detail);
   }

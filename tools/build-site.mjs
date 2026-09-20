@@ -30,7 +30,15 @@ const musicShell=shell.replace('{{HEAD}}',head({title:`${musicLabel} · ${artist
   .replaceAll('href="./assets/','href="/assets/').replaceAll('src="./assets/','src="/assets/');
 await output('music/index.html',musicShell);
 shell=shell.replace('{{HEAD}}',head({title:`${artist.name} · ${artist.headline}`,description:artist.biography,path:'/',image:artist.portrait.src,graph:[person,website]},origin));
-shell=shell.replace('{{ARTIST}}',`<section class="site-section artist"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p><a href="/music/">${escape(musicLabel)}</a></section>`);
+const featured=await json('assets/data/featured.json');
+const featuredCards=[];
+for(const selection of featured.items.filter(item=>item.enabled!==false)) {
+  const records=await json(site.catalogues[selection.catalogue]);
+  const item=records.items.find(item=>item.id===selection.id);
+  if(!item) throw new Error('Unknown featured item');
+  featuredCards.push(`<a class="featured__item" href="${escape(selection.href)}">${image(item.cover || item.image,true)}<h3>${escape(item.title)}</h3><p>${escape(item.subtitle || item.type)}</p></a>`);
+}
+shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p></div><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2><div class="featured__items">${featuredCards.join('')}</div></section></div></section>`);
 await output('index.html',shell);
 const urls=['/','/music/',...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(p=>`  <url><loc>${origin}${p}</loc></url>`).join('\n')}\n</urlset>\n`);

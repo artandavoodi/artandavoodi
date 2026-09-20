@@ -1,6 +1,6 @@
 /* ARTANDAVOODI · Release detail presentation using shared site tokens. */
-.music-release-page { display: grid; gap: var(--spacing-2xl); max-inline-size: var(--cv-page-width); margin-inline: auto; padding-block: var(--cv-page-padding-block); }
-.music-release-detail { display: grid; gap: var(--spacing-xl); }
+.music-release-page { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--spacing-2xl); max-inline-size: var(--cv-page-width); margin-inline: auto; padding-block: var(--cv-page-padding-block); }
+.music-release-detail { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--spacing-xl); }
 .music-release-detail__cover { inline-size: min(100%, var(--featured-card-width)); margin: 0; justify-self: center; }
 .music-release-detail__cover img { display: block; inline-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--shape-card-radius); }
 .music-release-detail__heading { display: grid; gap: var(--spacing-sm); text-align: center; }

@@ -1,7 +1,8 @@
 /* ARTANDAVOODI · Music showcase interaction and release state owner. */
-@import url('./tracks.css');
+@import url('./tracks.css?v=2');
 @import url('./track-directory.css');
 @import url('./dividers.css');
+.music a { text-decoration: none; }
 .music,
 .music-release-reader {
   --music-cover-size: calc(var(--spacing-4xl) + var(--spacing-3xl));
@@ -250,6 +251,7 @@
 
 .music-release__links {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: flex-end;
   gap: var(--spacing-md);

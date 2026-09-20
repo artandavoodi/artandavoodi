@@ -43,7 +43,7 @@
           }
         ]
       },
-      "releaseInformation": "Released September 10, 2026 through Artan Records. UPC: 700971142326.",
+      "releaseInformation": "Released September 10, 2026 through Artan Records.",
       "icon": "salim",
       "detailHref": "music/salim/",
       "cover": {
@@ -217,7 +217,7 @@
           ] }
         ]
       },
-      "releaseInformation": "Released September 5, 2026 through Artan Records. UPC: 700989238578.",
+      "releaseInformation": "Released September 5, 2026 through Artan Records.",
       "icon": "solum",
       "detailHref": "music/solum/",
       "cover": {
@@ -788,6 +788,7 @@
       "upc": "199951439059",
       "status": "Released",
       "description": "Instrumental single released by Artan through Artan Records.",
+      "editorial": { "story": "draft", "key": "draft", "musicSheet": "draft", "notes": "draft" },
       "story": "Working notes for this release will describe how the piece began and how its final form developed.",
       "productionProcess": "Produced by Artan Davoodi.",
       "key": "Piano-led instrumental; key to be confirmed.",

@@ -32,3 +32,32 @@ The CI workflow checks generation freshness; it does not change Pages deployment
 settings or prevent an independently configured branch deployment from running.
 After deployment inspect canonical URLs in Search Console and submit sitemap.xml.
 Indexing and rich results are not guaranteed by valid structured data.
+
+## Publication and metadata policy
+
+`interface.json` owns primary metadata fields, conditional status visibility,
+section metadata and archive asset labels. `music/publication.js` is shared by
+the browser preview and document generator. ISRC and UPC stay in catalogue data;
+recording ISRC stays in structured data, not visible copy. This is identification,
+not a guarantee of search ranking. Existing legal-name data is unchanged: JSON
+under docs is public, not private storage.
+
+Mark unapproved prose with `editorial: { "story": "draft" }` on its record.
+Marked fields are omitted from documents; change to `approved` after review.
+Existing unmarked copy remains published for compatibility. Draft source text is
+still public in the catalogue JSON; do not store confidential drafts there.
+Empty sections and archive tabs without published files are not rendered.
+Track credits and production identical to the album are displayed once at album
+level; distinct track information still appears in its own disclosure.
+
+Archive entries support `title` (or existing `label`), local `path` or HTTPS `url`,
+optional `instrument`, `arrangement`, `version`, and `status: "draft"` until ready.
+An optional `preview` uses the existing image shape: `src`, `alt`, `width`, `height`.
+Use an actual score-page image as the preview and a direct PDF link for reading;
+no embedded PDF viewer, fabricated score or empty download button is required.
+The checks validate published assets and reject artist-profile URLs on releases.
+
+Outstanding editorial inputs: actual scores and permission to publish them,
+track-specific stories, keys and other verified musical details. Separate track
+documents remain deferred until enough unique approved material exists; current
+track anchors remain shareable and crawlable within their album documents.
