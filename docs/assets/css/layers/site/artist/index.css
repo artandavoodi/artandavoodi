@@ -1,7 +1,7 @@
 /* ARTANDAVOODI · Artist section using shared typography and reading rail. */
 .artist { inline-size: 100%; }
 html:has(main > [data-fragment="artist"]:not([hidden])) { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
-.artist__screen { min-block-size: var(--section-min-height-stable); align-content: center; scroll-snap-align: start; scroll-snap-stop: always; }
+.artist__screen { min-block-size: calc(100vh - var(--site-header-height)); min-block-size: calc(var(--section-min-height-stable) - var(--site-header-height)); align-content: center; scroll-snap-align: start; scroll-snap-stop: always; }
 .artist__introduction { justify-items: center; }
 .artist__biography { max-inline-size: var(--cv-reading-width); text-align: center; color: var(--cv-text-secondary); }
 .artist h1 { text-align: center; }

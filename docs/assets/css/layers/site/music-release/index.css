@@ -5,10 +5,10 @@
 .music-release-detail__cover img { display: block; inline-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--shape-card-radius); }
 .music-release-detail__heading { display: grid; gap: var(--spacing-sm); text-align: center; }
 .music-release-detail__meta, .music-release-detail__story { display: grid; gap: var(--spacing-md); max-inline-size: var(--cv-reading-width); }
-.music-release-detail__meta p, .music-release-detail__story p { display: grid; grid-template-columns: minmax(0, var(--spacing-4xl)) minmax(0, 1fr); gap: var(--spacing-md); margin: 0; }
+.music-release-detail__row { display: grid; grid-template-columns: minmax(0, var(--spacing-4xl)) minmax(0, 1fr); gap: var(--spacing-md); margin: 0; }
 .music-release-detail__label { color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); text-transform: uppercase; letter-spacing: var(--site-type-label-tracking); }
-.music-release-detail__value { color: var(--cv-text-primary); }
+.music-release-detail__value { color: var(--cv-text-primary); min-inline-size: 0; overflow-wrap: anywhere; }
 .music-release-detail__links { display: flex; gap: var(--spacing-md); }
 .music-release-detail__links a { color: var(--cv-text-primary); }
 .music-release-detail__links img { inline-size: var(--icon-size-md); block-size: var(--icon-size-md); }
-@media (max-width: 860px) { .music-release-page { padding-inline: var(--spacing-lg); } .music-release-detail__meta p, .music-release-detail__story p { grid-template-columns: 1fr; gap: var(--spacing-xs); } }
+@media (max-width: 860px) { .music-release-page { padding-inline: var(--spacing-lg); } .music-release-detail__row { grid-template-columns: 1fr; gap: var(--spacing-xs); } }

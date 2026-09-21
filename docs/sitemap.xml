@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://artandavoodi.com/</loc></url>
-  <url><loc>https://artandavoodi.com/music/</loc></url>
-  <url><loc>https://artandavoodi.com/music/salim/</loc></url>
-  <url><loc>https://artandavoodi.com/music/solum/</loc></url>
-  <url><loc>https://artandavoodi.com/music/gone/</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url><loc>https://artandavoodi.com/</loc><image:image><image:loc>https://artandavoodi.com/assets/media/portrait/artist-home.jpeg</image:loc></image:image></url>
+  <url><loc>https://artandavoodi.com/music/</loc><image:image><image:loc>https://artandavoodi.com/assets/media/music/albums/salim/cover/salim-cover.webp</image:loc></image:image><image:image><image:loc>https://artandavoodi.com/assets/media/music/albums/solum/cover/solum-cover.webp</image:loc></image:image><image:image><image:loc>https://artandavoodi.com/assets/media/music/singles/gone/cover/gone-cover.webp</image:loc></image:image></url>
+  <url><loc>https://artandavoodi.com/music/salim/</loc><image:image><image:loc>https://artandavoodi.com/assets/media/music/albums/salim/cover/salim-cover.webp</image:loc></image:image></url>
+  <url><loc>https://artandavoodi.com/music/solum/</loc><image:image><image:loc>https://artandavoodi.com/assets/media/music/albums/solum/cover/solum-cover.webp</image:loc></image:image></url>
+  <url><loc>https://artandavoodi.com/music/gone/</loc><image:image><image:loc>https://artandavoodi.com/assets/media/music/singles/gone/cover/gone-cover.webp</image:loc></image:image></url>
 </urlset>

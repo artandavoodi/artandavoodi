@@ -5,7 +5,7 @@ const root=new URL('../',import.meta.url), docs=new URL('docs/',root);
 const json=async p=>JSON.parse(await readFile(new URL(p,docs),'utf8'));
 const [site,ui,artist,catalogue,icons,hub]=await Promise.all(['assets/data/site.json','assets/data/interface.json','assets/data/artist/profile.json','assets/data/music/releases.json','assets/data/icons.json','assets/data/hub.json'].map(json));
 const origin=`https://${site.identity.domain}`;
-const person={'@type':'Person','@id':origin+'/#artist',name:artist.name,url:origin+'/',description:artist.biography,sameAs:hub.links.filter(l=>l.url?.startsWith('https:')).map(l=>l.url)};
+const person={'@type':'Person','@id':origin+'/#artist',name:artist.name,url:origin+'/',description:artist.biography,image:{'@type':'ImageObject',contentUrl:origin+'/'+artist.portrait.src,caption:artist.portrait.alt,width:artist.portrait.width,height:artist.portrait.height},sameAs:hub.links.filter(l=>l.url?.startsWith('https:')).map(l=>l.url)};
 const website={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:artist.name};
 const output=async (path,html)=>{ const url=new URL(path,docs); await mkdir(new URL('./',url),{recursive:true}); await writeFile(url,html); };
 const musicLabel=ui.sections.find(s=>s.id==='music').label;
@@ -41,5 +41,8 @@ for(const selection of featured.items.filter(item=>item.enabled!==false)) {
 shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p></div><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2><div class="featured__items">${featuredCards.join('')}</div></section></div></section>`);
 await output('index.html',shell);
 const urls=['/','/music/',...catalogue.items.map(route)];
-await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.map(p=>`  <url><loc>${origin}${p}</loc></url>`).join('\n')}\n</urlset>\n`);
+await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
+  const images=p==='/'?[artist.portrait.src]:catalogue.items.filter(r=>p==='/music/'||p===route(r)).map(r=>r.cover.src);
+  return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
+}).join('\n')}\n</urlset>\n`);
 console.log(`Generated homepage, catalogue, ${catalogue.items.length} releases and sitemap.`);
