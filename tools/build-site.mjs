@@ -31,18 +31,21 @@ const musicShell=shell.replace('{{HEAD}}',head({title:`${musicLabel} · ${artist
 await output('music/index.html',musicShell);
 shell=shell.replace('{{HEAD}}',head({title:`${artist.name} · ${artist.headline}`,description:artist.biography,path:'/',image:artist.portrait.src,graph:[person,website]},origin));
 const featured=await json('assets/data/featured.json');
+const gallery=await json(site.catalogues.gallery);
+const featuredImages=[];
 const featuredCards=[];
 for(const selection of featured.items.filter(item=>item.enabled!==false)) {
   const records=await json(site.catalogues[selection.catalogue]);
   const item=records.items.find(item=>item.id===selection.id);
   if(!item) throw new Error('Unknown featured item');
+  featuredImages.push((item.cover || item.image).src);
   featuredCards.push(`<a class="featured__item" href="${escape(selection.href)}">${image(item.cover || item.image,true)}<h3>${escape(item.title)}</h3><p>${escape(item.subtitle || item.type)}</p></a>`);
 }
 shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p></div><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2><div class="featured__items">${featuredCards.join('')}</div></section></div></section>`);
 await output('index.html',shell);
 const urls=['/','/music/',...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
-  const images=p==='/'?[artist.portrait.src]:catalogue.items.filter(r=>p==='/music/'||p===route(r)).map(r=>r.cover.src);
+  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages,...gallery.items.map(item=>item.image.src)])]:catalogue.items.filter(r=>p==='/music/'||p===route(r)).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
 }).join('\n')}\n</urlset>\n`);
 console.log(`Generated homepage, catalogue, ${catalogue.items.length} releases and sitemap.`);
