@@ -111,7 +111,7 @@ if (site) {
   for (const selection of featured?.items || []) {
     const catalogue = await json(site.catalogues[selection.catalogue]);
     requireValue(catalogue?.items?.some(item => item.id === selection.id), `Unknown featured reference: ${selection.id}`);
-    requireValue(typeof selection.href === 'string' && /^(?:#[a-z-]+|https:\/\/)/.test(selection.href), `Invalid featured destination: ${selection.id}`);
+    requireValue(typeof selection.href === 'string' && /^(?:#[a-z-]+|https:\/\/|\/(?!\/)[a-z0-9/-]+$)/.test(selection.href), `Invalid featured destination: ${selection.id}`);
   }
 }
 await scanFiles(path.join(root, 'assets'));

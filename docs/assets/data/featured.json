@@ -1,5 +1,9 @@
 {
   "schemaVersion": 1,
   "title": "Featured",
-  "items": [{ "catalogue": "music", "id": "gone", "href": "#music", "enabled": true }]
+  "items": [
+    { "catalogue": "music", "id": "salim", "href": "/music/salim/", "enabled": true },
+    { "catalogue": "music", "id": "solum", "href": "/music/solum/", "enabled": true },
+    { "catalogue": "music", "id": "gone", "href": "/music/gone/", "enabled": true }
+  ]
 }
