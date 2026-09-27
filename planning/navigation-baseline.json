@@ -1,0 +1,13 @@
+{
+  "sourceRepository": "artandavoodi/artan-live",
+  "files": [
+    {
+      "file": "docs/assets/js/core/menu.js",
+      "sha256": "23355dcdc588f4f8163d895fbbc4f4e6d85ee85203f36f5802801189e3141c87"
+    },
+    {
+      "file": "docs/assets/css/core/01-tokens/navigation.tokens.css",
+      "sha256": "3306b99052c2af5415b65561586a7dc596bbe08a3fd556115abd986805ddd574"
+    }
+  ]
+}
