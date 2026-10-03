@@ -7,7 +7,7 @@ html[data-loading] body::before {
   margin: auto;
   inline-size: var(--loader-circle-size);
   block-size: var(--loader-circle-size);
-  border-radius: var(--radius-full);
+  border-radius: var(--radius-circle);
   background: var(--cv-text-primary);
   animation: site-startup-breathe var(--loader-circle-motion-duration) var(--loader-circle-motion-ease) infinite;
 }
