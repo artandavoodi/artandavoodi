@@ -23,9 +23,15 @@ export function renderIcon(id, registry) {
   const image = document.createElement('img');
   image.className = 'catalogue-icon';
   if (record.monochrome) image.dataset.monochrome = 'true';
+  if (record.darkMonochrome) image.dataset.darkMonochrome = 'true';
   image.src = assetUrl(record.src);
   image.alt = record.alt;
   image.decoding = 'async';
+  if (record.darkSrc) {
+    image.dataset.lightSrc = assetUrl(record.src);
+    image.dataset.darkSrc = assetUrl(record.darkSrc);
+    image.src = document.documentElement.dataset.themeEffective === 'dark' ? image.dataset.darkSrc : image.dataset.lightSrc;
+  }
   return image;
 }
 export function renderLinks(records, target) {

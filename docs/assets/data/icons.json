@@ -1,6 +1,11 @@
 {
   "schemaVersion": 1,
   "items": [
+    { "id": "public-hub", "src": "assets/brand/logo/symbol-artan.svg", "alt": "", "darkMonochrome": true },
+    { "id": "artan-records", "src": "assets/brand/logo/artan-records-symbol-black.svg", "darkSrc": "assets/brand/logo/artan-records-symbol-white.svg", "alt": "" },
+    { "id": "youtube", "src": "assets/icons/social/platforms/youtube.svg", "alt": "", "monochrome": true },
+    { "id": "tiktok", "src": "assets/icons/social/platforms/tiktok.svg", "alt": "", "monochrome": true },
+    { "id": "facebook", "src": "assets/icons/social/platforms/facebook.svg", "alt": "", "monochrome": true },
     { "id": "home", "src": "assets/icons/navigation/home.svg", "alt": "", "monochrome": true },
     { "id": "solum", "src": "assets/media/music/albums/solum/icons/solum-icon.svg", "alt": "Solum release mark", "monochrome": true },
     { "id": "salim", "src": "assets/media/music/albums/salim/icons/salim-icon.svg", "alt": "Salim release mark", "monochrome": true },

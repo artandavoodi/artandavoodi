@@ -2,6 +2,12 @@
   "schemaVersion": 1,
   "title": "Music and visual work gathered in one place",
   "description": "",
+  "groups": [
+    { "id": "streaming", "label": "Streaming", "presentation": "icons" },
+    { "id": "social", "label": "Social", "presentation": "icons" },
+    { "id": "website", "label": "Websites", "presentation": "labels" },
+    { "id": "email", "label": "Email", "presentation": "labels" }
+  ],
   "links": [
     { "label": "Apple Music", "category": "streaming", "order": 1, "icon": "apple-music", "url": "https://music.apple.com/us/artist/artan-davoodi/1850542780" },
     { "label": "Spotify", "category": "streaming", "order": 2, "icon": "spotify", "url": "https://open.spotify.com/artist/7zUiATkwf1InOGR2J1NG7t?si=Ox_6ucU-S0SW_JYuGr0xsw" },
@@ -9,10 +15,14 @@
     { "label": "Amazon Music", "category": "streaming", "order": 4, "icon": "amazon-music", "url": "https://music.amazon.de/artists/B0GPS7DL9V/artan-davoodi?marketplaceId=A1PA6795UKMFR9&musicTerritory=DE&ref=dm_sh_zZQ7xXzWSGFM6nZ9TShoqyKuv" },
     { "label": "Deezer", "category": "streaming", "order": 5, "icon": "deezer", "url": "https://link.deezer.com/s/34nKznaDieZyRWyyAkDAE" },
     { "label": "TIDAL", "category": "streaming", "order": 6, "icon": "tidal", "url": "https://tidal.com/artist/74922399/u" },
-    { "label": "X / Twitter", "category": "social", "order": 1, "icon": "x", "url": "https://x.com/artandavoodi" },
-    { "label": "Instagram", "category": "social", "order": 2, "icon": "instagram", "url": null, "status": "awaiting-profile-url" },
-    { "label": "Public hub", "category": "website", "order": 1, "icon": "globe", "url": "https://artan.live/" },
-    { "label": "Artan Records", "category": "website", "order": 2, "icon": "globe", "url": "https://artanrecords.com/" },
+    { "label": "X", "category": "social", "order": 1, "icon": "x", "url": "https://x.com/artandavoodi" },
+    { "label": "YouTube", "category": "social", "order": 3, "icon": "youtube", "url": "https://www.youtube.com/@artandavoodi" },
+    { "label": "TikTok", "category": "social", "order": 4, "icon": "tiktok", "url": "https://www.tiktok.com/@artan.davoodi" },
+    { "label": "Facebook", "category": "social", "order": 5, "icon": "facebook", "url": "https://www.facebook.com/artandavoodi" },
+    { "label": "Instagram", "category": "social", "order": 2, "icon": "instagram", "url": "https://www.instagram.com/artandavoodi/" },
+    { "label": "Public hub", "category": "website", "order": 1, "icon": "public-hub", "url": "https://artan.live/" },
+    { "label": "Official website", "category": "website", "order": 0, "icon": "globe", "url": "https://artandavoodi.com/" },
+    { "label": "Artan Records", "category": "website", "order": 2, "icon": "artan-records", "url": "https://artanrecords.com/" },
     { "label": "contact@artandavoodi.com", "category": "email", "order": 1, "icon": "email", "url": "mailto:contact@artandavoodi.com" }
   ]
 }

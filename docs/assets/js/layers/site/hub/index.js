@@ -11,16 +11,18 @@ export function render(data, ui, icons) {
     const url = new URL(record.url);
     const isMail = url.protocol === 'mailto:';
     if (!['https:', 'mailto:'].includes(url.protocol) || (!isMail && (url.username || url.password))) continue;
-    const groupKey = ['website', 'email'].includes(record.category) ? 'contact' : record.category;
+    const groupKey = record.category;
     if (!groups.has(groupKey)) groups.set(groupKey, []);
     groups.get(groupKey).push(record);
   }
-  const labels = { streaming: 'Streaming', social: 'Social', contact: 'Website & Email' };
-  for (const [category, records] of groups) {
+  for (const group of data.groups || []) {
+    const records = groups.get(group.id);
+    if (!records?.length) continue;
     const section = document.createElement('section');
     section.className = 'hub__group';
+    section.dataset.presentation = group.presentation;
     const heading = document.createElement('h3');
-    heading.textContent = labels[category] || category;
+    heading.textContent = group.label;
     const links = document.createElement('div');
     links.className = 'hub__group-links';
     for (const record of records.sort((a, b) => (a.order || 0) - (b.order || 0))) {

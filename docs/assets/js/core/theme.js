@@ -8,6 +8,9 @@ export function initializeTheme() {
 function applyTheme(value) {
   document.documentElement.dataset.theme = value;
   document.documentElement.dataset.themeEffective = value;
+  for (const image of document.querySelectorAll('img[data-light-src][data-dark-src]')) {
+    image.src = value === 'dark' ? image.dataset.darkSrc : image.dataset.lightSrc;
+  }
 }
 export function bindTheme(labels) {
   const button = document.querySelector('[data-theme-toggle]');
