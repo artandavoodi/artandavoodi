@@ -5,6 +5,6 @@
     { "id": "artworks", "title": "Artworks", "empty": "Artworks will appear here." }
   ],
   "items": [
-    { "id": "artan-portrait", "collection": "portfolio", "image": { "src": "assets/media/gallery/portfolio/artan-portrait.jpg", "alt": "Portrait of Artan Davoodi", "width": 2155, "height": 2155 } }
+    { "id": "artan-portrait", "title": "Portrait of Artan Davoodi", "tags": ["Artan Davoodi", "portrait", "photography"], "collection": "portfolio", "image": { "src": "assets/media/gallery/portfolio/artan-portrait.jpg", "alt": "Portrait of Artan Davoodi", "width": 2155, "height": 2155 } }
   ]
 }

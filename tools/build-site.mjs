@@ -7,7 +7,11 @@ const [site,ui,artist,catalogue,icons,hub]=await Promise.all(['assets/data/site.
 const origin=`https://${site.identity.domain}`;
 const person={'@type':'Person','@id':origin+'/#artist',name:artist.name,url:origin+'/',description:artist.biography,image:{'@type':'ImageObject',contentUrl:origin+'/'+artist.portrait.src,caption:artist.portrait.alt,width:artist.portrait.width,height:artist.portrait.height},sameAs:hub.links.filter(l=>l.url?.startsWith('https:')).map(l=>l.url)};
 const website={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:artist.name};
-const output=async (path,html)=>{ const url=new URL(path,docs); await mkdir(new URL('./',url),{recursive:true}); await writeFile(url,html); };
+const output=async (path,html)=>{
+  const url=new URL(path,docs);
+  if(path.endsWith('.html')) html=html.replace('<div data-fragment="navigation"></div>',`<div data-fragment="navigation"><nav aria-label="${escape(ui.navigationLabel)}">${ui.sections.map(s=>`<a href="${s.path}">${escape(s.label)}</a>`).join(' ')}</nav></div>`);
+  await mkdir(new URL('./',url),{recursive:true}); await writeFile(url,html);
+};
 const musicLabel=ui.sections.find(s=>s.id==='music').label;
 const cards=catalogue.items.map(item=>`<article class="music-release"><figure class="music-release__cover"><a href="${route(item)}">${image(item.cover,true)}</a></figure><div class="music-release__content"><h2><a href="${route(item)}">${escape(item.title)}</a></h2><p>${escape(item.type)} · ${escape(item.artist)}</p><p>${escape(item.description)}</p></div></article>`).join('\n');
 const collection={'@type':'CollectionPage','@id':origin+'/music/',url:origin+'/music/',name:musicLabel,mainEntity:{'@type':'ItemList',itemListElement:catalogue.items.map((r,i)=>({'@type':'ListItem',position:i+1,url:origin+route(r),name:r.title}))}};
@@ -43,9 +47,32 @@ for(const selection of featured.items.filter(item=>item.enabled!==false)) {
 }
 shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p></div><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2><div class="featured__items">${featuredCards.join('')}</div></section></div></section>`);
 await output('index.html',shell);
-const urls=['/','/music/',...catalogue.items.map(route)];
+const routeShell=await readFile(new URL('tools/site/home.html',root),'utf8');
+const galleryLabel=ui.sections.find(s=>s.id==='gallery').label;
+const galleryBody=gallery.collections.map(c=>`<section class="gallery__collection"><h2>${escape(c.title)}</h2><div class="gallery__images">${gallery.items.filter(i=>i.collection===c.id).map(i=>`<a href="/gallery/${escape(i.id)}/">${image(i.image,true)}</a>`).join('')}</div></section>`).join('');
+const hubBody=hub.groups.map(g=>`<section class="hub__group" data-presentation="${escape(g.presentation)}"><h2>${escape(g.label)}</h2><div class="hub__group-links">${hub.links.filter(l=>l.category===g.id&&l.url).sort((a,b)=>a.order-b.order).map(l=>{const icon=icons.items.find(i=>i.id===l.icon);return `<a class="hub__link" href="${escape(l.url)}" aria-label="${escape(l.label)}">${icon?`<img src="/${escape(icon.src)}" alt=""${icon.monochrome?' data-monochrome="true"':''}>`:''}<span class="hub__tooltip">${escape(l.label)}</span></a>`;}).join('')}</div></section>`).join('');
+for(const [id,title,description,body] of [
+  ['gallery',galleryLabel,`${galleryLabel} · ${artist.name}`,galleryBody],
+  ['hub',hub.title,`Connect with ${artist.name}: music, social channels, websites and email.`,hubBody]
+]) {
+  const path=ui.sections.find(s=>s.id===id).path;
+  const html=routeShell.replace('{{HEAD}}',head({title:`${title} · ${artist.name}`,description,path,image:artist.portrait.src,graph:[person,website,{'@type':'CollectionPage','@id':origin+path,url:origin+path,name:title}]},origin))
+    .replace('data-generated-page="true"',`data-generated-page="true" data-initial-route="${id}"`)
+    .replace('<div data-fragment="artist">{{ARTIST}}</div>','<div data-fragment="artist" hidden></div>')
+    .replace(`<div data-fragment="${id}" hidden></div>`,`<div data-fragment="${id}"><section class="site-section ${id}"><h1>${escape(title)}</h1>${body}</section></div>`)
+    .replaceAll('href="./assets/','href="/assets/').replaceAll('src="./assets/','src="/assets/');
+  await output(path.slice(1)+'index.html',html);
+}
+for(const item of gallery.items) {
+  if(!/^[a-z0-9-]+$/.test(item.id)) throw new Error('Invalid gallery id');
+  const path=`/gallery/${item.id}/`, title=item.title||item.image.alt;
+  const entity={'@type':'ImageObject','@id':origin+path+'#image',name:title,description:item.description||item.image.alt,contentUrl:origin+'/'+item.image.src,url:origin+path,width:item.image.width,height:item.image.height,creator:{'@id':person['@id']},...(item.tags?.length?{keywords:item.tags.join(', ')}:{})};
+  const body=`<article><h1>${escape(title)}</h1>${image(item.image)}${item.description?`<p>${escape(item.description)}</p>`:''}</article>`;
+  await output(path.slice(1)+'index.html',documentPage({title:`${title} · ${artist.name}`,description:entity.description,path,image:item.image.src,graph:[person,website,entity]},body,origin,galleryLabel).replace('href="/music/"','href="/gallery/"'));
+}
+const urls=['/','/music/','/gallery/','/hub/',...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
-  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages,...gallery.items.map(item=>item.image.src)])]:catalogue.items.filter(r=>p==='/music/'||p===route(r)).map(r=>r.cover.src);
+  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`).map(i=>i.image.src):catalogue.items.filter(r=>p==='/music/'||p===route(r)).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
 }).join('\n')}\n</urlset>\n`);
 console.log(`Generated homepage, catalogue, ${catalogue.items.length} releases and sitemap.`);

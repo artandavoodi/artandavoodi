@@ -8,6 +8,22 @@ const read=p=>readFile(new URL(p,docs),'utf8');
 const data=JSON.parse(await read('assets/data/music/releases.json'));
 const sitemap=await read('sitemap.xml');
 const catalogue=await read('music/index.html');
+const gallery=JSON.parse(await read('assets/data/gallery/images.json'));
+for(const path of ['/hub/','/gallery/',...gallery.items.map(item=>`/gallery/${item.id}/`)]) {
+  const html=await read(path.slice(1)+'index.html');
+  assert.equal((html.match(/<h1\b/g)||[]).length,1);
+  assert.ok(html.includes(`rel="canonical" href="https://artandavoodi.com${path}"`));
+  assert.ok(sitemap.includes(`https://artandavoodi.com${path}`));
+  assert.ok(!html.includes('{{'));
+}
+const hub=JSON.parse(await read('assets/data/hub.json'));
+const hubHtml=await read('hub/index.html');
+for(const link of hub.links.filter(link=>link.url)) assert.ok(hubHtml.includes(`href="${escape(link.url)}"`));
+for(const item of gallery.items) {
+  const html=await read(`gallery/${item.id}/index.html`);
+  assert.ok(html.includes('ImageObject') && html.includes(escape(item.image.alt)));
+  assert.ok((await read('gallery/index.html')).includes(`href="/gallery/${item.id}/"`));
+}
 assert.ok(!(await read('assets/js/layers/site/music/index.js')).includes('bindReleaseReader'));
 assert.ok((await read('assets/js/layers/site/music/tracks.js')).includes('button.href = `/music/${album.id}/#track-${track.id}`'));
 for(const item of data.items) {

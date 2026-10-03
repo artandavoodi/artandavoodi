@@ -1,14 +1,14 @@
 /* ARTANDAVOODI · Site domain importer, menu navigation and section lifecycle. */
 import { loadJson } from '../../core/data.js?v=9';
 import { bindTheme } from '../../core/theme.js?v=5';
-import { bindNavigation } from './navigation.js?v=9';
+import { bindNavigation } from './navigation.js?v=10';
 import { applyMetadata } from '../../core/metadata.js?v=1';
-import { bindRoutes } from './routes.js';
+import { bindRoutes } from './routes.js?v=2';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
   artist: () => import('./artist/index.js?v=5'),
   music: () => import('./music/index.js?v=12'),
-  gallery: () => import('./gallery/index.js?v=4'),
+  gallery: () => import('./gallery/index.js?v=5'),
   hub: () => import('./hub/index.js?v=5'),
 };
 export async function initializeSite() {
@@ -23,7 +23,7 @@ export async function initializeSite() {
   for (const section of ui.sections) {
     const title = document.querySelector(`[data-section-title="${section.id}"]`);
     if (title) title.textContent = section.label;
-    if (title && section.id === 'music' && document.documentElement.dataset.initialRoute === 'music') {
+    if (title && document.documentElement.dataset.initialRoute === section.id) {
       const heading = document.createElement('h1');
       for (const attribute of title.attributes) heading.setAttribute(attribute.name, attribute.value);
       heading.textContent = title.textContent;

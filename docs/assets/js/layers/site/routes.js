@@ -4,6 +4,10 @@ export function bindRoutes(ui, metadata) {
   const update = () => {
     const requested = location.hash.slice(1) || document.documentElement.dataset.initialRoute || 'artist';
     const route = ui.sections.find(item => item.id === requested) || ui.sections[0];
+    if (location.hash && ui.sections.some(item => item.id === location.hash.slice(1))) {
+      location.replace(route.path);
+      return;
+    }
     for (const section of document.querySelectorAll('main > [data-fragment]')) {
       section.hidden = section.dataset.fragment !== route.id;
     }

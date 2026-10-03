@@ -10,7 +10,12 @@ export function render(data, ui) {
     const items = document.createElement('div');
     items.className = 'gallery__images';
     const records = data.items.filter(item => item.collection === collection.id);
-    if (records.length) items.append(...records.map(item => renderImage(item.image)));
+    if (records.length) items.append(...records.map(item => {
+      const link = document.createElement('a');
+      link.href = `/gallery/${item.id}/`;
+      link.append(renderImage(item.image));
+      return link;
+    }));
     else renderEmpty(items, collection.empty);
     section.append(title, items);
     return section;

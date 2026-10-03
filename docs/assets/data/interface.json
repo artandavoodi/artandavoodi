@@ -6,10 +6,10 @@
   "skipLabel": "Skip to content",
   "theme": { "dark": "Dark appearance", "light": "Light appearance" },
   "sections": [
-    { "id": "artist", "label": "Artist" },
-    { "id": "music", "label": "Music" },
-    { "id": "gallery", "label": "Art & Gallery" },
-    { "id": "hub", "label": "Hub" }
+    { "id": "artist", "label": "Artist", "path": "/" },
+    { "id": "music", "label": "Music", "path": "/music/" },
+    { "id": "gallery", "label": "Art & Gallery", "path": "/gallery/" },
+    { "id": "hub", "label": "Hub", "path": "/hub/" }
   ],
   "artistDescription": "Music · Art",
   "hubLabel": "Public hub",
