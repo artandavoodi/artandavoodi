@@ -7,7 +7,6 @@ import { observeDividers } from './dividers.js';
 import { collectTracks, renderTrackDirectory } from './track-directory.js';
 import { metadataRows } from './publication.js';
 
-const DEFAULT_CATEGORY = 'singles';
 const DEFAULT_STATUS = 'all';
 
 function createElement(tagName, className, textContent) {
@@ -128,17 +127,24 @@ export async function render(data, ui, icons) {
     filterIcon.setAttribute('aria-hidden', 'true');
     document.querySelector('[data-music-filter-icon]').append(filterIcon);
   }
-  let activeCategory = DEFAULT_CATEGORY;
+  let activeCategory = ui.musicDefaultCategory;
   let activeStatus = DEFAULT_STATUS;
   let disconnectDividers = () => {};
   const update = () => {
     disconnectDividers();
     const items = sortedItems(data.items).filter(item => {
-      const categoryMatches = activeCategory === 'tracks' || item.category === activeCategory;
+      const categoryMatches = activeCategory === 'release' || activeCategory === 'tracks' || item.category === activeCategory;
       const statusMatches = activeStatus === DEFAULT_STATUS || String(item.status).toLowerCase() === activeStatus;
       return categoryMatches && statusMatches;
     });
-    if (activeCategory === 'tracks' && collectTracks(items).length) target.replaceChildren(renderTrackDirectory(collectTracks(items), ui, icons, renderReleaseLinks));
+    if (activeCategory === 'release') {
+      const latest = items.filter(item => String(item.status).toLowerCase() === 'released')
+        .sort((a, b) => (b.order || 0) - (a.order || 0))[0];
+      if (latest) {
+        target.replaceChildren(renderRelease(latest, ui, icons));
+      } else renderEmpty(target, ui.empty.music);
+    }
+    else if (activeCategory === 'tracks' && collectTracks(items).length) target.replaceChildren(renderTrackDirectory(collectTracks(items), ui, icons, renderReleaseLinks));
     else if (activeCategory !== 'tracks' && items.length) target.replaceChildren(...items.map(item => renderRelease(item, ui, icons)));
     else renderEmpty(target, ui.empty.music);
     disconnectDividers = observeDividers([...target.querySelectorAll('.music-release, .music-tracks__link, .music-track-directory__row')]);

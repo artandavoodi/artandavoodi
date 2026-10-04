@@ -14,11 +14,13 @@
   "artistDescription": "Music · Art",
   "hubLabel": "Public hub",
   "musicCategories": [
+    { "id": "release", "label": "Release" },
     { "id": "albums", "label": "Albums" },
     { "id": "singles", "label": "Singles" },
     { "id": "eps", "label": "EPs" },
     { "id": "tracks", "label": "Tracks" }
   ],
+  "musicDefaultCategory": "release",
   "musicStatusFilters": [
     { "id": "all", "label": "All" },
     { "id": "released", "label": "Released" },
