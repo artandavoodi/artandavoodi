@@ -47,6 +47,8 @@
   ],
   "musicReaderFields": [
     { "key": "story", "label": "Story" },
+    { "key": "lyrics", "label": "Lyrics" },
+    { "key": "relatedWork", "label": "Related work" },
     { "key": "credits", "label": "Credits" },
     { "key": "musicalDetails", "label": "Musical details" },
     { "key": "productionProcess", "label": "Production" },
@@ -64,7 +66,11 @@
       { "key": "format", "label": "Format" },
       { "key": "genre", "label": "Genre" },
       { "key": "key", "label": "Key" },
-      { "key": "tempo", "label": "Tempo" }
+      { "key": "tempo", "label": "Tempo" },
+      { "key": "language", "label": "Language" },
+      { "key": "version", "label": "Version" },
+      { "key": "originalTitle", "label": "Original title" },
+      { "key": "feeling", "label": "Feeling" }
     ],
     "releaseInformation": [{ "key": "label", "label": "Label" }]
   },

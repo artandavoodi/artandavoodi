@@ -2,7 +2,7 @@
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {escape,route,releaseBody} from './site/render.mjs';
-import {publishedValue, metadataRows, archiveAssets} from '../docs/assets/js/layers/site/music/publication.js';
+import {publishedValue, metadataRows, archiveAssets, newestReleases} from '../docs/assets/js/layers/site/music/publication.js';
 const docs=new URL('../docs/',import.meta.url);
 const read=p=>readFile(new URL(p,docs),'utf8');
 const data=JSON.parse(await read('assets/data/music/releases.json'));
@@ -62,11 +62,22 @@ for(const item of data.items) {
   }
   const graph=JSON.parse(html.match(/type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
   assert.ok(graph['@graph'].some(e=>['MusicAlbum','MusicRecording'].includes(e['@type'])));
+  for (const record of [item, ...(item.tracks || [])]) {
+    for (const line of (record.lyrics || '').split('\n').filter(Boolean)) assert.ok(html.includes(escape(line)), 'Lyrics must be indexable');
+  }
   for(const track of item.tracks||[]) {
     assert.ok(html.includes(`id="track-${track.id}"`));
-    assert.ok(html.includes(escape(track.title)) && html.includes(track.duration));
+    assert.ok(html.includes(escape(track.title)));
+    if (track.duration) assert.ok(html.includes(track.duration));
+    else assert.ok(!html.includes('undefined'));
   }
 }
+const remnant = data.items.find(item=>item.id==='remnant');
+assert.equal(remnant.status, 'Upcoming');
+assert.equal(remnant.releaseDate, undefined);
+assert.deepEqual(remnant.tracks.map(track=>track.title), ['Station','Shadow','Wonder','Elsewhere','You','Lullaby','Filippa','Still']);
+assert.equal(data.items.find(item=>item.id==='still-live-acoustic').status, 'Released');
+assert.deepEqual(newestReleases(data.items.filter(item=>item.status==='Released')).map(item=>item.id), ['still-live-acoustic','dream','salim','solum','gone']);
 for(const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/g)) assert.ok(!/[?#]/.test(match[1]) && !match[1].includes('/workspace/'));
 console.log('PASS: initial HTML, canonical URLs, all track anchors, JSON-LD and sitemap.');
 assert.deepEqual(metadataRows({status:'Released'},[{key:'status',when:'Upcoming'}]),[]);

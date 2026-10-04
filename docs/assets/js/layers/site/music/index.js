@@ -5,7 +5,7 @@ import { renderContext } from './context/index.js?v=2';
 import { renderTracks } from './tracks.js?v=2';
 import { observeDividers } from './dividers.js';
 import { collectTracks, renderTrackDirectory } from './track-directory.js';
-import { metadataRows } from './publication.js';
+import { metadataRows, newestReleases } from './publication.js';
 
 const DEFAULT_STATUS = 'all';
 
@@ -17,7 +17,7 @@ function createElement(tagName, className, textContent) {
 }
 
 function sortedItems(items) {
-  return [...(Array.isArray(items) ? items : [])].sort((a, b) => (a.order || 0) - (b.order || 0));
+  return newestReleases(Array.isArray(items) ? items : []);
 }
 
 function renderReleaseDetails(item, ui) {
@@ -138,8 +138,7 @@ export async function render(data, ui, icons) {
       return categoryMatches && statusMatches;
     });
     if (activeCategory === 'release') {
-      const latest = items.filter(item => String(item.status).toLowerCase() === 'released')
-        .sort((a, b) => (b.order || 0) - (a.order || 0))[0];
+      const latest = items.find(item => String(item.status).toLowerCase() === 'released');
       if (latest) {
         target.replaceChildren(renderRelease(latest, ui, icons));
       } else renderEmpty(target, ui.empty.music);

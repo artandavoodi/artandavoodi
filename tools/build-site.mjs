@@ -1,10 +1,12 @@
 /* Deterministic static generation, compatible with GitHub Pages /docs publishing. */
 import {readFile, writeFile, mkdir} from 'node:fs/promises';
 import {head, image, route, escape, recording, releaseBody, documentPage} from './site/render.mjs';
+import {newestReleases} from '../docs/assets/js/layers/site/music/publication.js';
 const root=new URL('../',import.meta.url), docs=new URL('docs/',root);
 const json=async p=>JSON.parse(await readFile(new URL(p,docs),'utf8'));
 const [site,ui,artist,catalogue,icons,hub]=await Promise.all(['assets/data/site.json','assets/data/interface.json','assets/data/artist/profile.json','assets/data/music/releases.json','assets/data/icons.json','assets/data/hub.json'].map(json));
 const origin=`https://${site.identity.domain}`;
+catalogue.items = newestReleases(catalogue.items);
 const person={'@type':'Person','@id':origin+'/#artist',name:artist.name,url:origin+'/',description:artist.biography,image:{'@type':'ImageObject',contentUrl:origin+'/'+artist.portrait.src,caption:artist.portrait.alt,width:artist.portrait.width,height:artist.portrait.height},sameAs:hub.links.filter(l=>l.url?.startsWith('https:')).map(l=>l.url)};
 const website={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:artist.name};
 const output=async (path,html)=>{
@@ -22,7 +24,9 @@ for (const item of catalogue.items) {
     if (!/^[a-z0-9-]+$/.test(alias) || catalogue.items.some(record=>record.id===alias)) throw new Error('Invalid release alias');
     await output(`music/${alias}/index.html`,`<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${escape(item.title)}</title><link rel="canonical" href="${origin}${path}"><meta http-equiv="refresh" content="0;url=${path}"></head><body><a href="${path}">${escape(item.title)}</a></body></html>\n`);
   }
-  const entity=item.type==='Single'?recording(item,item,origin):{'@type':'MusicAlbum','@id':origin+path+'#album',name:item.title,url:origin+path,byArtist:{'@id':person['@id']},datePublished:item.releaseDate,genre:item.genre,image:origin+'/'+item.cover.src,description:item.description,numTracks:item.tracks?.length,track:(item.tracks||[]).map(t=>recording(t,item,origin)),sameAs:item.links.map(l=>l.url)};
+  const entity=item.type==='Single'?recording(item,item,origin):{'@type':'MusicAlbum','@id':origin+path+'#album',name:item.title,url:origin+path,byArtist:{'@id':person['@id']},datePublished:item.releaseDate,genre:item.genre,image:item.cover ? origin+'/'+item.cover.src : undefined,description:item.description,numTracks:item.tracks?.length,track:(item.tracks||[]).map(t=>recording(t,item,origin)),sameAs:item.links.map(l=>l.url)};
+  entity.creativeWorkStatus = item.status;
+  if (item.label) entity.publisher = {'@type':'Organization',name:item.label};
   const breadcrumbs={'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:musicLabel,item:origin+'/music/'},{'@type':'ListItem',position:2,name:item.title,item:origin+path}]};
   await output(path.slice(1)+'index.html',documentPage({title:`${item.title} · ${artist.name}`,description:item.description,path,image:item.cover?.src,graph:[person,website,entity,breadcrumbs]},releaseBody(item,ui,icons),origin,ui.musicBack.label));
 }

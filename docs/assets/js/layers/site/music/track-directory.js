@@ -1,6 +1,7 @@
 /* Derived track directory: parent releases remain the source of category and album. */
+import { newestReleases } from './publication.js';
 export function collectTracks(releases) {
-  return releases.flatMap(release => release.tracks?.length
+  return newestReleases(releases).flatMap(release => release.tracks?.length
     ? [...release.tracks].sort((a, b) => a.position - b.position).map(track => ({ release, track }))
     : release.category === 'singles' ? [{ release, track: release }] : []);
 }
