@@ -58,7 +58,6 @@ function sections(item, ui, icons, parent) {
     const value = publishedValue(item, field.key);
     if(field.key==='archive') body=(value?.tabs || []).filter(tab=>archiveAssets(tab).length).map(tab=>`<h3>${escape(tab.label)}</h3>${paragraphs(tab.description)}${archiveAssets(tab).map(a=>`${a.preview ? image(a.preview,true) : ''}<p><a href="${escape(a.url || '/'+a.path)}">${escape(a.title || a.label)}</a></p>${rows(metadataRows(a,ui.musicArchiveAssetDetails))}`).join('')}`).join('');
     else if (!parent || value !== publishedValue(parent,field.key)) body=paragraphs(value);
-    if (field.key === 'lyrics' && item.copyright) body += paragraphs(item.copyright);
     body += rows(metadataRows(item,ui.musicSectionDetails?.[field.key],parent));
     if (!body) return '';
     return `<details class="release-document__section" id="${escape(item.id)}-${escape(field.key)}"><summary>${escape(field.label)}${disclosureIcon(ui,icons)}</summary>${body}</details>`;
