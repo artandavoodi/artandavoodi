@@ -2,6 +2,36 @@
   "schemaVersion": 1,
   "items": [
     {
+      "id": "still-live-acoustic",
+      "order": 5,
+      "title": "Still (Live Acoustic)",
+      "subtitle": "Single",
+      "artist": "Artan Davoodi",
+      "type": "Single",
+      "category": "singles",
+      "status": "Released",
+      "description": "",
+      "cover": null,
+      "links": [],
+      "tracks": [],
+      "detailHref": "music/still-live-acoustic/"
+    },
+    {
+      "id": "dream",
+      "order": 4,
+      "title": "Dream?",
+      "subtitle": "Single",
+      "artist": "Artan Davoodi",
+      "type": "Single",
+      "category": "singles",
+      "status": "Released",
+      "description": "",
+      "cover": null,
+      "links": [],
+      "tracks": [],
+      "detailHref": "music/dream/"
+    },
+    {
       "id": "salim",
       "order": 2,
       "title": "Salim",

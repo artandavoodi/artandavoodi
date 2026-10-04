@@ -85,7 +85,7 @@ async function checkCatalogue(name, file) {
       const prefix = name === 'music'
         ? `assets/media/music/${item.category}/${item.id}/cover/`
         : `assets/media/publications/${item.id}/cover/`;
-      await image(item.cover, prefix, item.id);
+      if (name !== 'music' || item.cover !== null) await image(item.cover, prefix, item.id);
       links(item.links, item.id);
     }
   }

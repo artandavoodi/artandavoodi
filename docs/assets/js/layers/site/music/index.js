@@ -62,16 +62,18 @@ function renderReleaseCover(item, icons) {
   button.type = 'button';
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-label', item.title);
-  const image = createElement('img', 'music-release__cover-image');
-  image.src = assetUrl(item.cover.src);
-  image.alt = item.cover.alt;
-  image.width = item.cover.width;
-  image.height = item.cover.height;
-  image.loading = 'lazy';
-  image.decoding = 'async';
+  if (item.cover) {
+    const image = createElement('img', 'music-release__cover-image');
+    image.src = assetUrl(item.cover.src);
+    image.alt = item.cover.alt;
+    image.width = item.cover.width;
+    image.height = item.cover.height;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    button.append(image);
+  }
   const icon = renderIcon(item.icon, icons);
   if (icon) icon.className = 'music-release__cover-icon';
-  button.append(image);
   if (icon) button.append(icon);
   figure.append(button);
   return { figure, button };
@@ -111,7 +113,8 @@ function renderRelease(item, ui, icons) {
   content.append(title, subtitle, artist, description, details);
   if (tracks) content.append(tracks);
   content.append(readMore, links);
-  article.append(cover.figure, content);
+  if (item.cover) article.append(cover.figure);
+  article.append(content);
   return article;
 }
 

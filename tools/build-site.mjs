@@ -24,7 +24,7 @@ for (const item of catalogue.items) {
   }
   const entity=item.type==='Single'?recording(item,item,origin):{'@type':'MusicAlbum','@id':origin+path+'#album',name:item.title,url:origin+path,byArtist:{'@id':person['@id']},datePublished:item.releaseDate,genre:item.genre,image:origin+'/'+item.cover.src,description:item.description,numTracks:item.tracks?.length,track:(item.tracks||[]).map(t=>recording(t,item,origin)),sameAs:item.links.map(l=>l.url)};
   const breadcrumbs={'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:musicLabel,item:origin+'/music/'},{'@type':'ListItem',position:2,name:item.title,item:origin+path}]};
-  await output(path.slice(1)+'index.html',documentPage({title:`${item.title} · ${artist.name}`,description:item.description,path,image:item.cover.src,graph:[person,website,entity,breadcrumbs]},releaseBody(item,ui,icons),origin,ui.musicBack.label));
+  await output(path.slice(1)+'index.html',documentPage({title:`${item.title} · ${artist.name}`,description:item.description,path,image:item.cover?.src,graph:[person,website,entity,breadcrumbs]},releaseBody(item,ui,icons),origin,ui.musicBack.label));
 }
 let shell=await readFile(new URL('tools/site/home.html',root),'utf8');
 const musicShell=shell.replace('{{HEAD}}',head({title:`${musicLabel} · ${artist.name}`,description:artist.summary,path:'/music/',image:artist.portrait.src,graph:[person,website,collection]},origin))
@@ -72,7 +72,7 @@ for(const item of gallery.items) {
 }
 const urls=['/','/music/','/gallery/','/hub/',...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
-  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`).map(i=>i.image.src):catalogue.items.filter(r=>p==='/music/'||p===route(r)).map(r=>r.cover.src);
+  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`).map(i=>i.image.src):catalogue.items.filter(r=>r.cover&&(p==='/music/'||p===route(r))).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
 }).join('\n')}\n</urlset>\n`);
 console.log(`Generated homepage, catalogue, ${catalogue.items.length} releases and sitemap.`);

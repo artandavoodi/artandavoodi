@@ -11,5 +11,7 @@ export async function mountFragments() {
     target.innerHTML = await response.text();
     await Promise.all([...target.querySelectorAll('[data-fragment]')].map(child => mount(child, [...ancestors, path])));
   }
-  await Promise.all([...document.querySelectorAll('[data-fragment]')].map(target => mount(target)));
+  await Promise.all([...document.querySelectorAll('[data-fragment]')]
+    .filter(target => !(target.parentElement?.tagName === 'MAIN' && target.hidden))
+    .map(target => mount(target)));
 }

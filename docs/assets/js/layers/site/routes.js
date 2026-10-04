@@ -2,10 +2,15 @@
 import { applyMetadata } from '../../core/metadata.js?v=2';
 export function bindRoutes(ui, metadata) {
   const update = () => {
-    const requested = location.hash.slice(1) || document.documentElement.dataset.initialRoute || 'artist';
+    const requested = document.documentElement.dataset.initialRoute || 'artist';
     const route = ui.sections.find(item => item.id === requested) || ui.sections[0];
     if (location.hash && ui.sections.some(item => item.id === location.hash.slice(1))) {
-      location.replace(route.path);
+      const destination = ui.sections.find(item => item.id === location.hash.slice(1));
+      if (location.pathname !== destination.path) {
+        document.documentElement.dataset.loading = 'true';
+        document.documentElement.dataset.redirecting = 'true';
+        location.replace(destination.path);
+      } else history.replaceState(null, '', destination.path);
       return;
     }
     for (const section of document.querySelectorAll('main > [data-fragment]')) {

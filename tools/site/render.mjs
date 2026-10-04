@@ -9,13 +9,13 @@ export function recording(item, album, origin) {
   return { '@type':'MusicRecording', '@id':url+'-recording', url, name:item.title,
     byArtist:{'@id':origin+'/#artist'}, duration:duration(item.duration), isrcCode:item.isrc,
     datePublished:item.releaseDate || album.releaseDate, genre:item.genre || album.genre,
-    image:origin+'/'+album.cover.src, description:item.description || undefined,
+    image:album.cover ? origin+'/'+album.cover.src : undefined, description:item.description || undefined,
     ...(item !== album ? {inAlbum:{'@id':origin+route(album)+'#album'}} : {}),
     sameAs:(item.links || []).map(l=>l.url) };
 }
 export function head({title, description, path, image, graph}, origin) {
   const url=origin+path;
-  const pageImage=origin+'/'+image;
+  const pageImage=image ? origin+'/'+image : undefined;
   const page={'@type':'WebPage','@id':url,url,name:title,description,primaryImageOfPage:pageImage,isPartOf:{'@id':origin+'/#website'}};
   const entities=graph.some(entity=>entity['@id']===url)
     ? graph.map(entity=>entity['@id']===url?{...entity,primaryImageOfPage:pageImage}:entity)
@@ -28,14 +28,15 @@ export function head({title, description, path, image, graph}, origin) {
 <meta property="og:title" content="${escape(title)}">
 <meta property="og:description" content="${escape(description)}">
 <meta property="og:url" content="${escape(url)}">
-<meta property="og:image" content="${escape(origin+'/'+image)}">
-<meta name="twitter:card" content="summary_large_image">
+${image ? `<meta property="og:image" content="${escape(pageImage)}">` : ''}
+<meta name="twitter:card" content="${image ? 'summary_large_image' : 'summary'}">
 <meta name="twitter:title" content="${escape(title)}">
 <meta name="twitter:description" content="${escape(description)}">
-<meta name="twitter:image" content="${escape(origin+'/'+image)}">
+${image ? `<meta name="twitter:image" content="${escape(pageImage)}">` : ''}
 <script type="application/ld+json" id="site-structured-data">${JSON.stringify({'@context':'https://schema.org','@graph':entities}).replace(/</g,'\\u003c')}</script>`;
 }
 export function image(record, lazy=false) {
+  if (!record) return '';
   return `<img src="/${escape(record.src)}" alt="${escape(record.alt)}" width="${record.width}" height="${record.height}" decoding="async"${lazy?' loading="lazy"':''}>`;
 }
 export function links(records, icons) {
@@ -64,7 +65,7 @@ function sections(item, ui, icons, parent) {
 export function releaseBody(item, ui, icons) {
   const meta=rows(metadataRows(item,ui.musicDetails));
   return `<article class="music-release-detail music">
-<figure class="music-release-detail__cover">${image(item.cover)}</figure>
+${item.cover ? `<figure class="music-release-detail__cover">${image(item.cover)}</figure>` : ''}
 <header class="music-release-detail__heading"><h1>${escape(item.title)}</h1><p>${escape(item.type)} · ${escape(item.artist)}</p></header>
 ${paragraphs(item.description)}<div class="music-release-detail__meta">${meta}</div>
 ${links(item.links,icons)}${sections(item,ui,icons)}

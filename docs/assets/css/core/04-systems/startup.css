@@ -1,5 +1,5 @@
 /* Initial enhancement state; uses the Neuroartan circle's shared motion tokens. */
-html[data-loading] body > * { visibility: hidden; }
+html[data-loading] body > * { display: none !important; }
 html[data-loading] body::before {
   content: '';
   position: fixed;

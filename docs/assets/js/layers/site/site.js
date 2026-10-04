@@ -3,7 +3,7 @@ import { loadJson } from '../../core/data.js?v=9';
 import { bindTheme } from '../../core/theme.js?v=5';
 import { bindNavigation } from './navigation.js?v=10';
 import { applyMetadata } from '../../core/metadata.js?v=1';
-import { bindRoutes } from './routes.js?v=2';
+import { bindRoutes } from './routes.js?v=3';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
   artist: () => import('./artist/index.js?v=5'),
@@ -33,7 +33,8 @@ export async function initializeSite() {
   document.querySelector('[data-copyright]').textContent = `© ${new Date().getFullYear()} ${site.identity.name}`;
   bindTheme(ui.theme);
   bindNavigation(ui);
-  const results = await Promise.allSettled(Object.entries(modules).map(async ([name, load]) => {
+  const active = document.documentElement.dataset.initialRoute || 'artist';
+  const results = await Promise.allSettled(Object.entries(modules).filter(([name]) => name === active).map(async ([name, load]) => {
     const [module, data] = await Promise.all([load(), loadJson(site.catalogues[name])]);
     await module.render(data, ui, icons);
   }));
@@ -44,6 +45,6 @@ export async function initializeSite() {
     error.hidden = false;
     throw new AggregateError(failed.map(result => result.reason), 'Catalogue loading failed');
   }
-  await renderFeatured(await loadJson(site.featured), site);
+  if (active === 'artist') await renderFeatured(await loadJson(site.featured), site);
   bindRoutes(ui, metadata);
 }

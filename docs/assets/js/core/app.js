@@ -1,7 +1,7 @@
 /* ARTANDAVOODI · App entry: shared systems then site domain orchestration. */
-import { mountFragments } from './fragments.js?v=9';
+import { mountFragments } from './fragments.js?v=10';
 import { initializeTheme } from './theme.js?v=5';
-import { initializeSite } from '../layers/site/site.js?v=22';
+import { initializeSite } from '../layers/site/site.js?v=23';
 initializeTheme();
 try {
   await mountFragments();
@@ -11,7 +11,10 @@ try {
       document.fonts.ready,
       ...[...document.querySelectorAll('main > [data-fragment]:not([hidden]) img')]
         .filter(image => image.getBoundingClientRect().top < innerHeight)
-        .map(image => image.decode().catch(() => {})),
+        .map(image => {
+          image.loading = 'eager';
+          return image.decode().catch(() => {});
+        }),
     ]),
     new Promise(resolve => setTimeout(resolve, 1500)),
   ]);
@@ -23,5 +26,5 @@ try {
   status.hidden = false;
   console.error('[artandavoodi]', error);
 } finally {
-  window.dispatchEvent(new Event('site:ready'));
+  if (!document.documentElement.dataset.redirecting) window.dispatchEvent(new Event('site:ready'));
 }
