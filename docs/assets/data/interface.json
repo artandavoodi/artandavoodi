@@ -29,6 +29,7 @@
   "musicReadMoreLabel": "Read more",
   "musicTrackListLabel": "Tracks",
   "musicDurationPending": "—",
+  "musicUnreleasedLabel": "Unreleased",
   "musicDetailsPending": "Details to follow.",
   "musicFieldLabels": { "format": "Format", "genre": "Genre", "duration": "Duration", "isrc": "ISRC" },
   "musicArchiveTabs": [

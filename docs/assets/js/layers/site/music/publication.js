@@ -14,6 +14,11 @@ export function publishedValue(item, key) {
   return item.editorial?.[key] === 'draft' ? undefined : item[key];
 }
 
+export function displayDuration(item, ui, parent) {
+  return (item.status || parent?.status) === 'Upcoming'
+    ? ui.musicUnreleasedLabel : item.duration || ui.musicDurationPending;
+}
+
 export function metadataRows(item, fields, parent) {
   return (fields || []).flatMap(field => {
     const value = field.key === 'trackCount' ? item.tracks?.length : publishedValue(item, field.key);

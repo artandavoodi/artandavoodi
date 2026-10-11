@@ -1,5 +1,5 @@
 /* Public documents generated from catalogue data; no separately authored release copy. */
-import { publishedValue, metadataRows, archiveAssets } from '../../docs/assets/js/layers/site/music/publication.js';
+import { publishedValue, metadataRows, archiveAssets, displayDuration } from '../../docs/assets/js/layers/site/music/publication.js';
 export const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const route = item => `/music/${item.id}/`;
 const paragraphs = text => String(text || '').split(/\n\n+/).filter(Boolean).map(p => `<p>${escape(p)}</p>`).join('\n');
@@ -38,7 +38,7 @@ ${image ? `<meta name="twitter:image" content="${escape(pageImage)}">` : ''}
 }
 export function image(record, lazy=false) {
   if (!record) return '';
-  return `<img src="/${escape(record.src)}" alt="${escape(record.alt)}" width="${record.width}" height="${record.height}" decoding="async"${lazy?' loading="lazy"':''}>`;
+  return `<img src="/${escape(record.src)}"${record.variants?.length?` srcset="${record.variants.map(v=>`/${escape(v.src)} ${v.width}w`).join(', ')}" sizes="${escape(record.sizes)}"`:''} alt="${escape(record.alt)}" width="${record.width}" height="${record.height}" decoding="async"${lazy?' loading="lazy"':''}>`;
 }
 export function links(records, icons) {
   return `<div class="music-release__links">${[...(records || [])].sort((a,b)=>a.order-b.order).map(link=>{
@@ -70,7 +70,7 @@ ${item.cover ? `<figure class="music-release-detail__cover">${image(item.cover)}
 <header class="music-release-detail__heading"><h1>${escape(item.title)}</h1><p>${escape(item.type)} · ${escape(item.artist)}</p></header>
 ${paragraphs(item.description)}<div class="music-release-detail__meta">${meta}</div>
 ${links(item.links,icons)}${sections(item,ui,icons)}
-${item.tracks?.length ? `<section><h2>${escape(ui.musicTrackListLabel)}</h2><ol class="release-document__tracks">${item.tracks.map(t=>`<li id="track-${escape(t.id)}"><details><summary>${escape(t.title)} <span>${escape(t.duration)}</span>${disclosureIcon(ui,icons)}</summary>${sections(t,ui,icons,item)}${links(t.links,icons)}</details></li>`).join('')}</ol></section>`:''}
+${item.tracks?.length ? `<section><h2>${escape(ui.musicTrackListLabel)}</h2><ol class="release-document__tracks">${item.tracks.map(t=>`<li id="track-${escape(t.id)}"><details><summary>${escape(t.title)} <span>${escape(displayDuration(t,ui,item))}</span>${disclosureIcon(ui,icons)}</summary>${sections(t,ui,icons,item)}${links(t.links,icons)}</details></li>`).join('')}</ol></section>`:''}
 </article>`;
 }
 export function documentPage(metadata, body, origin, backLabel) {

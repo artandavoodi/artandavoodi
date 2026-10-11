@@ -7,11 +7,11 @@
     },
     {
       "file": "docs/assets/css/core/01-tokens/navigation.tokens.css",
-      "sha256": "51c954ed01842b1e617783c6bee6298fc20e40b58a45da2cbded842454243975"
+      "sha256": "b4df8cdebf16c361642e2dda36c32f16e63952aca83a6ad897a81fcc17ac6e2b"
     },
     {
       "file": "docs/assets/css/layers/site/theme-menu.css",
-      "sha256": "224438e64ff0623d4aec9b5f0c53ff1ec19963b17d7e73759f947ad36f1b7478"
+      "sha256": "9570198870280d8ab0843cbcbd95c0b5e13ab74cffa3088ea9df3a3067cc7d43"
     }
   ]
 }

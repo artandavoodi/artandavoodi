@@ -53,7 +53,7 @@ shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-secti
 await output('index.html',shell);
 const routeShell=await readFile(new URL('tools/site/home.html',root),'utf8');
 const galleryLabel=ui.sections.find(s=>s.id==='gallery').label;
-const galleryBody=gallery.collections.map(c=>`<section class="gallery__collection"><h2>${escape(c.title)}</h2><div class="gallery__images">${gallery.items.filter(i=>i.collection===c.id).map(i=>`<a href="/gallery/${escape(i.id)}/">${image(i.image,true)}</a>`).join('')}</div></section>`).join('');
+const galleryBody=gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`<section class="gallery__collection"><h2>${escape(c.title)}</h2><div class="gallery__images">${gallery.items.filter(i=>i.collection===c.id).map(i=>`<a href="/gallery/${escape(i.id)}/">${image(i.image,true)}</a>`).join('')}</div></section>`).join('');
 const hubBody=hub.groups.map(g=>`<section class="hub__group" data-presentation="${escape(g.presentation)}"><h2>${escape(g.label)}</h2><div class="hub__group-links">${hub.links.filter(l=>l.category===g.id&&l.url).sort((a,b)=>a.order-b.order).map(l=>{const icon=icons.items.find(i=>i.id===l.icon);return `<a class="hub__link" href="${escape(l.url)}" aria-label="${escape(l.label)}">${icon?`<img src="/${escape(icon.src)}" alt=""${icon.monochrome?' data-monochrome="true"':''}>`:''}<span class="hub__tooltip">${escape(l.label)}</span></a>`;}).join('')}</div></section>`).join('');
 for(const [id,title,description,body] of [
   ['gallery',galleryLabel,`${galleryLabel} · ${artist.name}`,galleryBody],

@@ -1,5 +1,5 @@
 /* Derived track directory: parent releases remain the source of category and album. */
-import { newestReleases } from './publication.js';
+import { newestReleases, displayDuration } from './publication.js';
 export function collectTracks(releases) {
   return newestReleases(releases).flatMap(release => release.tracks?.length
     ? [...release.tracks].sort((a, b) => a.position - b.position).map(track => ({ release, track }))
@@ -24,7 +24,7 @@ export function renderTrackDirectory(records, ui, icons, renderLinks) {
     context.textContent = track === release ? release.type : `${release.type} · ${release.title}`;
     const duration = document.createElement('span');
     duration.className = 'music-track-directory__duration';
-    duration.textContent = track.duration || ui.musicDurationPending;
+    duration.textContent = displayDuration(track, ui, release);
     row.append(title, duration, context);
     if (track.links?.length) row.append(renderLinks(track, icons));
     list.append(row);

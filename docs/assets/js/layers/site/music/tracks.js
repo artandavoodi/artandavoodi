@@ -1,4 +1,5 @@
 /* ARTANDAVOODI · Album track list and track-to-release context. */
+import { displayDuration } from './publication.js';
 export function renderTracks(album, ui) {
   const list = document.createElement('ol');
   list.className = 'music-tracks';
@@ -11,7 +12,7 @@ export function renderTracks(album, ui) {
     button.className = 'music-tracks__link';
     button.dataset.releaseReadMore = album.id;
     button.dataset.trackId = track.id;
-    for (const value of [track.position, track.title, track.duration || ui.musicDurationPending]) {
+    for (const value of [track.position, track.title, displayDuration(track, ui, album)]) {
       const span = document.createElement('span');
       span.textContent = value;
       button.append(span);

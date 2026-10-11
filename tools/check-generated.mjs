@@ -2,7 +2,7 @@
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {escape,route,releaseBody} from './site/render.mjs';
-import {publishedValue, metadataRows, archiveAssets, newestReleases} from '../docs/assets/js/layers/site/music/publication.js';
+import {publishedValue, metadataRows, archiveAssets, newestReleases, displayDuration} from '../docs/assets/js/layers/site/music/publication.js';
 const docs=new URL('../docs/',import.meta.url);
 const read=p=>readFile(new URL(p,docs),'utf8');
 const data=JSON.parse(await read('assets/data/music/releases.json'));
@@ -85,6 +85,10 @@ assert.deepEqual(metadataRows({format:'Instrumental'},[{key:'format'}],{format:'
 assert.equal(publishedValue({story:'Unapproved',editorial:{story:'draft'}},'story'),undefined);
 assert.equal(archiveAssets({assets:[{status:'draft'}]}).length,0);
 const ui=JSON.parse(await read('assets/data/interface.json'));
+assert.equal(displayDuration({duration:'2:00'},ui,{status:'Upcoming'}),'Unreleased');
+assert.equal(displayDuration({status:'Released',duration:'2:00'},ui),'2:00');
+assert.ok((await read('music/remnant/index.html')).includes('<span>Unreleased</span>'));
+assert.ok(!(await read('gallery/index.html')).includes('Artworks will appear here'));
 const icons=JSON.parse(await read('assets/data/icons.json'));
 const specimen={...data.items[0],tracks:[],archive:{tabs:[{label:'Score',assets:[{title:'Piano score',url:'https://example.com/score.pdf',instrument:'Piano',version:'1',preview:data.items[0].cover}]}]}};
 const specimenHtml=releaseBody(specimen,ui,icons);

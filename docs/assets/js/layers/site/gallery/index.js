@@ -1,8 +1,8 @@
 /* ARTANDAVOODI · Gallery collection renderer. */
-import { renderImage, renderEmpty } from '../media.js?v=4';
+import { renderImage } from '../media.js?v=4';
 export function render(data, ui) {
   const target = document.querySelector('[data-gallery-items]');
-  target.replaceChildren(...data.collections.map(collection => {
+  target.replaceChildren(...data.collections.filter(collection => data.items.some(item => item.collection === collection.id)).map(collection => {
     const section = document.createElement('section');
     section.className = 'gallery__collection';
     const title = document.createElement('h3');
@@ -16,7 +16,6 @@ export function render(data, ui) {
       link.append(renderImage(item.image));
       return link;
     }));
-    else renderEmpty(items, collection.empty);
     section.append(title, items);
     return section;
   }));

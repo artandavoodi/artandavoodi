@@ -4,6 +4,10 @@ export function renderImage(record) {
   const figure = document.createElement('figure');
   const image = document.createElement('img');
   image.src = assetUrl(record.src);
+  if(record.variants?.length) {
+    image.srcset=record.variants.map(variant=>`${assetUrl(variant.src)} ${variant.width}w`).join(', ');
+    image.sizes=record.sizes;
+  }
   image.alt = record.alt;
   image.width = record.width;
   image.height = record.height;
