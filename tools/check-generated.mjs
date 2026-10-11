@@ -91,7 +91,7 @@ assert.equal(displayDuration({status:'upcoming'},ui),'Unreleased');
 assert.equal(displayDuration({},ui,{status:'Upcoming'}),'Unreleased');
 assert.equal(displayDuration({status:'Unreleased',duration:'—'},ui),'Unreleased');
 assert.ok(catalogue.includes('class="music-context__brand" href="https://artanrecords.com/"'));
-assert.ok(catalogue.includes('Piano · Bongos'));
+assert.ok(!catalogue.includes('<h3>Instruments &amp; studio</h3>'));
 assert.ok((await read('music/remnant/index.html')).includes('<span>Unreleased</span>'));
 assert.ok(!(await read('gallery/index.html')).includes('Artworks will appear here'));
 const icons=JSON.parse(await read('assets/data/icons.json'));

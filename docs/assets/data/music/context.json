@@ -8,7 +8,7 @@
     {
       "id": "labels",
       "title": "Label",
-      "description": "Released through Artan Records, an independent label for music and creative collaboration.",
+      "description": "Independent record label.",
       "link": { "label": "Artan Records", "url": "https://artanrecords.com/", "icon": "artan-records-wordmark" },
       "items": []
     },
@@ -16,6 +16,7 @@
     {
       "id": "instruments",
       "title": "Instruments & studio",
+      "publish": false,
       "groups": [
         {
           "id": "instruments",

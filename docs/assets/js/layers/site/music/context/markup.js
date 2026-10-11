@@ -4,7 +4,7 @@ const escape = value => String(value ?? '').replace(/[&<>"']/g, character => ({
 }[character]));
 
 export function contextMarkup(data, icons, theme = 'light') {
-  return data.sections.filter(record => record.description || record.link || record.groups?.some(group => group.items?.length)).map(record => {
+  return data.sections.filter(record => record.publish !== false && (record.description || record.link || record.groups?.some(group => group.items?.length))).map(record => {
     let brand = '';
     if (record.link) {
       const url = new URL(record.link.url);

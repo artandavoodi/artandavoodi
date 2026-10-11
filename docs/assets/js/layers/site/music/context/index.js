@@ -1,6 +1,6 @@
 /* Supporting facts stay visible; the label mark links directly to its website. */
 import { loadJson } from '../../../../core/data.js?v=9';
-import { contextMarkup } from './markup.js';
+import { contextMarkup } from './markup.js?v=2';
 import { observeDividers } from '../dividers.js';
 
 export async function renderContext(icons) {

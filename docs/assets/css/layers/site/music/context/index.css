@@ -2,7 +2,7 @@
 .music-context { display: grid; gap: var(--spacing-2xl); }
 .music-context__section { position: relative; display: grid; gap: var(--spacing-lg); padding-block-start: var(--spacing-xl); }
 .music-context__section p { max-inline-size: var(--cv-reading-width); color: var(--cv-text-secondary); }
-.music-context__brand { display: block; inline-size: var(--featured-card-width); max-inline-size: 100%; text-decoration: none; }
+.music-context__brand { display: block; inline-size: var(--music-context-wordmark-width); max-inline-size: 100%; text-decoration: none; }
 .music-context__brand img { display: block; inline-size: 100%; block-size: auto; }
 .music-context__facts { display: grid; gap: var(--spacing-lg); }
 .music-context__facts > div { display: grid; gap: var(--spacing-sm); }

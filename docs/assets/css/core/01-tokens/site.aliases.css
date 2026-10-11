@@ -19,6 +19,7 @@
   --site-menu-type-size-mobile: min(12vw, 3.2rem);
   --artist-portrait-width: 22rem;
   --featured-card-width: 14rem;
+  --music-context-wordmark-width: calc(var(--featured-card-width) / 2);
   --cv-motion-duration: var(--duration-base);
   --cv-motion-ease: var(--ease-standard);
   --site-monochrome-icon-filter: none;
