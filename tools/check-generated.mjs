@@ -27,7 +27,7 @@ for(const item of gallery.items) {
   const person=graph.find(entity=>entity['@type']==='Person');
   const image=graph.find(entity=>entity['@type']==='ImageObject');
   assert.equal(person.alternateName,'Saeed Davoodi');
-  assert.equal(image.about['@id'],person['@id']);
+  assert.equal((item.creator ? image.creator : image.about)['@id'],person['@id']);
   assert.ok(sitemap.includes('https://artandavoodi.com/'+item.image.src));
   assert.ok(html.includes(`<h1 hidden>${escape(item.title)}</h1>`));
   assert.ok(html.includes(`href="/${item.image.src}" aria-label="View original image"`));

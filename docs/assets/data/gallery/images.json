@@ -1,41 +1,76 @@
 {
   "schemaVersion": 1,
   "originalImageLabel": "View original image",
-  "header": { "grain": { "tileSize": 200, "framesPerSecond": 12, "opacity": 0.075 } },
+  "header": {
+    "grain": {
+      "tileSize": 200,
+      "framesPerSecond": 12,
+      "opacity": 0.075
+    }
+  },
   "collections": [
-    { "id": "portfolio", "title": "Portraits", "empty": "More photographs to come." },
-    { "id": "artworks", "title": "Artworks", "empty": "Artworks will appear here." }
+    {
+      "id": "portfolio",
+      "title": "Portraits",
+      "empty": "More photographs to come."
+    },
+    {
+      "id": "photography",
+      "title": "Photography",
+      "empty": "More photographs to come."
+    },
+    {
+      "id": "artworks",
+      "title": "Artworks",
+      "empty": "Artworks will appear here."
+    }
   ],
   "items": [
-    { "id": "artan-portrait", "title": "Presence", "tags": ["Artan Davoodi", "portrait", "photography"], "collection": "portfolio", "image": {
-      "src": "assets/media/gallery/portfolio/artan-portrait.jpg",
-      "alt": "Portrait of Artan Davoodi",
-      "width": 2155,
-      "height": 2155,
-      "variants": [
-        {
-          "src": "assets/media/gallery/portfolio/responsive/artan-portrait-w320.jpg",
-          "width": 320
-        },
-        {
-          "src": "assets/media/gallery/portfolio/responsive/artan-portrait-w640.jpg",
-          "width": 640
-        },
-        {
-          "src": "assets/media/gallery/portfolio/responsive/artan-portrait-w1280.jpg",
-          "width": 1280
-        },
-        {
-          "src": "assets/media/gallery/portfolio/artan-portrait.jpg",
-          "width": 2155
-        }
+    {
+      "id": "artan-portrait",
+      "title": "Presence",
+      "tags": [
+        "Artan Davoodi",
+        "portrait",
+        "photography"
       ],
-      "sizes": "(max-width: 860px) 100vw, 50vw"
-    } },
+      "collection": "portfolio",
+      "image": {
+        "src": "assets/media/gallery/portfolio/artan-portrait.jpg",
+        "alt": "Portrait of Artan Davoodi",
+        "width": 2155,
+        "height": 2155,
+        "variants": [
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-portrait-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-portrait-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-portrait-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/portfolio/artan-portrait.jpg",
+            "width": 2155
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
     {
       "id": "artan-davoodi-close-up-portrait",
       "title": "Focus",
-      "tags": ["Artan Davoodi", "Saeed Davoodi", "portrait photography", "close-up portrait", "musician portrait"],
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "portrait photography",
+        "close-up portrait",
+        "musician portrait"
+      ],
       "collection": "portfolio",
       "image": {
         "src": "assets/media/gallery/portfolio/artan-davoodi-close-up-portrait.jpeg",
@@ -66,7 +101,13 @@
     {
       "id": "artan-davoodi-black-background-portrait",
       "title": "Quiet",
-      "tags": ["Artan Davoodi", "Saeed Davoodi", "portrait photography", "black background portrait", "musician portrait"],
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "portrait photography",
+        "black background portrait",
+        "musician portrait"
+      ],
       "collection": "portfolio",
       "image": {
         "src": "assets/media/gallery/portfolio/artan-davoodi-black-background-portrait.jpeg",
@@ -97,7 +138,13 @@
     {
       "id": "artan-davoodi-winter-portrait",
       "title": "Winter",
-      "tags": ["Artan Davoodi", "Saeed Davoodi", "portrait photography", "winter portrait", "musician portrait"],
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "portrait photography",
+        "winter portrait",
+        "musician portrait"
+      ],
       "collection": "portfolio",
       "image": {
         "src": "assets/media/gallery/portfolio/artan-davoodi-winter-portrait.jpeg",
@@ -120,6 +167,546 @@
           {
             "src": "assets/media/gallery/portfolio/artan-davoodi-winter-portrait.jpeg",
             "width": 1639
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-01",
+      "title": "Photograph 01",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-01.jpeg",
+        "alt": "Original photograph 01 by Artan Davoodi",
+        "width": 4288,
+        "height": 2848,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-01-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-01-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-01-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-01.jpeg",
+            "width": 4288
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-02",
+      "title": "Photograph 02",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-02.jpeg",
+        "alt": "Original photograph 02 by Artan Davoodi",
+        "width": 4288,
+        "height": 2848,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-02-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-02-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-02-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-02.jpeg",
+            "width": 4288
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-03",
+      "title": "Photograph 03",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-03.jpeg",
+        "alt": "Original photograph 03 by Artan Davoodi",
+        "width": 4288,
+        "height": 2848,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-03-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-03-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-03-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-03.jpeg",
+            "width": 4288
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-04",
+      "title": "Photograph 04",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-04.jpeg",
+        "alt": "Original photograph 04 by Artan Davoodi",
+        "width": 1620,
+        "height": 1080,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-04-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-04-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-04-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-04.jpeg",
+            "width": 1620
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-05",
+      "title": "Photograph 05",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-05.jpeg",
+        "alt": "Original photograph 05 by Artan Davoodi",
+        "width": 1620,
+        "height": 1080,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-05-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-05-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-05-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-05.jpeg",
+            "width": 1620
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-06",
+      "title": "Photograph 06",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-06.jpeg",
+        "alt": "Original photograph 06 by Artan Davoodi",
+        "width": 1620,
+        "height": 1080,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-06-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-06-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-06-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-06.jpeg",
+            "width": 1620
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-07",
+      "title": "Photograph 07",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-07.jpeg",
+        "alt": "Original photograph 07 by Artan Davoodi",
+        "width": 1620,
+        "height": 1080,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-07-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-07-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-07-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-07.jpeg",
+            "width": 1620
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-08",
+      "title": "Photograph 08",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-08.jpeg",
+        "alt": "Original photograph 08 by Artan Davoodi",
+        "width": 1620,
+        "height": 1080,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-08-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-08-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-08-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-08.jpeg",
+            "width": 1620
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-09",
+      "title": "Photograph 09",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-09.jpeg",
+        "alt": "Original photograph 09 by Artan Davoodi",
+        "width": 6000,
+        "height": 4000,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-09-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-09-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-09-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-09.jpeg",
+            "width": 6000
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-10",
+      "title": "Photograph 10",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-10.jpeg",
+        "alt": "Original photograph 10 by Artan Davoodi",
+        "width": 6000,
+        "height": 4000,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-10-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-10-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-10-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-10.jpeg",
+            "width": 6000
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-11",
+      "title": "Photograph 11",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-11.jpeg",
+        "alt": "Original photograph 11 by Artan Davoodi",
+        "width": 4000,
+        "height": 6000,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-11-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-11-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-11-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-11.jpeg",
+            "width": 4000
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-12",
+      "title": "Photograph 12",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-12.jpeg",
+        "alt": "Original photograph 12 by Artan Davoodi",
+        "width": 4000,
+        "height": 6000,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-12-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-12-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-12-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-12.jpeg",
+            "width": 4000
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-13",
+      "title": "Photograph 13",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-13.jpeg",
+        "alt": "Original photograph 13 by Artan Davoodi",
+        "width": 6000,
+        "height": 4000,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-13-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-13-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-13-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-13.jpeg",
+            "width": 6000
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-14",
+      "title": "Photograph 14",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-14.jpeg",
+        "alt": "Original photograph 14 by Artan Davoodi",
+        "width": 6000,
+        "height": 4000,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-14-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-14-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-14-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-14.jpeg",
+            "width": 6000
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "photograph-15",
+      "title": "Photograph 15",
+      "creator": "Artan Davoodi",
+      "tags": [
+        "Artan Davoodi",
+        "Saeed Davoodi",
+        "original photography"
+      ],
+      "collection": "photography",
+      "image": {
+        "src": "assets/media/gallery/photography/photograph-15.jpeg",
+        "alt": "Original photograph 15 by Artan Davoodi",
+        "width": 4288,
+        "height": 2848,
+        "variants": [
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-15-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-15-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/photography/responsive/photograph-15-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/photography/photograph-15.jpeg",
+            "width": 4288
           }
         ],
         "sizes": "(max-width: 860px) 100vw, 50vw"

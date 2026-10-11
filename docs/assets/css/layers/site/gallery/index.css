@@ -13,6 +13,7 @@ html[data-initial-route='gallery'] [data-fragment='navigation'] { position: fixe
   opacity: var(--gallery-grain-opacity, 0);
 }
 .gallery__collection { display: grid; gap: var(--spacing-md); }
+.gallery__collection > :is(h2, h3) { inline-size: var(--cv-page-width); margin-inline: auto; }
 .gallery__images { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--artist-portrait-width)), 1fr)); gap: var(--spacing-none); }
 .gallery__images a { display: block; min-inline-size: 0; text-decoration: none; }
 .gallery__images figure { overflow: hidden; }

@@ -74,7 +74,7 @@ for(const [id,title,description,body] of [
 for(const item of gallery.items) {
   if(!/^[a-z0-9-]+$/.test(item.id)) throw new Error('Invalid gallery id');
   const path=`/gallery/${item.id}/`, title=item.title||item.image.alt;
-  const entity={'@type':'ImageObject','@id':origin+path+'#image',name:title,description:item.description||item.image.alt,contentUrl:origin+'/'+item.image.src,url:origin+path,width:item.image.width,height:item.image.height,about:{'@id':person['@id']},representativeOfPage:true,...(item.tags?.length?{keywords:item.tags.join(', ')}:{})};
+  const entity={'@type':'ImageObject','@id':origin+path+'#image',name:title,description:item.description||item.image.alt,contentUrl:origin+'/'+item.image.src,url:origin+path,width:item.image.width,height:item.image.height,...(item.creator===artist.name?{creator:{'@id':person['@id']}}:{about:{'@id':person['@id']}}),representativeOfPage:true,...(item.tags?.length?{keywords:item.tags.join(', ')}:{})};
   const original={...item.image,variants:[]};
   const body=`<article><h1 hidden>${escape(title)}</h1><a href="/${escape(item.image.src)}" aria-label="${escape(gallery.originalImageLabel)}">${image(original)}</a></article>`;
   await output(path.slice(1)+'index.html',documentPage({title:`${title} · ${artist.name}`,description:entity.description,path,image:item.image.src,graph:[person,website,entity]},body,origin,galleryLabel).replace('href="/music/"','href="/gallery/"'));
