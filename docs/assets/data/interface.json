@@ -1,5 +1,6 @@
 {
   "navigationLabel": "Main navigation",
+  "sectionBranding": { "gallery": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" } },
   "musicBack": { "label": "Back to Music", "icon": "back", "href": "index.html#music" },
   "menuLabel": "Site menu",
   "menuToggle": { "open": "Open site menu", "close": "Close site menu" },

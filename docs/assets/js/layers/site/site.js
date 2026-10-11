@@ -1,14 +1,14 @@
 /* ARTANDAVOODI · Site domain importer, menu navigation and section lifecycle. */
 import { loadJson } from '../../core/data.js?v=9';
 import { bindTheme } from '../../core/theme.js?v=5';
-import { bindNavigation } from './navigation.js?v=10';
+import { bindNavigation } from './navigation.js?v=11';
 import { applyMetadata } from '../../core/metadata.js?v=1';
 import { bindRoutes } from './routes.js?v=3';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
   artist: () => import('./artist/index.js?v=5'),
   music: () => import('./music/index.js?v=16'),
-  gallery: () => import('./gallery/index.js?v=5'),
+  gallery: () => import('./gallery/index.js?v=9'),
   hub: () => import('./hub/index.js?v=5'),
 };
 export async function initializeSite() {
@@ -32,7 +32,7 @@ export async function initializeSite() {
   }
   document.querySelector('[data-copyright]').textContent = `© ${new Date().getFullYear()} ${site.identity.name}`;
   bindTheme(ui.theme);
-  bindNavigation(ui);
+  bindNavigation(ui, icons);
   const active = document.documentElement.dataset.initialRoute || 'artist';
   const results = await Promise.allSettled(Object.entries(modules).filter(([name]) => name === active).map(async ([name, load]) => {
     const [module, data] = await Promise.all([load(), loadJson(site.catalogues[name])]);

@@ -18,6 +18,7 @@
   --site-menu-type-leading: 0.98;
   --site-menu-type-size-mobile: min(12vw, 3.2rem);
   --artist-portrait-width: 22rem;
+  --gallery-preview-aspect-ratio: 1;
   --featured-card-width: 14rem;
   --music-context-wordmark-width: calc(var(--featured-card-width) / 2);
   --cv-motion-duration: var(--duration-base);

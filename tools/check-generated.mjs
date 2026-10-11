@@ -23,6 +23,16 @@ for(const item of gallery.items) {
   const html=await read(`gallery/${item.id}/index.html`);
   assert.ok(html.includes('ImageObject') && html.includes(escape(item.image.alt)));
   assert.ok((await read('gallery/index.html')).includes(`href="/gallery/${item.id}/"`));
+  const graph=JSON.parse(html.match(/type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1])['@graph'];
+  const person=graph.find(entity=>entity['@type']==='Person');
+  const image=graph.find(entity=>entity['@type']==='ImageObject');
+  assert.equal(person.alternateName,'Saeed Davoodi');
+  assert.equal(image.about['@id'],person['@id']);
+  assert.ok(sitemap.includes('https://artandavoodi.com/'+item.image.src));
+  assert.ok(html.includes(`<h1 hidden>${escape(item.title)}</h1>`));
+  assert.ok(html.includes(`href="/${item.image.src}" aria-label="View original image"`));
+  const visible=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').split('<body>')[1];
+  assert.ok(!visible.includes(person.alternateName),'Legal name must remain metadata-only');
 }
 assert.ok(!(await read('assets/js/layers/site/music/index.js')).includes('bindReleaseReader'));
 assert.ok((await read('assets/js/layers/site/music/tracks.js')).includes('button.href = `/music/${album.id}/#track-${track.id}`'));

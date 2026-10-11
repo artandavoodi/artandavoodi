@@ -1,11 +1,13 @@
 {
   "schemaVersion": 1,
+  "originalImageLabel": "View original image",
+  "header": { "grain": { "tileSize": 200, "framesPerSecond": 12, "opacity": 0.075 } },
   "collections": [
     { "id": "portfolio", "title": "Portraits", "empty": "More photographs to come." },
     { "id": "artworks", "title": "Artworks", "empty": "Artworks will appear here." }
   ],
   "items": [
-    { "id": "artan-portrait", "title": "Portrait of Artan Davoodi", "tags": ["Artan Davoodi", "portrait", "photography"], "collection": "portfolio", "image": {
+    { "id": "artan-portrait", "title": "Presence", "tags": ["Artan Davoodi", "portrait", "photography"], "collection": "portfolio", "image": {
       "src": "assets/media/gallery/portfolio/artan-portrait.jpg",
       "alt": "Portrait of Artan Davoodi",
       "width": 2155,
@@ -29,6 +31,99 @@
         }
       ],
       "sizes": "(max-width: 860px) 100vw, 50vw"
-    } }
+    } },
+    {
+      "id": "artan-davoodi-close-up-portrait",
+      "title": "Focus",
+      "tags": ["Artan Davoodi", "Saeed Davoodi", "portrait photography", "close-up portrait", "musician portrait"],
+      "collection": "portfolio",
+      "image": {
+        "src": "assets/media/gallery/portfolio/artan-davoodi-close-up-portrait.jpeg",
+        "alt": "Close-up portrait of Artan Davoodi in a fur-trimmed coat",
+        "width": 1536,
+        "height": 1920,
+        "variants": [
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-close-up-portrait-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-close-up-portrait-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-close-up-portrait-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/portfolio/artan-davoodi-close-up-portrait.jpeg",
+            "width": 1536
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "artan-davoodi-black-background-portrait",
+      "title": "Quiet",
+      "tags": ["Artan Davoodi", "Saeed Davoodi", "portrait photography", "black background portrait", "musician portrait"],
+      "collection": "portfolio",
+      "image": {
+        "src": "assets/media/gallery/portfolio/artan-davoodi-black-background-portrait.jpeg",
+        "alt": "Portrait of Artan Davoodi wearing a black turtleneck against a black background",
+        "width": 1805,
+        "height": 3088,
+        "variants": [
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-black-background-portrait-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-black-background-portrait-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-black-background-portrait-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/portfolio/artan-davoodi-black-background-portrait.jpeg",
+            "width": 1805
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    },
+    {
+      "id": "artan-davoodi-winter-portrait",
+      "title": "Winter",
+      "tags": ["Artan Davoodi", "Saeed Davoodi", "portrait photography", "winter portrait", "musician portrait"],
+      "collection": "portfolio",
+      "image": {
+        "src": "assets/media/gallery/portfolio/artan-davoodi-winter-portrait.jpeg",
+        "alt": "Portrait of Artan Davoodi wearing a brown winter hat and a fur-trimmed coat",
+        "width": 1639,
+        "height": 3072,
+        "variants": [
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-winter-portrait-w320.jpg",
+            "width": 320
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-winter-portrait-w640.jpg",
+            "width": 640
+          },
+          {
+            "src": "assets/media/gallery/portfolio/responsive/artan-davoodi-winter-portrait-w1280.jpg",
+            "width": 1280
+          },
+          {
+            "src": "assets/media/gallery/portfolio/artan-davoodi-winter-portrait.jpeg",
+            "width": 1639
+          }
+        ],
+        "sizes": "(max-width: 860px) 100vw, 50vw"
+      }
+    }
   ]
 }

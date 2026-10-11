@@ -1,7 +1,11 @@
 /* ARTANDAVOODI · Gallery collection renderer. */
-import { renderImage } from '../media.js?v=4';
+import { renderImage } from '../media.js?v=6';
+import { bindGalleryGrain } from './grain.js';
+let stopGrain;
 export function render(data, ui) {
   const target = document.querySelector('[data-gallery-items]');
+  stopGrain?.();
+  stopGrain = bindGalleryGrain(document.querySelector('[data-gallery-grain]'), data.header?.grain);
   target.replaceChildren(...data.collections.filter(collection => data.items.some(item => item.collection === collection.id)).map(collection => {
     const section = document.createElement('section');
     section.className = 'gallery__collection';

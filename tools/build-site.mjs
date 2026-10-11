@@ -10,6 +10,7 @@ const origin=`https://${site.identity.domain}`;
 catalogue.items = newestReleases(catalogue.items);
 const person={'@type':'Person','@id':origin+'/#artist',name:artist.name,url:origin+'/',description:artist.biography,image:{'@type':'ImageObject',contentUrl:origin+'/'+artist.portrait.src,caption:artist.portrait.alt,width:artist.portrait.width,height:artist.portrait.height},sameAs:hub.links.filter(l=>l.url?.startsWith('https:')).map(l=>l.url)};
 const website={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:artist.name};
+if(artist.alternateName) person.alternateName=artist.alternateName;
 const output=async (path,html)=>{
   const url=new URL(path,docs);
   if(path.endsWith('.html')) html=html.replace('<div data-fragment="navigation"></div>',`<div data-fragment="navigation"><nav aria-label="${escape(ui.navigationLabel)}">${ui.sections.map(s=>`<a href="${s.path}">${escape(s.label)}</a>`).join(' ')}</nav></div>`);
@@ -55,6 +56,7 @@ shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-secti
 await output('index.html',shell);
 const routeShell=await readFile(new URL('tools/site/home.html',root),'utf8');
 const galleryLabel=ui.sections.find(s=>s.id==='gallery').label;
+const galleryHeaderAtmosphere=gallery.header?.grain?'<canvas class="gallery__grain" aria-hidden="true"></canvas>':'';
 const galleryBody=gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`<section class="gallery__collection"><h2>${escape(c.title)}</h2><div class="gallery__images">${gallery.items.filter(i=>i.collection===c.id).map(i=>`<a href="/gallery/${escape(i.id)}/">${image(i.image,true)}</a>`).join('')}</div></section>`).join('');
 const hubBody=hub.groups.map(g=>`<section class="hub__group" data-presentation="${escape(g.presentation)}"><h2>${escape(g.label)}</h2><div class="hub__group-links">${hub.links.filter(l=>l.category===g.id&&l.url).sort((a,b)=>a.order-b.order).map(l=>{const icon=icons.items.find(i=>i.id===l.icon);return `<a class="hub__link" href="${escape(l.url)}" aria-label="${escape(l.label)}">${icon?`<img src="/${escape(icon.src)}" alt=""${icon.monochrome?' data-monochrome="true"':''}>`:''}<span class="hub__tooltip">${escape(l.label)}</span></a>`;}).join('')}</div></section>`).join('');
 for(const [id,title,description,body] of [
@@ -65,15 +67,16 @@ for(const [id,title,description,body] of [
   const html=routeShell.replace('{{HEAD}}',head({title:`${title} · ${artist.name}`,description,path,image:artist.portrait.src,graph:[person,website,{'@type':'CollectionPage','@id':origin+path,url:origin+path,name:title}]},origin))
     .replace('data-generated-page="true"',`data-generated-page="true" data-initial-route="${id}"`)
     .replace('<div data-fragment="artist">{{ARTIST}}</div>','<div data-fragment="artist" hidden></div>')
-    .replace(`<div data-fragment="${id}" hidden></div>`,`<div data-fragment="${id}"><section class="site-section ${id}"><h1>${escape(title)}</h1>${body}</section></div>`)
+    .replace(`<div data-fragment="${id}" hidden></div>`,`<div data-fragment="${id}"><section class="site-section ${id}">${id==='gallery'?`<header class="gallery__header">${galleryHeaderAtmosphere}<h1>${escape(title)}</h1></header>`:`<h1>${escape(title)}</h1>`}${body}</section></div>`)
     .replaceAll('href="./assets/','href="/assets/').replaceAll('src="./assets/','src="/assets/');
   await output(path.slice(1)+'index.html',html);
 }
 for(const item of gallery.items) {
   if(!/^[a-z0-9-]+$/.test(item.id)) throw new Error('Invalid gallery id');
   const path=`/gallery/${item.id}/`, title=item.title||item.image.alt;
-  const entity={'@type':'ImageObject','@id':origin+path+'#image',name:title,description:item.description||item.image.alt,contentUrl:origin+'/'+item.image.src,url:origin+path,width:item.image.width,height:item.image.height,creator:{'@id':person['@id']},...(item.tags?.length?{keywords:item.tags.join(', ')}:{})};
-  const body=`<article><h1>${escape(title)}</h1>${image(item.image)}${item.description?`<p>${escape(item.description)}</p>`:''}</article>`;
+  const entity={'@type':'ImageObject','@id':origin+path+'#image',name:title,description:item.description||item.image.alt,contentUrl:origin+'/'+item.image.src,url:origin+path,width:item.image.width,height:item.image.height,about:{'@id':person['@id']},representativeOfPage:true,...(item.tags?.length?{keywords:item.tags.join(', ')}:{})};
+  const original={...item.image,variants:[]};
+  const body=`<article><h1 hidden>${escape(title)}</h1><a href="/${escape(item.image.src)}" aria-label="${escape(gallery.originalImageLabel)}">${image(original)}</a></article>`;
   await output(path.slice(1)+'index.html',documentPage({title:`${title} · ${artist.name}`,description:entity.description,path,image:item.image.src,graph:[person,website,entity]},body,origin,galleryLabel).replace('href="/music/"','href="/gallery/"'));
 }
 const urls=['/','/music/','/gallery/','/hub/',...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];

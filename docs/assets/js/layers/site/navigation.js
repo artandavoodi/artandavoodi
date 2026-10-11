@@ -1,6 +1,17 @@
 /* ARTANDAVOODI · Navigation behavior and menu state owner. */
 import { bindMenu } from '../../core/menu.js';
-export function bindNavigation(ui) {
+import { renderIcon } from './media.js?v=6';
+export function bindNavigation(ui, icons) {
+  const branding = ui.sectionBranding?.[document.documentElement.dataset.initialRoute];
+  const brand = document.querySelector('[data-site-brand]');
+  if (branding && brand) {
+    brand.href = branding.href;
+    brand.setAttribute('aria-label', branding.label);
+    const mark = renderIcon(branding.icon, icons);
+    if (!mark) throw Error('Unregistered navigation wordmark');
+    brand.replaceChildren(mark);
+    brand.hidden = false;
+  }
   const toggle = document.querySelector('[data-menu-toggle]');
   const menu = document.querySelector('[data-menu]');
   const menuNavigation = document.querySelector('[data-menu-navigation]');

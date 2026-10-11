@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "items": [
+    { "id": "artist-wordmark", "src": "assets/brand/logo/typo-artan.svg", "alt": "Artan", "darkMonochrome": true },
     { "id": "public-hub", "src": "assets/brand/logo/symbol-artan.svg", "alt": "", "darkMonochrome": true },
     { "id": "artan-records", "src": "assets/brand/logo/artan-records-symbol-black.svg", "darkSrc": "assets/brand/logo/artan-records-symbol-white.svg", "alt": "" },
     { "id": "artan-records-wordmark", "src": "assets/brand/logo/artan-records-wordmark-black.svg", "darkSrc": "assets/brand/logo/artan-records-wordmark-white.svg", "alt": "Artan Records" },

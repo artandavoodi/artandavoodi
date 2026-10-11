@@ -18,6 +18,9 @@ html { scroll-padding-block-start: var(--site-header-height); }
   pointer-events: auto;
   transition: opacity var(--site-header-motion-duration) var(--site-navigation-ease), transform var(--site-header-motion-duration) var(--site-navigation-ease);
 }
+.site-brand { display: block; inline-size: var(--featured-card-width); max-inline-size: calc(100% - var(--site-menu-button-size) - var(--spacing-lg)); text-decoration: none; transition: opacity var(--site-header-motion-duration) var(--site-navigation-ease); }
+.site-brand img { inline-size: 100%; block-size: auto; }
+html[data-menu-open] .site-brand { visibility: hidden; opacity: var(--cv-opacity-none); }
 html[data-header-hidden]:not([data-menu-open]) .site-navigation {
   opacity: var(--cv-opacity-none);
   transform: translateY(calc(var(--site-header-motion-offset) * -1));
