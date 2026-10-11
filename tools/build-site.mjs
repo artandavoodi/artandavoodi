@@ -71,17 +71,34 @@ for(const [id,title,description,body] of [
     .replaceAll('href="./assets/','href="/assets/').replaceAll('src="./assets/','src="/assets/');
   await output(path.slice(1)+'index.html',html);
 }
+for(const collection of gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id))) {
+  const path=`/gallery/collections/${collection.id}/`;
+  const records=gallery.items.filter(i=>i.collection===collection.id);
+  const body=`<section class="gallery__collection"><h2>${escape(collection.title)}</h2><div class="gallery__images">${records.map(i=>`<a href="/gallery/${escape(i.id)}/?collection=${escape(collection.id)}">${image(i.image,true)}</a>`).join('')}</div></section>`;
+  const html=routeShell.replace('{{HEAD}}',head({title:`${collection.title} · ${artist.name}`,description:`${collection.title} from the Art & Gallery collection of ${artist.name}.`,path,image:records[0].image.src,graph:[person,website,{'@type':'CollectionPage','@id':origin+path,url:origin+path,name:collection.title}]},origin))
+    .replace('data-generated-page="true"','data-generated-page="true" data-initial-route="gallery"')
+    .replace('<div data-fragment="artist">{{ARTIST}}</div>','<div data-fragment="artist" hidden></div>')
+    .replace('<div data-fragment="gallery" hidden></div>',`<div data-fragment="gallery"><section class="site-section gallery"><header class="gallery__header">${galleryHeaderAtmosphere}<h1>${escape(galleryLabel)}</h1></header>${body}</section></div>`)
+    .replaceAll('href="./assets/','href="/assets/').replaceAll('src="./assets/','src="/assets/');
+  await output(path.slice(1)+'index.html',html);
+}
 for(const item of gallery.items) {
   if(!/^[a-z0-9-]+$/.test(item.id)) throw new Error('Invalid gallery id');
   const path=`/gallery/${item.id}/`, title=item.title||item.image.alt;
   const entity={'@type':'ImageObject','@id':origin+path+'#image',name:title,description:item.description||item.image.alt,contentUrl:origin+'/'+item.image.src,url:origin+path,width:item.image.width,height:item.image.height,...(item.creator===artist.name?{creator:{'@id':person['@id']}}:{about:{'@id':person['@id']}}),representativeOfPage:true,...(item.tags?.length?{keywords:item.tags.join(', ')}:{})};
-  const original={...item.image,variants:[]};
-  const body=`<article><h1 hidden>${escape(title)}</h1><a href="/${escape(item.image.src)}" aria-label="${escape(gallery.originalImageLabel)}">${image(original)}</a></article>`;
-  await output(path.slice(1)+'index.html',documentPage({title:`${title} · ${artist.name}`,description:entity.description,path,image:item.image.src,graph:[person,website,entity]},body,origin,galleryLabel).replace('href="/music/"','href="/gallery/"'));
+  const original=item.image;
+  const index=gallery.items.indexOf(item);
+  const adjacent=(record,key,iconId)=>{const icon=icons.items.find(i=>i.id===iconId);return `<a data-photo-${key} ${record?`href="/gallery/${escape(record.id)}/"`:'hidden'} aria-label="${escape(gallery.controls[key])}"><img data-monochrome="true" src="/${escape(icon.src)}" alt=""></a>`;};
+  const contact=hub.links.find(link=>link.category==='email'&&link.url?.startsWith('mailto:'));
+  const enquiry=contact?`<a class="gallery__image-enquiry" href="${escape(contact.url)}?subject=${encodeURIComponent(`${gallery.controls.imageUse}: ${title}`)}">${escape(gallery.controls.imageUse)}</a>`:'';
+  const navigation=`<nav class="gallery__viewer-nav" aria-label="${escape(gallery.controls.photos)}">${adjacent(gallery.items[index-1],'previous','chevron-left')}<div class="gallery__viewer-information"><span data-photo-count>${index+1} / ${gallery.items.length}</span>${enquiry}</div>${adjacent(gallery.items[index+1],'next','chevron-right')}</nav>`;
+  const atmosphere=`<div class="gallery__photo-atmosphere" aria-hidden="true">${image({...item.image,alt:''})}</div>`;
+  const body=`${atmosphere}<article data-gallery-photo="${escape(item.id)}"><h1 hidden>${escape(title)}</h1><a href="/${escape(item.image.src)}" aria-label="${escape(gallery.originalImageLabel)}">${image(original)}</a></article>${navigation}`;
+  await output(path.slice(1)+'index.html',documentPage({title:`${title} · ${artist.name}`,description:entity.description,path,image:item.image.src,graph:[person,website,entity]},body,origin,galleryLabel).replace('href="/music/"','href="/gallery/"').replace('<html lang="en"','<html lang="en" data-gallery-viewer="true"').replace('</head>','<script type="module" src="/assets/js/layers/site/gallery/viewer.js?v=1"></script></head>'));
 }
-const urls=['/','/music/','/gallery/','/hub/',...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
+const urls=['/','/music/','/gallery/','/hub/',...gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`/gallery/collections/${c.id}/`),...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
-  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`).map(i=>i.image.src):catalogue.items.filter(r=>r.cover&&(p==='/music/'||p===route(r))).map(r=>r.cover.src);
+  const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`||p===`/gallery/collections/${i.collection}/`).map(i=>i.image.src):catalogue.items.filter(r=>r.cover&&(p==='/music/'||p===route(r))).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
 }).join('\n')}\n</urlset>\n`);
 console.log(`Generated homepage, catalogue, ${catalogue.items.length} releases and sitemap.`);

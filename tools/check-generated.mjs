@@ -2,6 +2,7 @@
 import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {escape,route,releaseBody} from './site/render.mjs';
+import {selection,photoUrl} from '../docs/assets/js/layers/site/gallery/model.js';
 import {publishedValue, metadataRows, archiveAssets, newestReleases, displayDuration} from '../docs/assets/js/layers/site/music/publication.js';
 const docs=new URL('../docs/',import.meta.url);
 const read=p=>readFile(new URL(p,docs),'utf8');
@@ -9,6 +10,16 @@ const data=JSON.parse(await read('assets/data/music/releases.json'));
 const sitemap=await read('sitemap.xml');
 const catalogue=await read('music/index.html');
 const gallery=JSON.parse(await read('assets/data/gallery/images.json'));
+for(const collection of gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id))) {
+  const path=`gallery/collections/${collection.id}/index.html`;
+  assert.ok((await read(path)).includes(`https://artandavoodi.com/gallery/collections/${collection.id}/`));
+  assert.ok(sitemap.includes(`https://artandavoodi.com/gallery/collections/${collection.id}/`));
+}
+assert.equal(selection(gallery,new URLSearchParams()).length,gallery.items.length);
+assert.ok(selection(gallery,new URLSearchParams('collection=portfolio')).every(item=>item.collection==='portfolio'));
+assert.equal(selection(gallery,new URLSearchParams('q=does-not-match-any-photo')).length,0);
+assert.equal(selection({items:[{year:2024,title:'Test',image:{alt:'Test'}}]},new URLSearchParams('year=2024')).length,1);
+assert.ok(photoUrl(gallery.items[0],new URLSearchParams('view=compact')).endsWith('?view=compact'));
 for(const path of ['/hub/','/gallery/',...gallery.items.map(item=>`/gallery/${item.id}/`)]) {
   const html=await read(path.slice(1)+'index.html');
   assert.equal((html.match(/<h1\b/g)||[]).length,1);
@@ -30,6 +41,8 @@ for(const item of gallery.items) {
   assert.equal((item.creator ? image.creator : image.about)['@id'],person['@id']);
   assert.ok(sitemap.includes('https://artandavoodi.com/'+item.image.src));
   assert.ok(html.includes(`<h1 hidden>${escape(item.title)}</h1>`));
+  assert.ok(html.includes('data-photo-next') && html.includes('data-photo-previous'));
+  assert.ok(html.includes('gallery__photo-atmosphere') && html.includes('srcset='));
   assert.ok(html.includes(`href="/${item.image.src}" aria-label="View original image"`));
   const visible=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').split('<body>')[1];
   assert.ok(!visible.includes(person.alternateName),'Legal name must remain metadata-only');

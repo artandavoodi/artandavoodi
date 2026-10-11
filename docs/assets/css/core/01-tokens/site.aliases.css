@@ -19,6 +19,7 @@
   --site-menu-type-size-mobile: min(12vw, 3.2rem);
   --artist-portrait-width: 22rem;
   --gallery-preview-aspect-ratio: 1;
+  --gallery-panel-width: min(var(--reading-width-md), calc(100vw - var(--site-gutter) * 2));
   --featured-card-width: 14rem;
   --music-context-wordmark-width: calc(var(--featured-card-width) / 2);
   --cv-motion-duration: var(--duration-base);
@@ -42,6 +43,7 @@
 html[data-theme-effective='dark'] { --site-monochrome-icon-filter: invert(1); }
 @media (max-width: 860px) {
   :root {
+    --gallery-panel-width: min(var(--reading-width-md), calc(100vw - var(--site-mobile-gutter) * 2));
     --cv-page-width: var(--site-rail-width-mobile);
     --cv-reading-width: min(var(--reading-width-md), var(--site-rail-width-mobile));
     --cv-page-padding-block: var(--section-padding-y-mobile);

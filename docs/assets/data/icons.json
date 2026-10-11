@@ -1,6 +1,9 @@
 {
   "schemaVersion": 1,
   "items": [
+    { "id": "chevron-left", "src": "assets/icons/navigation/chevron-left.svg", "alt": "", "monochrome": true },
+    { "id": "gallery-view", "src": "assets/icons/actions/preview.svg", "alt": "", "monochrome": true },
+    { "id": "close", "src": "assets/icons/actions/close.svg", "alt": "", "monochrome": true },
     { "id": "artist-wordmark", "src": "assets/brand/logo/typo-artan.svg", "alt": "Artan", "darkMonochrome": true },
     { "id": "public-hub", "src": "assets/brand/logo/symbol-artan.svg", "alt": "", "darkMonochrome": true },
     { "id": "artan-records", "src": "assets/brand/logo/artan-records-symbol-black.svg", "darkSrc": "assets/brand/logo/artan-records-symbol-white.svg", "alt": "" },

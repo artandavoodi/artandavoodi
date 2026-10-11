@@ -1,5 +1,5 @@
 /* ARTANDAVOODI · Navigation behavior and menu state owner. */
-import { bindMenu } from '../../core/menu.js';
+import { bindMenu } from '../../core/menu.js?v=2';
 import { renderIcon } from './media.js?v=6';
 export function bindNavigation(ui, icons) {
   const branding = ui.sectionBranding?.[document.documentElement.dataset.initialRoute];
@@ -28,5 +28,5 @@ export function bindNavigation(ui, icons) {
     menuNavigation.append(link);
   }
 
-  bindMenu({ openLabel: ui.menuToggle.open, closeLabel: ui.menuToggle.close, selectors: {background:'main, [data-fragment="footer"]',menuControls:'[data-menu-theme]'} });
+  bindMenu({ openLabel: ui.menuToggle.open, closeLabel: ui.menuToggle.close, persistentHeader: Boolean(branding), selectors: {background:'main, [data-fragment="footer"]',menuControls:'[data-menu-theme]',drawerItems: '[data-site-brand]'} });
 }

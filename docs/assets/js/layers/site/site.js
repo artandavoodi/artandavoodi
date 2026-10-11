@@ -1,14 +1,14 @@
 /* ARTANDAVOODI · Site domain importer, menu navigation and section lifecycle. */
 import { loadJson } from '../../core/data.js?v=9';
 import { bindTheme } from '../../core/theme.js?v=5';
-import { bindNavigation } from './navigation.js?v=11';
+import { bindNavigation } from './navigation.js?v=12';
 import { applyMetadata } from '../../core/metadata.js?v=1';
 import { bindRoutes } from './routes.js?v=3';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
   artist: () => import('./artist/index.js?v=5'),
   music: () => import('./music/index.js?v=16'),
-  gallery: () => import('./gallery/index.js?v=9'),
+  gallery: () => import('./gallery/index.js?v=13'),
   hub: () => import('./hub/index.js?v=5'),
 };
 export async function initializeSite() {

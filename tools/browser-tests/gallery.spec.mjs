@@ -1,0 +1,45 @@
+/* Executed by the existing, pinned ecosystem Playwright suite. */
+import {test,expect} from '@playwright/test';
+for(const theme of ['light','dark']) test.describe(theme,()=>{
+  test.beforeEach(async({page})=>{
+    await page.goto('/gallery/');
+    await page.getByRole('button',{name:'Open site menu',exact:true}).click();
+    const themeControl=page.locator('[data-menu-theme]');
+    if(await page.locator('html').getAttribute('data-theme-effective')!==theme) await themeControl.click();
+    await page.keyboard.press('Escape');
+  });
+  test('library panels, filters, views and canonical collection pages',async({page})=>{
+    const filter=page.locator('.gallery__controls summary').first();
+    const view=page.locator('.gallery__controls summary').last();
+    await filter.click();
+    await page.getByRole('combobox',{name:'Collection',exact:true}).selectOption('photography');
+    await expect(page.locator('.gallery__images img')).toHaveCount(15);
+    await view.click();
+    await expect(filter).toHaveAttribute('aria-expanded','false');
+    await page.getByRole('button',{name:'Compact',exact:true}).click();
+    await expect(page.locator('[data-gallery-items]')).toHaveAttribute('data-view','compact');
+    await filter.click();
+    await page.getByRole('combobox',{name:'Subject',exact:true}).selectOption('animals');
+    await expect(page.getByText('No photos match these filters.',{exact:true})).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(filter).toHaveAttribute('aria-expanded','false');
+    await page.goto('/gallery/collections/photography/');
+    await expect(page.locator('.gallery__images img')).toHaveCount(15);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href','https://artandavoodi.com/gallery/collections/photography/');
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBeTruthy();
+  });
+  test('photo sequence, original access, theme and touch navigation',async({page})=>{
+    await page.goto('/gallery/photograph-02/?collection=photography');
+    await expect(page.locator('[data-photo-count]')).toHaveText('2 / 15');
+    await expect(page.getByRole('link',{name:'View original image',exact:true})).toHaveAttribute('href','/assets/media/gallery/photography/photograph-02.jpeg');
+    await expect(page.locator('[data-gallery-photo] img')).toHaveAttribute('srcset',/w1280/);
+    await page.keyboard.press('ArrowRight');
+    await expect(page).toHaveURL(/photograph-03/);
+    await page.keyboard.press('ArrowLeft');
+    await expect(page).toHaveURL(/photograph-02/);
+    await page.locator('[data-gallery-photo]').dispatchEvent('touchstart',{touches:[{clientX:300,clientY:200}]});
+    await page.locator('[data-gallery-photo]').dispatchEvent('touchend',{touches:[],changedTouches:[{clientX:0,clientY:200}]});
+    await expect(page).toHaveURL(/photograph-03/);
+    await expect(page.locator('.gallery__photo-atmosphere')).toBeAttached();
+  });
+});

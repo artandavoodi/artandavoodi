@@ -59,7 +59,10 @@
           }
         ],
         "sizes": "(max-width: 860px) 100vw, 50vw"
-      }
+      },
+      "subjects": [
+        "portraits"
+      ]
     },
     {
       "id": "artan-davoodi-close-up-portrait",
@@ -96,7 +99,10 @@
           }
         ],
         "sizes": "(max-width: 860px) 100vw, 50vw"
-      }
+      },
+      "subjects": [
+        "portraits"
+      ]
     },
     {
       "id": "artan-davoodi-black-background-portrait",
@@ -133,7 +139,10 @@
           }
         ],
         "sizes": "(max-width: 860px) 100vw, 50vw"
-      }
+      },
+      "subjects": [
+        "portraits"
+      ]
     },
     {
       "id": "artan-davoodi-winter-portrait",
@@ -170,7 +179,10 @@
           }
         ],
         "sizes": "(max-width: 860px) 100vw, 50vw"
-      }
+      },
+      "subjects": [
+        "portraits"
+      ]
     },
     {
       "id": "photograph-01",
@@ -711,6 +723,56 @@
         ],
         "sizes": "(max-width: 860px) 100vw, 50vw"
       }
+    }
+  ],
+  "controls": {
+    "filter": "Filter",
+    "close": "Close filters",
+    "closeView": "Close view options",
+    "imageUse": "Image-use enquiries",
+    "collection": "Collection",
+    "year": "Year",
+    "subject": "Subject",
+    "all": "All",
+    "undated": "Undated",
+    "search": "Search photos",
+    "view": "View",
+    "photos": "photos",
+    "empty": "No photos match these filters.",
+    "previous": "Previous photo",
+    "next": "Next photo",
+    "back": "Back to gallery"
+  },
+  "views": [
+    {
+      "id": "tiles",
+      "label": "Tiles"
+    },
+    {
+      "id": "compact",
+      "label": "Compact"
+    },
+    {
+      "id": "natural",
+      "label": "Original proportions"
+    }
+  ],
+  "subjects": [
+    {
+      "id": "portraits",
+      "label": "Portraits"
+    },
+    {
+      "id": "animals",
+      "label": "Animals"
+    },
+    {
+      "id": "nature",
+      "label": "Nature"
+    },
+    {
+      "id": "architecture",
+      "label": "Architecture"
     }
   ]
 }
