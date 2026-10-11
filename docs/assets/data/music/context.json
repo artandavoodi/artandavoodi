@@ -7,8 +7,9 @@
   "sections": [
     {
       "id": "labels",
-      "title": "Artan Records",
-      "description": "Artan Records is Artan's independent record label.",
+      "title": "Label",
+      "description": "Released through Artan Records, an independent label for music and creative collaboration.",
+      "link": { "label": "Artan Records", "url": "https://artanrecords.com/", "icon": "artan-records-wordmark" },
       "items": []
     },
     { "id": "projects", "title": "Music projects", "description": "", "items": [] },

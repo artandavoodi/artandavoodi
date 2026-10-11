@@ -7,7 +7,7 @@ import { bindRoutes } from './routes.js?v=3';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
   artist: () => import('./artist/index.js?v=5'),
-  music: () => import('./music/index.js?v=12'),
+  music: () => import('./music/index.js?v=15'),
   gallery: () => import('./gallery/index.js?v=5'),
   hub: () => import('./hub/index.js?v=5'),
 };
@@ -40,6 +40,7 @@ export async function initializeSite() {
   }));
   const failed = results.filter(result => result.status === 'rejected');
   if (failed.length) {
+    failed.forEach(result => console.error('[catalogue]', result.reason));
     const error = document.querySelector('[data-error]');
     error.textContent = ui.error;
     error.hidden = false;

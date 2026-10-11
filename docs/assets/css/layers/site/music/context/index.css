@@ -1,13 +1,10 @@
-/* ARTANDAVOODI · Supporting music collections share the site spacing and typography. */
+/* Supporting music facts use shared rails and separator tokens. */
 .music-context { display: grid; gap: var(--spacing-2xl); }
-.music-context section { position: relative; display: grid; gap: var(--spacing-md); border-block-start: var(--border-width-hairline) solid transparent; padding-block-start: var(--spacing-xl); }
-.music-context summary { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); cursor: pointer; font-size: var(--site-type-body-size); list-style: none; }
-.music-context summary::-webkit-details-marker { display: none; }
-.music-context__item { margin-block-start: var(--spacing-lg); }
-.music-context__directory { list-style: none; margin-block: var(--spacing-md); padding-inline-start: var(--spacing-lg); display: grid; gap: var(--spacing-sm); }
-.music-context__directory a { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing-md); padding-block: var(--spacing-sm); text-decoration: none; }
-.music-context__directory a:hover { color: var(--cv-text-secondary); }
-.music-context__directory img { inline-size: var(--icon-size-sm); block-size: var(--icon-size-sm); }
-.music-context summary img { inline-size: var(--icon-size-sm); block-size: var(--icon-size-sm); }
-.music-context details[open] summary img { rotate: 180deg; }
-.music-context details p { margin-block-start: var(--spacing-md); max-inline-size: var(--cv-reading-width); }
+.music-context__section { position: relative; display: grid; gap: var(--spacing-lg); padding-block-start: var(--spacing-xl); }
+.music-context__section p { max-inline-size: var(--cv-reading-width); color: var(--cv-text-secondary); }
+.music-context__brand { display: block; inline-size: var(--featured-card-width); max-inline-size: 100%; text-decoration: none; }
+.music-context__brand img { display: block; inline-size: 100%; block-size: auto; }
+.music-context__facts { display: grid; gap: var(--spacing-lg); }
+.music-context__facts > div { display: grid; gap: var(--spacing-sm); }
+.music-context__facts dt { color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); }
+.music-context__facts dd { margin: 0; }

@@ -1,5 +1,5 @@
 /* ARTANDAVOODI · Album track list and track-to-release context. */
-import { displayDuration } from './publication.js';
+import { displayDuration } from './publication.js?v=2';
 export function renderTracks(album, ui) {
   const list = document.createElement('ol');
   list.className = 'music-tracks';

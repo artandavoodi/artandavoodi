@@ -1,11 +1,11 @@
 /* ARTANDAVOODI · Music showcase renderer; releases and UI labels are JSON-owned. */
 import { assetUrl } from '../../../core/data.js?v=7';
 import { renderIcon, renderEmpty } from '../media.js?v=5';
-import { renderContext } from './context/index.js?v=2';
-import { renderTracks } from './tracks.js?v=2';
+import { renderContext } from './context/index.js?v=3';
+import { renderTracks } from './tracks.js?v=3';
 import { observeDividers } from './dividers.js';
-import { collectTracks, renderTrackDirectory } from './track-directory.js';
-import { metadataRows, newestReleases } from './publication.js';
+import { collectTracks, renderTrackDirectory } from './track-directory.js?v=3';
+import { metadataRows, newestReleases } from './publication.js?v=2';
 
 const DEFAULT_STATUS = 'all';
 

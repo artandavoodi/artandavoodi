@@ -1,5 +1,5 @@
 /* Derived track directory: parent releases remain the source of category and album. */
-import { newestReleases, displayDuration } from './publication.js';
+import { newestReleases, displayDuration } from './publication.js?v=2';
 export function collectTracks(releases) {
   return newestReleases(releases).flatMap(release => release.tracks?.length
     ? [...release.tracks].sort((a, b) => a.position - b.position).map(track => ({ release, track }))

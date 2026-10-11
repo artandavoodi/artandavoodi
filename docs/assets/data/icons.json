@@ -3,6 +3,7 @@
   "items": [
     { "id": "public-hub", "src": "assets/brand/logo/symbol-artan.svg", "alt": "", "darkMonochrome": true },
     { "id": "artan-records", "src": "assets/brand/logo/artan-records-symbol-black.svg", "darkSrc": "assets/brand/logo/artan-records-symbol-white.svg", "alt": "" },
+    { "id": "artan-records-wordmark", "src": "assets/brand/logo/artan-records-wordmark-black.svg", "darkSrc": "assets/brand/logo/artan-records-wordmark-white.svg", "alt": "Artan Records" },
     { "id": "youtube", "src": "assets/icons/social/platforms/youtube.svg", "alt": "", "monochrome": true },
     { "id": "tiktok", "src": "assets/icons/social/platforms/tiktok.svg", "alt": "", "monochrome": true },
     { "id": "facebook", "src": "assets/icons/social/platforms/facebook.svg", "alt": "", "monochrome": true },

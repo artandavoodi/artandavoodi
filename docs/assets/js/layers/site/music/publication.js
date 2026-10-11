@@ -15,7 +15,7 @@ export function publishedValue(item, key) {
 }
 
 export function displayDuration(item, ui, parent) {
-  return (item.status || parent?.status) === 'Upcoming'
+  return ['upcoming', 'unreleased'].includes(String(item.status || parent?.status).trim().toLowerCase())
     ? ui.musicUnreleasedLabel : item.duration || ui.musicDurationPending;
 }
 
