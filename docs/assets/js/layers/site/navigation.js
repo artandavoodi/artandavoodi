@@ -17,5 +17,5 @@ export function bindNavigation(ui) {
     menuNavigation.append(link);
   }
 
-  bindMenu({ openLabel: ui.menuToggle.open, closeLabel: ui.menuToggle.close });
+  bindMenu({ openLabel: ui.menuToggle.open, closeLabel: ui.menuToggle.close, selectors: {background:'main, [data-fragment="footer"]',menuControls:'[data-menu-theme]'} });
 }

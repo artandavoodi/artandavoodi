@@ -3,11 +3,15 @@
   "files": [
     {
       "file": "docs/assets/js/core/menu.js",
-      "sha256": "23355dcdc588f4f8163d895fbbc4f4e6d85ee85203f36f5802801189e3141c87"
+      "sha256": "a123e5e09926a6a60e50f2f8dec5bfbe64ee230789bb8e4805008cc5a370b61a"
     },
     {
       "file": "docs/assets/css/core/01-tokens/navigation.tokens.css",
-      "sha256": "3306b99052c2af5415b65561586a7dc596bbe08a3fd556115abd986805ddd574"
+      "sha256": "51c954ed01842b1e617783c6bee6298fc20e40b58a45da2cbded842454243975"
+    },
+    {
+      "file": "docs/assets/css/layers/site/theme-menu.css",
+      "sha256": "224438e64ff0623d4aec9b5f0c53ff1ec19963b17d7e73759f947ad36f1b7478"
     }
   ]
 }
