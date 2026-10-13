@@ -17,7 +17,11 @@ export function bindNavigation(ui, icons) {
   const menuNavigation = document.querySelector('[data-menu-navigation]');
   if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement) || !(menuNavigation instanceof HTMLElement)) return;
 
-  const sections = [...(Array.isArray(ui.sections) ? ui.sections : []), ...(Array.isArray(ui.menuLinks) ? ui.menuLinks : [])];
+  const sections = [...(Array.isArray(ui.sections) ? ui.sections : [])];
+  for (const item of Array.isArray(ui.menuLinks) ? ui.menuLinks : []) {
+    const index = sections.findIndex(section => section.id === item.after);
+    sections.splice(index < 0 ? sections.length : index + 1, 0, item);
+  }
 
   menuNavigation.setAttribute('aria-label', ui.menuLabel);
   for (const section of sections) {
