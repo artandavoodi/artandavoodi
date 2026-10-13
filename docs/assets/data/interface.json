@@ -3,7 +3,7 @@
   "sectionBranding": { "gallery": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" } },
   "musicBack": { "label": "Back to Music", "icon": "back", "href": "index.html#music" },
   "menuLabel": "Site menu",
-  "menuLinks": [{"id":"store","label":"Store · Test preview","path":"https://store.artandavoodi.com/"}],
+  "menuLinks": [{"id":"store","label":"Store","path":"https://store.artandavoodi.com/"}],
   "menuToggle": { "open": "Open site menu", "close": "Close site menu" },
   "skipLabel": "Skip to content",
   "theme": { "dark": "Dark appearance", "light": "Light appearance" },
