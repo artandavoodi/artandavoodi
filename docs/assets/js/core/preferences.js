@@ -1,0 +1,39 @@
+/* Optional preference UI; no trackers, account systems or payments are initialized. */
+import {loadJson} from './data.js';
+import {renderIcon} from '../layers/site/media.js?v=6';
+export async function initializePreferences() {
+  const [data,icons] = await Promise.all([loadJson('assets/data/privacy.json'),loadJson('assets/data/icons.json')]);
+  const state = window.ArtanPreferences;
+  if (!state || document.querySelector('[data-preferences-panel]')) return;
+  const panel = document.createElement('section'); panel.dataset.preferencesPanel = '';
+  panel.className = 'privacy-preferences'; panel.setAttribute('aria-label',data.preferences.title);
+  const title = document.createElement('h2'); title.textContent = data.preferences.title;
+  const description = document.createElement('p'); description.textContent = data.preferences.description;
+  const actions = document.createElement('div'); actions.className = 'artist__actions';
+  for (const [choice,label] of [['allow',data.preferences.allow],['reject',data.preferences.reject]]) {
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'control'; button.textContent = label;
+    button.addEventListener('click',()=>{state.setChoice(choice); if(choice==='allow')state.saveTheme(document.documentElement.dataset.themeEffective); panel.hidden=true;});
+    actions.append(button);
+  }
+  const privacy = document.createElement('a'); privacy.href = '/privacy/'; privacy.textContent = data.preferences.link;
+  panel.append(title,description,actions,privacy); document.body.append(panel);
+  const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);
+  links.append(privacy.cloneNode(true));
+  const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;
+  settings.addEventListener('click',()=>{panel.hidden=false; panel.querySelector('button').focus();}); links.append(settings);
+  (document.querySelector('.site-footer') || document.querySelector('main')).append(links);
+  const show = () => { panel.hidden=state.choice()!==null; };
+  panel.hidden=true;
+  const intro = async () => {
+    if (location.pathname!=='/' || state.introSeen() || matchMedia('(prefers-reduced-motion: reduce)').matches) { show(); return; }
+    const element=document.createElement('div'); element.className='artist-brand-intro'; element.setAttribute('aria-hidden','true');
+    const mark=renderIcon(data.intro.icon,icons); element.append(mark); document.body.append(element);
+    await mark.decode().catch(()=>{});
+    const motion=getComputedStyle(document.documentElement);
+    const duration=parseFloat(motion.getPropertyValue('--site-header-motion-duration')) || 420;
+    try { await mark.animate([{opacity:0,transform:'scale(.8)'},{opacity:1,transform:'scale(1)',offset:.4},{opacity:1,transform:'scale(1)',offset:.7},{opacity:0,transform:'scale(.94)'}],{duration:duration*2,easing:motion.getPropertyValue('--site-navigation-ease').trim()}).finished; } catch { /* Motion is optional. */ }
+    state.markIntro(); element.remove(); show();
+  };
+  if (document.documentElement.hasAttribute('data-loading')) window.addEventListener('site:ready',intro,{once:true}); else await intro();
+}
+initializePreferences().catch(error=>console.error('[preferences]',error));

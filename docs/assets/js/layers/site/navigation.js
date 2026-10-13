@@ -2,7 +2,7 @@
 import { bindMenu } from '../../core/menu.js?v=2';
 import { renderIcon } from './media.js?v=6';
 export function bindNavigation(ui, icons) {
-  const branding = ui.sectionBranding?.[document.documentElement.dataset.initialRoute];
+  const branding = ui.sectionBranding?.[document.documentElement.dataset.initialRoute || 'artist'];
   const brand = document.querySelector('[data-site-brand]');
   if (branding && brand) {
     brand.href = branding.href;

@@ -5,6 +5,10 @@ export function render(data, ui, icons) {
   document.querySelector('[data-hub-description]').textContent = data.description;
   const target = document.querySelector('[data-hub-links]');
   target.replaceChildren();
+  const pages = document.querySelector('[data-hub-pages]');
+  pages.replaceChildren(...(data.pages || []).map(record => {
+    const link = document.createElement('a'); link.className = 'control'; link.href = record.href; link.textContent = record.label; return link;
+  }));
   const groups = new Map();
   for (const record of data.links || []) {
     if (!record.url) continue;

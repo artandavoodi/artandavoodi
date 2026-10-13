@@ -7,7 +7,21 @@
   "headline": "Music and visual work",
   "subtitle": "Artist · Musician",
   "summary": "Music and visual work by Artan Davoodi.",
-  "biography": "Artan Davoodi is a musician, songwriter, and producer whose main instrument is the piano. His work spans music and visual art, with an interest in the stories each can tell.",
+  "biography": "Artan Davoodi is a musician, songwriter and producer whose main instrument is the piano. His work moves between instrumental music, acoustic songs and photography. Memory and personal experience shape his songwriting, while his visual work offers another way of observing and telling stories.",
+  "homepage": {
+    "actions": [{ "id":"latest", "label": "Latest release" }, { "label": "Listen", "href": "/music/" }, { "label": "Explore Gallery", "href": "/gallery/" }, {"label":"Store","href":"https://store.artandavoodi.com/"}],
+    "latestTitle": "Latest release",
+    "latestAction": "Listen to this release",
+    "visualTitle": "Featured photography",
+    "visualIds": ["photograph-02", "photograph-06", "photograph-10"],
+    "visualAction": "Explore Art & Gallery",
+    "pressTitle": "Press & contact",
+    "pressIntroduction": "For interviews, press enquiries or creative collaboration, get in touch. The biography and portrait below are available as reference materials; please confirm image-use permissions before publication.",
+    "contactAction": "Get in touch",
+    "biographyAction": "Download biography",
+    "portraitAction": "View press portrait",
+    "biographyPath": "assets/data/artist/artan-davoodi-biography.txt"
+  },
   "icon": "artist-mark",
   "portrait": {
     "src": "assets/media/portrait/artist-home.jpeg",

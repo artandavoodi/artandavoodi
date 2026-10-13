@@ -10,6 +10,18 @@ const data=JSON.parse(await read('assets/data/music/releases.json'));
 const sitemap=await read('sitemap.xml');
 const catalogue=await read('music/index.html');
 const gallery=JSON.parse(await read('assets/data/gallery/images.json'));
+const homepageProfile=JSON.parse(await read('assets/data/artist/profile.json'));
+const home=await read('index.html');
+const latestHome=newestReleases(data.items.filter(item=>String(item.status).toLowerCase()==='released'))[0];
+assert.ok(home.includes(`href="/music/${latestHome.id}/"`));
+for(const action of homepageProfile.homepage.actions) assert.ok(home.includes(`href="${action.id==='latest'?`/music/${latestHome.id}/`:action.href}"`));
+for(const id of homepageProfile.homepage.visualIds) assert.ok(home.includes(`href="/gallery/${id}/"`));
+assert.ok((await read(homepageProfile.homepage.biographyPath)).includes(homepageProfile.biography));
+assert.ok(!home.includes(escape(homepageProfile.homepage.pressTitle)));
+assert.ok((await read('press/index.html')).includes(escape(homepageProfile.homepage.pressTitle)));
+assert.ok((await read('press/index.html')).includes('mailto:press@artandavoodi.com'));
+assert.ok((await read('hub/index.html')).includes('href="/press/"'));
+assert.ok((await read('privacy/index.html')).includes('noindex,follow'));
 for(const collection of gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id))) {
   const path=`gallery/collections/${collection.id}/index.html`;
   assert.ok((await read(path)).includes(`https://artandavoodi.com/gallery/collections/${collection.id}/`));
@@ -43,6 +55,7 @@ for(const item of gallery.items) {
   assert.ok(html.includes(`<h1 hidden>${escape(item.title)}</h1>`));
   assert.ok(html.includes('data-photo-next') && html.includes('data-photo-previous'));
   assert.ok(html.includes('gallery__photo-atmosphere') && html.includes('srcset='));
+  assert.ok(html.includes('data-gallery-filmstrip') && html.includes('href="/gallery/image-use/"'));
   assert.ok(html.includes(`href="/${item.image.src}" aria-label="View original image"`));
   const visible=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').split('<body>')[1];
   assert.ok(!visible.includes(person.alternateName),'Legal name must remain metadata-only');

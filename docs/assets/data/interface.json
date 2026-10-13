@@ -1,6 +1,6 @@
 {
   "navigationLabel": "Main navigation",
-  "sectionBranding": { "gallery": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" } },
+  "sectionBranding": { "artist": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" }, "music": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" }, "hub": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" }, "gallery": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" } },
   "musicBack": { "label": "Back to Music", "icon": "back", "href": "index.html#music" },
   "menuLabel": "Site menu",
   "menuLinks": [{"id":"store","label":"Store","path":"https://store.artandavoodi.com/","after":"music"}],

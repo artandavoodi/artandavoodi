@@ -1,8 +1,7 @@
 /* ARTANDAVOODI · Two-state theme with storage-tolerant continuity. */
-const key = 'artandavoodi-theme';
 export function initializeTheme() {
   let value = 'light';
-  try { if (localStorage.getItem(key) === 'dark') value = 'dark'; } catch { /* Storage is optional. */ }
+  value = window.ArtanPreferences?.theme() || 'light';
   applyTheme(value);
 }
 function applyTheme(value) {
@@ -23,7 +22,7 @@ export function bindTheme(labels) {
   button.addEventListener('click', () => {
     const value = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
     applyTheme(value);
-    try { localStorage.setItem(key, value); } catch { /* Theme remains usable without storage. */ }
+    window.ArtanPreferences?.saveTheme(value);
     render();
   });
   render();

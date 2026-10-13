@@ -2,7 +2,7 @@
 (() => {
   const root = document.documentElement;
   try {
-    const theme = localStorage.getItem('artandavoodi-theme') === 'dark' ? 'dark' : 'light';
+    const theme = window.ArtanPreferences?.theme() || 'light';
     root.dataset.theme = theme;
     root.dataset.themeEffective = theme;
   } catch { /* The default light theme remains usable without storage. */ }

@@ -2,6 +2,7 @@
 import { renderImage, renderIcon } from '../media.js?v=6';
 import { bindGalleryGrain } from './grain.js';
 import { selection, photoUrl } from './model.js';
+import { rememberGallery, restoreGallery } from './continuity.js';
 let stopGrain;
 let controlEvents;
 export function render(data, ui, icons) {
@@ -33,6 +34,22 @@ export function render(data, ui, icons) {
   }
   const filters = panel('filter', data.controls.filter, data.controls.close);
   const viewPanel = panel('gallery-view', data.controls.view, data.controls.closeView);
+  const reset = document.createElement('button');
+  reset.type = 'button'; reset.className = 'gallery__reset';
+  reset.setAttribute('aria-label', data.controls.clear);
+  reset.title = data.controls.clear; reset.append(renderIcon('reset', icons));
+  reset.addEventListener('click', () => {
+    for (const key of ['collection','year','subject','q']) params.delete(key);
+    if (collectionRoute) params.set('collection', collectionRoute[1]);
+    fields.querySelectorAll('select').forEach(input => { input.value = params.get(input.name) || ''; });
+    search.value = ''; update();
+    filters.querySelector('summary').focus();
+  });
+  controls.append(reset);
+  const activeFilters = document.createElement('div');
+  activeFilters.className = 'gallery__active-filters';
+  activeFilters.setAttribute('aria-label', data.controls.active);
+  controls.append(activeFilters);
   controls.addEventListener('keydown', event => {
     const open = panels.find(item => item.open);
     if (event.key === 'Escape' && open) { open.open = false; open.querySelector('summary').focus(); event.preventDefault(); }
@@ -82,6 +99,17 @@ export function render(data, ui, icons) {
     target.dataset.view = data.views.some(v => v.id === params.get('view')) ? params.get('view') : data.views[0].id;
     options.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.galleryView === target.dataset.view)));
     count.textContent = `${records.length} ${data.controls.photos}`;
+    const active = ['collection','year','subject','q'].filter(key => params.get(key) && !(key === 'collection' && collectionRoute));
+    reset.hidden = !active.length;
+    activeFilters.replaceChildren(...active.map(key => {
+      const button = document.createElement('button'); button.type = 'button';
+      const input = fields.querySelector(`select[name="${key}"]`);
+      const value = input?.selectedOptions[0]?.textContent || params.get(key);
+      button.setAttribute('aria-label', `${data.controls.remove}: ${value}`);
+      button.append(document.createTextNode(value), renderIcon('close', icons));
+      button.addEventListener('click', () => { params.delete(key); if (input) input.value = ''; else search.value = ''; update(); filters.querySelector('summary').focus(); });
+      return button;
+    }));
     const query = params.toString();
     history.replaceState(null, '', `${location.pathname}${query ? `?${query}` : ''}`);
     target.replaceChildren(...data.collections.filter(collection => records.some(item => item.collection === collection.id)).map(collection => {
@@ -97,6 +125,8 @@ export function render(data, ui, icons) {
     if (collectionRecords.length) items.append(...collectionRecords.map(item => {
       const link = document.createElement('a');
       link.href = photoUrl(item, params);
+      link.dataset.galleryPhotoId = item.id;
+      link.addEventListener('click', event => { if (!event.ctrlKey && !event.metaKey && !event.shiftKey && event.button === 0) rememberGallery(item.id); });
       link.append(renderImage(item.image));
       return link;
     }));
@@ -106,4 +136,6 @@ export function render(data, ui, icons) {
     if (!records.length) { const empty = document.createElement('p'); empty.className = 'gallery__empty'; empty.textContent = data.controls.empty; target.append(empty); }
   }
   update();
+  window.addEventListener('site:ready', restoreGallery, {once:true,signal:controlEvents.signal});
+  window.addEventListener('pageshow', event => { if (event.persisted) restoreGallery(); }, {signal:controlEvents.signal});
 }

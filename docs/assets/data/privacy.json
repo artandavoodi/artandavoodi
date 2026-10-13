@@ -1,0 +1,18 @@
+{
+  "title": "Privacy & preferences",
+  "status": "Draft for review",
+  "contact": "mailto:contact@artandavoodi.com",
+  "contactLabel": "Privacy enquiries",
+  "storage": { "choiceKey": "artandavoodi-preferences", "themeKey": "artandavoodi-theme", "introKey": "artandavoodi-intro", "version": 1, "validDays": 180 },
+  "preferences": { "title": "Remember your preferences?", "description": "Optional browser storage remembers your appearance choice and the introduction. It is not used for advertising or analytics. You can change this choice at any time.", "allow": "Allow preferences", "reject": "Continue without saving", "settings": "Privacy preferences", "link": "Privacy notice", "withdraw": "Stop remembering preferences" },
+  "intro": { "icon": "artist-wordmark" },
+  "sections": [
+    { "title": "The current website", "text": "This is the music and photography portfolio of Saeed Davoodi, professionally known as Artan Davoodi, operating from Croatia. Contact contact@artandavoodi.com for privacy enquiries. There are currently no customer accounts, shopping checkout, advertising pixels or analytics integrations in this website." },
+    { "title": "Browser storage", "text": "If you allow preferences, local browser storage remembers your theme and whether the introduction has been shown. Your allow or decline choice is retained for up to 180 days to respect your decision. You can withdraw permission using Privacy preferences. Without permission, the theme can still be changed on the current page but is not saved between visits." },
+    { "title": "Gallery navigation", "text": "When you open a photograph, session storage temporarily remembers your gallery page, filters, scroll position and selected image so that returning restores your place. It is used for gallery navigation, not sent to the artist, and removed when restored or when the browser session ends." },
+    { "title": "Hosting and external websites", "text": "The portfolio is hosted on GitHub Pages. GitHub states that visitor IP addresses are logged and stored for security purposes. External streaming, social and other website links take you to providers with their own privacy practices; those services are not embedded here.", "links": [{ "label": "GitHub Pages data collection", "href": "https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection" }] },
+    { "title": "Email enquiries", "text": "Email links open your email application. Sending a message shares your email address and message with the recipient and email providers. Do not send payment-card data, identity documents or other sensitive information. The email-retention policy is still being reviewed; no automated email deletion is configured by this website." },
+    { "title": "Your choices and rights", "text": "You can withdraw optional storage permission at any time and clear this site's browser data. Contact contact@artandavoodi.com to ask about access, correction, deletion or other applicable data-protection rights. You may also contact Croatia's data-protection authority, AZOP.", "links": [{ "label": "Croatian data-protection authority", "href": "https://azop.hr/" }] },
+    { "title": "Future services", "text": "Shopping, customer profiles, payments and marketing are not operational. Their providers, security, legal terms and privacy arrangements must be reviewed before any such service is introduced. This draft describes the current portfolio; it is not a declaration of GDPR certification or a finalized commercial privacy policy." }
+  ]
+}

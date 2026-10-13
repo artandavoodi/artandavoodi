@@ -1,6 +1,16 @@
 {
   "schemaVersion": 1,
   "originalImageLabel": "View original image",
+  "imageUse": {
+    "title": "Image use",
+    "introduction": "For editorial, creative or commercial image-use enquiries, get in touch with the intended project and the photographs you would like to use.",
+    "sections": [
+      { "title": "What to include", "text": "Include the photograph's page link, your name or organisation, intended publication or project, where the image would appear, and your proposed timing." },
+      { "title": "Review and permission", "text": "An enquiry is a starting point for discussion. Any permission, credit requirements, scope of use and fee must be agreed separately before publication or reuse. This page is not a licence or a signed agreement." },
+      { "title": "Original files", "text": "Original-resolution files are available for viewing. Opening or downloading a file does not provide an image-use licence. Please ask about the intended use rather than assuming permission." }
+    ],
+    "contactLabel": "Discuss image use"
+  },
   "header": {
     "grain": {
       "tileSize": 200,
@@ -729,6 +739,10 @@
     "filter": "Filter",
     "close": "Close filters",
     "closeView": "Close view options",
+    "clear": "Clear filters",
+    "active": "Active filters",
+    "remove": "Remove filter",
+    "filmstrip": "Browse photos",
     "imageUse": "Image-use enquiries",
     "collection": "Collection",
     "year": "Year",

@@ -2,6 +2,12 @@
   "schemaVersion": 1,
   "title": "Music and visual work gathered in one place",
   "description": "",
+  "contacts": [
+    { "id": "general", "label": "General enquiries", "url": "mailto:contact@artandavoodi.com" },
+    { "id": "press", "label": "Press enquiries", "url": "mailto:press@artandavoodi.com" },
+    { "id": "music", "label": "Music enquiries", "url": "mailto:music@artandavoodi.com" }
+  ],
+  "pages": [{ "label": "Press & contact", "href": "/press/" }, { "label": "About Artan", "href": "https://artan.live/" }],
   "groups": [
     { "id": "streaming", "label": "Streaming", "presentation": "icons" },
     { "id": "social", "label": "Social", "presentation": "icons" },

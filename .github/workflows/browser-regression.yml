@@ -21,14 +21,9 @@ jobs:
         working-directory: browser-suite
       - run: npx playwright install --with-deps chromium webkit
         working-directory: browser-suite
-      - run: cp ../browser-target/tools/browser-tests/gallery.spec.mjs tools/browser-tests/gallery.spec.mjs
+      - run: cp ../browser-target/tools/browser-tests/*.spec.mjs tools/browser-tests/
         working-directory: browser-suite
-      - run: npx playwright test --config tools/browser-tests/playwright.config.mjs gallery.spec.mjs
+      - run: npx playwright test --config tools/browser-tests/playwright.config.mjs gallery.spec.mjs homepage.spec.mjs portfolio.spec.mjs
         working-directory: browser-suite
         env:
           BROWSER_TARGET_ROOT: ${{ github.workspace }}/browser-target/docs
-  browsers:
-    uses: artandavoodi/artanrecords/.github/workflows/browser-regression.yml@b10b2d169b50f1ee41b6784dba32a3c476890c50
-    with:
-      site: artist
-      suite_ref: b10b2d169b50f1ee41b6784dba32a3c476890c50

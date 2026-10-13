@@ -1,0 +1,13 @@
+/* Artist preference controls and first-visit wordmark, using shared tokens. */
+.privacy-preferences { position: fixed; inset-inline: var(--spacing-md); inset-block-end: calc(var(--spacing-md) + env(safe-area-inset-bottom,0px)); z-index: var(--z-header-controls); margin-inline: auto; max-inline-size: var(--reading-width-md); max-block-size: calc(100svh - var(--spacing-xl)); overflow-y: auto; padding: var(--spacing-md); display: grid; gap: var(--spacing-md); background: var(--cv-page-bg); color: var(--cv-text-primary); border: var(--border-width-hairline) solid var(--cv-border); border-radius: var(--radius-sm); }
+.privacy-preferences[hidden] { display: none; }
+.privacy-preferences h2 { font-size: var(--font-size-lg); }
+.privacy-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); font-size: var(--site-type-caption-size); color: var(--cv-text-secondary); }
+.privacy-links button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; }
+.privacy-links a { text-decoration: none; }
+.artist-brand-intro { position: fixed; inset: 0; z-index: var(--z-header-controls); display: grid; place-items: center; background: var(--cv-page-bg); pointer-events: none; }
+.artist-brand-intro img { inline-size: min(var(--artist-portrait-width),var(--cv-page-width)); block-size: auto; }
+html[data-theme-effective='dark'] .artist-brand-intro img { filter: brightness(0) invert(1); }
+.press-document, .press-document > div, .privacy-document { display: grid; gap: var(--spacing-md); }
+.press-document .control { display: inline-flex; text-decoration: none; }
+.privacy-document section { display: grid; gap: var(--spacing-sm); }

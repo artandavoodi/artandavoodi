@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "title": "Featured",
+  "title": "Selected music",
   "items": [
     { "catalogue": "music", "id": "salim", "href": "/music/salim/", "enabled": true },
     { "catalogue": "music", "id": "solum", "href": "/music/solum/", "enabled": true },
