@@ -13,6 +13,9 @@ export function bindNavigation(ui, icons) {
     brand.hidden = false;
   }
   const toggle = document.querySelector('[data-menu-toggle]');
+  if(ui.accountLink){
+    const account=document.createElement('a');account.className='site-account-link';account.href=ui.accountLink.href;account.setAttribute('aria-label',ui.accountLink.label);account.append(renderIcon(ui.accountLink.icon,icons));toggle.before(account);
+  }
   const menu = document.querySelector('[data-menu]');
   const menuNavigation = document.querySelector('[data-menu-navigation]');
   if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement) || !(menuNavigation instanceof HTMLElement)) return;

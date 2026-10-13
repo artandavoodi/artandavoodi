@@ -1,7 +1,7 @@
 /* ARTANDAVOODI · Site domain importer, menu navigation and section lifecycle. */
 import { loadJson } from '../../core/data.js?v=9';
 import { bindTheme } from '../../core/theme.js?v=5';
-import { bindNavigation } from './navigation.js?v=14';
+import { bindNavigation } from './navigation.js?v=15';
 import { applyMetadata } from '../../core/metadata.js?v=1';
 import { bindRoutes } from './routes.js?v=3';
 import { render as renderFeatured } from './featured/index.js';

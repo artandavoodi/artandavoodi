@@ -1,6 +1,11 @@
 /* Artist preference controls and first-visit wordmark, using shared tokens. */
-.privacy-preferences { position: fixed; inset-inline: var(--spacing-md); inset-block-end: calc(var(--spacing-md) + env(safe-area-inset-bottom,0px)); z-index: var(--z-header-controls); margin-inline: auto; max-inline-size: var(--reading-width-md); max-block-size: calc(100svh - var(--spacing-xl)); overflow-y: auto; padding: var(--spacing-md); display: grid; gap: var(--spacing-md); background: var(--cv-page-bg); color: var(--cv-text-primary); border: var(--border-width-hairline) solid var(--cv-border); border-radius: var(--radius-sm); }
-.privacy-preferences[hidden] { display: none; }
+.privacy-preferences { inline-size:min(var(--reading-width-md),calc(100% - var(--spacing-xl))); max-block-size:calc(100svh - var(--spacing-xl)); overflow-y:auto; padding:var(--spacing-md); gap:var(--spacing-md); background:var(--glass-overlay-drawer-shell-bg); color:var(--cv-text-primary); border:0; border-radius:var(--dialog-radius-unified); backdrop-filter:blur(var(--glass-overlay-shell-blur)) saturate(var(--glass-overlay-shell-saturate)); -webkit-backdrop-filter:blur(var(--glass-overlay-shell-blur)) saturate(var(--glass-overlay-shell-saturate)); scrollbar-width:none; }
+.privacy-preferences[open] { display:grid; }
+.privacy-preferences::backdrop { background:var(--glass-overlay-backdrop-bg); backdrop-filter:blur(var(--glass-overlay-backdrop-blur)) saturate(var(--glass-overlay-backdrop-saturate)); -webkit-backdrop-filter:blur(var(--glass-overlay-backdrop-blur)) saturate(var(--glass-overlay-backdrop-saturate)); }
+body:has(.privacy-preferences[open]) { overflow:hidden; }
+.privacy-preferences::-webkit-scrollbar { display:none; }
+.privacy-preferences__close { display:grid; place-items:center; justify-self:end; inline-size:var(--close-control-size); block-size:var(--close-control-size); padding:var(--spacing-none); border:0; background:transparent; }
+.privacy-preferences__close img { inline-size:var(--close-control-line-width); block-size:var(--close-control-line-width); }
 .privacy-preferences h2 { font-size: var(--font-size-lg); }
 .privacy-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); font-size: var(--site-type-caption-size); color: var(--cv-text-secondary); }
 .privacy-links button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; }

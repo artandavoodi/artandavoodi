@@ -4,7 +4,7 @@
   "contact": "mailto:contact@artandavoodi.com",
   "contactLabel": "Privacy enquiries",
   "storage": { "choiceKey": "artandavoodi-preferences", "themeKey": "artandavoodi-theme", "introKey": "artandavoodi-intro", "version": 1, "validDays": 180 },
-  "preferences": { "title": "Remember your preferences?", "description": "Optional browser storage remembers your appearance choice and the introduction. It is not used for advertising or analytics. You can change this choice at any time.", "allow": "Allow preferences", "reject": "Continue without saving", "settings": "Privacy preferences", "link": "Privacy notice", "withdraw": "Stop remembering preferences" },
+  "preferences": { "title": "Remember your preferences?", "description": "Optional browser storage remembers your appearance choice and the introduction. It is not used for advertising or analytics. You can change this choice at any time.", "allow": "Allow preferences", "reject": "Continue without saving", "settings": "Privacy preferences", "link": "Privacy notice", "close":"Close privacy preferences", "withdraw": "Stop remembering preferences" },
   "intro": { "icon": "artist-wordmark" },
   "sections": [
     { "title": "The current website", "text": "This is the music and photography portfolio of Saeed Davoodi, professionally known as Artan Davoodi, operating from Croatia. Contact contact@artandavoodi.com for privacy enquiries. There are currently no customer accounts, shopping checkout, advertising pixels or analytics integrations in this website." },

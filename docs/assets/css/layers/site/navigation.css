@@ -1,5 +1,9 @@
 /* ARTANDAVOODI · Navigation and artistic full-screen menu system. */
 @import url('./theme-menu.css');
+.site-account-link { display:grid; place-items:center; margin-inline-start:auto; inline-size:var(--control-height-md); block-size:var(--control-height-md); border:0; text-decoration:none; }
+.site-account-link img { inline-size:var(--icon-size-md); block-size:var(--icon-size-md); }
+.site-account-link + .site-menu-toggle { margin-inline-start:var(--spacing-md); }
+html[data-menu-open] .site-account-link { visibility:hidden; }
 [data-fragment="navigation"] {
   position: sticky;
   top: 0;
@@ -94,12 +98,14 @@ html[data-menu-ready][data-menu-open] .site-menu {
 }
 .site-menu__links {
   display: grid;
+  justify-items:center;
   gap: var(--spacing-lg);
   inline-size: 100%;
   max-inline-size: var(--cv-reading-width);
   margin-inline: auto;
 }
 .site-menu__links a {
+  text-align:center;
   color: var(--cv-text-primary);
   font-size: var(--site-menu-type-size);
   font-weight: var(--font-weight-light);

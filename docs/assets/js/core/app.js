@@ -1,7 +1,7 @@
 /* ARTANDAVOODI · App entry: shared systems then site domain orchestration. */
 import { mountFragments } from './fragments.js?v=10';
 import { initializeTheme } from './theme.js?v=5';
-import { initializeSite } from '../layers/site/site.js?v=39';
+import { initializeSite } from '../layers/site/site.js?v=40';
 initializeTheme();
 try {
   await mountFragments();

@@ -5,25 +5,25 @@ export async function initializePreferences() {
   const [data,icons] = await Promise.all([loadJson('assets/data/privacy.json'),loadJson('assets/data/icons.json')]);
   const state = window.ArtanPreferences;
   if (!state || document.querySelector('[data-preferences-panel]')) return;
-  const panel = document.createElement('section'); panel.dataset.preferencesPanel = '';
+  const panel = document.createElement('dialog'); panel.dataset.preferencesPanel = '';
   panel.className = 'privacy-preferences'; panel.setAttribute('aria-label',data.preferences.title);
   const title = document.createElement('h2'); title.textContent = data.preferences.title;
   const description = document.createElement('p'); description.textContent = data.preferences.description;
   const actions = document.createElement('div'); actions.className = 'artist__actions';
   for (const [choice,label] of [['allow',data.preferences.allow],['reject',data.preferences.reject]]) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'control'; button.textContent = label;
-    button.addEventListener('click',()=>{state.setChoice(choice); if(choice==='allow')state.saveTheme(document.documentElement.dataset.themeEffective); panel.hidden=true;});
+    button.addEventListener('click',()=>{state.setChoice(choice); if(choice==='allow')state.saveTheme(document.documentElement.dataset.themeEffective); panel.close();});
     actions.append(button);
   }
   const privacy = document.createElement('a'); privacy.href = '/privacy/'; privacy.textContent = data.preferences.link;
-  panel.append(title,description,actions,privacy); document.body.append(panel);
+  const close=document.createElement('button');close.type='button';close.className='privacy-preferences__close';close.setAttribute('aria-label',data.preferences.close);close.append(renderIcon('close',icons));close.addEventListener('click',()=>panel.close());
+  panel.append(close,title,description,actions,privacy); document.body.append(panel);
   const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);
   links.append(privacy.cloneNode(true));
   const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;
-  settings.addEventListener('click',()=>{panel.hidden=false; panel.querySelector('button').focus();}); links.append(settings);
+  settings.addEventListener('click',()=>{if(!panel.open)panel.showModal();}); links.append(settings);
   (document.querySelector('.site-footer') || document.querySelector('main')).append(links);
-  const show = () => { panel.hidden=state.choice()!==null; };
-  panel.hidden=true;
+  const show = () => { if(state.choice()===null&&!panel.open)panel.showModal(); };
   const intro = async () => {
     if (location.pathname!=='/' || state.introSeen() || matchMedia('(prefers-reduced-motion: reduce)').matches) { show(); return; }
     const element=document.createElement('div'); element.className='artist-brand-intro'; element.setAttribute('aria-hidden','true');

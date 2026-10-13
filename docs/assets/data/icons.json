@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "items": [
+    {"id":"account","src":"assets/icons/actions/account.svg","alt":"","monochrome":true},
     { "id": "reset", "src": "assets/icons/actions/reset.svg", "alt": "", "monochrome": true },
     { "id": "chevron-left", "src": "assets/icons/navigation/chevron-left.svg", "alt": "", "monochrome": true },
     { "id": "gallery-view", "src": "assets/icons/actions/preview.svg", "alt": "", "monochrome": true },
