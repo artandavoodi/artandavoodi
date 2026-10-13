@@ -17,7 +17,7 @@ export function bindNavigation(ui, icons) {
   const menuNavigation = document.querySelector('[data-menu-navigation]');
   if (!(toggle instanceof HTMLButtonElement) || !(menu instanceof HTMLElement) || !(menuNavigation instanceof HTMLElement)) return;
 
-  const sections = Array.isArray(ui.sections) ? ui.sections : [];
+  const sections = [...(Array.isArray(ui.sections) ? ui.sections : []), ...(Array.isArray(ui.menuLinks) ? ui.menuLinks : [])];
 
   menuNavigation.setAttribute('aria-label', ui.menuLabel);
   for (const section of sections) {
