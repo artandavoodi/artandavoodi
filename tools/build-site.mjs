@@ -52,7 +52,7 @@ await output('music/index.html',musicShell);
 shell=shell.replace('{{HEAD}}',head({title:`${artist.name} · ${artist.headline}`,description:artist.biography,path:'/',image:artist.portrait.src,graph:[person,website]},origin));
 const featured=await json('assets/data/featured.json');
 const gallery=await json(site.catalogues.gallery);
-const homepage=homepageMarkup(artist,catalogue,gallery,hub);
+const homepage=homepageMarkup(artist,catalogue,gallery,hub,concerts);
 await output(artist.homepage.biographyPath,`${artist.name}\n\n${artist.biography}\n\n${origin}/\n`);
 const featuredImages=[...homepage.imageSources];
 const featuredCards=[];
@@ -65,6 +65,7 @@ for(const selection of featured.items.filter(item=>item.enabled!==false)) {
 }
 shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p><div class="artist__actions">${homepage.actions}</div></div><section class="site-section artist__screen artist__latest">${homepage.latest}</section><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2><div class="featured__items">${featuredCards.join('')}</div></section></div><section class="site-section artist__screen artist__visual">${homepage.visual}</section></section>`);
 await output('press/index.html',documentPage({title:`${artist.homepage.pressTitle} · ${artist.name}`,description:artist.homepage.pressIntroduction,path:'/press/',graph:[person,website]},`<article class="artist__press press-document">${homepage.press}</article>`,origin,'Back to Hub').replace('href="/music/"','href="/hub/"'));
+shell=shell.replace('<div class="site-section artist__screen"><section class="featured">',`<section class="site-section artist__screen artist__concerts">${homepage.concerts}</section><div class="site-section artist__screen"><section class="featured">`);
 await output('index.html',shell);
 const routeShell=await readFile(new URL('tools/site/home.html',root),'utf8');
 const galleryLabel=ui.sections.find(s=>s.id==='gallery').label;

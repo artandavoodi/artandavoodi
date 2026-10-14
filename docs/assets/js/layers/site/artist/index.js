@@ -14,8 +14,9 @@ export async function render(data, ui, icons) {
   }
   const site = await loadJson('assets/data/site.json');
   const [music, gallery, hub] = await Promise.all(['music','gallery','hub'].map(key => loadJson(site.catalogues[key])));
-  const markup = homepageMarkup(data, music, gallery, hub);
-  for (const key of ['actions','latest','visual']) {
+  const concerts = await loadJson('assets/data/concerts.json');
+  const markup = homepageMarkup(data, music, gallery, hub, concerts);
+  for (const key of ['actions','latest','visual','concerts']) {
     document.querySelector(`[data-artist-${key}]`).innerHTML = markup[key];
   }
 }
