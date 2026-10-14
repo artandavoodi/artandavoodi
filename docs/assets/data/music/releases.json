@@ -3,6 +3,7 @@
   "items": [
     {
       "id": "remnant",
+      "artistId": "artan-davoodi",
       "order": 6,
       "title": "Remnant",
       "subtitle": "Upcoming Album · 8 Tracks",
@@ -32,6 +33,7 @@
     },
     {
       "id": "still-live-acoustic",
+      "artistId": "artan-davoodi",
       "order": 5,
       "title": "Still (Live Acoustic)",
       "format": "Vocal and acoustic guitar",
@@ -94,6 +96,7 @@
     },
     {
       "id": "dream",
+      "artistId": "artan-davoodi",
       "order": 4,
       "title": "Dream?",
       "language": "English",
@@ -150,6 +153,7 @@
     },
     {
       "id": "salim",
+      "artistId": "artan-davoodi",
       "order": 3,
       "title": "Salim",
       "format": "Instrumental and vocal",
@@ -352,6 +356,7 @@
     },
     {
       "id": "solum",
+      "artistId": "artan-davoodi",
       "order": 2,
       "title": "Solum",
       "subtitle": "Album",
@@ -951,6 +956,7 @@
     },
     {
       "id": "gone",
+      "artistId": "artan-davoodi",
       "aliases": ["gone-demo"],
       "order": 1,
       "title": "Gone",
