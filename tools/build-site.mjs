@@ -4,6 +4,7 @@ import {head, image, route, escape, recording, releaseBody, documentPage} from '
 import {newestReleases} from '../docs/assets/js/layers/site/music/publication.js';
 import {contextMarkup} from '../docs/assets/js/layers/site/music/context/markup.js';
 import {homepageMarkup} from '../docs/assets/js/layers/site/artist/homepage.js';
+import {concertPageData} from './site/concerts.mjs';
 const root=new URL('../',import.meta.url), docs=new URL('docs/',root);
 const json=async p=>JSON.parse(await readFile(new URL(p,docs),'utf8'));
 const [site,ui,artist,catalogue,icons,hub]=await Promise.all(['assets/data/site.json','assets/data/interface.json','assets/data/artist/profile.json','assets/data/music/releases.json','assets/data/icons.json','assets/data/hub.json'].map(json));
@@ -19,13 +20,7 @@ const output=async (path,html)=>{
 };
 const privacy=await json('assets/data/privacy.json');
 const concerts=await json('assets/data/concerts.json');
-const concertEvents=[...concerts.events].sort((a,b)=>Date.parse(a.startDate)-Date.parse(b.startDate));
-for(const event of concertEvents) {
-  if(!event.name || !event.venue || !event.city || !/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(event.startDate) || !Number.isFinite(Date.parse(event.startDate))) throw new Error('Concert requires a name, venue, city and date with timezone offset');
-  if(event.ticketUrl && !event.ticketUrl.startsWith('https://')) throw new Error('Concert ticket URL must use HTTPS');
-}
-const concertGraph=concertEvents.map(event=>({'@type':'MusicEvent',name:event.name,startDate:event.startDate,location:{'@type':'Place',name:event.venue,address:{'@type':'PostalAddress',addressLocality:event.city,addressCountry:event.country}},performer:{'@id':person['@id']},url:origin+'/concerts/'}));
-const concertBody=`<article class="privacy-document"><h1>${escape(concerts.title)}</h1><p>${escape(concerts.description)}</p>${concertEvents.length?concertEvents.map(event=>`<section><h2>${escape(event.name)}</h2><p><time datetime="${escape(event.startDate)}">${escape(event.startDate.replace('T',' '))}</time></p><p>${escape(event.venue)} · ${escape(event.city)}</p>${event.ticketUrl?`<a class="control" href="${escape(event.ticketUrl)}">${escape(concerts.ticketLabel)}</a>`:''}</section>`).join(''):`<p>${escape(concerts.emptyMessage)}</p>`}</article>`;
+const {body:concertBody,graph:concertGraph}=concertPageData(concerts,person['@id'],origin);
 await output('concerts/index.html',documentPage({title:`${concerts.title} · ${artist.name}`,description:concerts.description,path:'/concerts/',graph:[person,website,...concertGraph]},concertBody,origin,'Back to Artist').replace('href="/music/"','href="/"'));
 await output('assets/js/core/preference-config.js',`/* Generated from assets/data/privacy.json. */\nwindow.ArtanPreferenceConfig=Object.freeze(${JSON.stringify(privacy.storage)});\n`);
 const privacyBody=`<article class="privacy-document"><h1>${escape(privacy.title)}</h1><p>${escape(privacy.status)}</p>${privacy.sections.map(section=>`<section><h2>${escape(section.title)}</h2><p>${escape(section.text)}</p>${(section.links||[]).map(link=>`<a href="${escape(link.href)}">${escape(link.label)}</a>`).join('')}</section>`).join('')}<a href="${escape(privacy.contact)}">${escape(privacy.contactLabel)}</a></article>`;
