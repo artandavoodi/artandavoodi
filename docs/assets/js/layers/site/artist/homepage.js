@@ -2,7 +2,7 @@
 import { newestReleases } from '../music/publication.js';
 const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const picture = (record, sizes) => `<img src="/${escape(record.src)}" alt="${escape(record.alt)}" width="${record.width}" height="${record.height}" loading="lazy" decoding="async"${record.variants?.length ? ` srcset="${record.variants.map(v => `/${escape(v.src)} ${v.width}w`).join(', ')}" sizes="${escape(sizes || record.sizes)}"` : ''}>`;
-const action = (record, icon) => `<a class="control"${record.emphasis==='primary'?' data-emphasis="primary"':''} href="${escape(record.href)}">${icon?`<img src="/${escape(icon.src)}" alt=""${icon.monochrome?' data-monochrome="true"':''}>`:''}${escape(record.label)}</a>`;
+const action = (record, icon) => `<a class="control"${record.emphasis==='primary'?' data-emphasis="primary"':''} href="${escape(record.href)}">${icon?`<img src="/${escape(icon.fallbackSrc||icon.src)}" alt=""${icon.monochrome?' data-monochrome="true"':''}>`:''}${escape(record.label)}</a>`;
 export function homepageMarkup(profile, music, gallery, hub, concerts, icons) {
   const config = profile.homepage;
   const latest = newestReleases(music.items.filter(item => String(item.status).toLowerCase() === 'released'))[0];

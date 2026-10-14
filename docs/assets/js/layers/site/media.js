@@ -28,7 +28,7 @@ export function renderIcon(id, registry) {
   image.className = 'catalogue-icon';
   if (record.monochrome) image.dataset.monochrome = 'true';
   if (record.darkMonochrome) image.dataset.darkMonochrome = 'true';
-  image.src = assetUrl(record.src);
+  image.src = assetUrl(record.fallbackSrc || record.src);
   image.alt = record.alt;
   image.decoding = 'async';
   if (record.darkSrc) {

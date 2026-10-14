@@ -16,6 +16,12 @@
 
 ## Remaining verification or owner-dependent decisions
 
+- Owner vectors pending: Listen/play and Store/bag are empty in the Neuroartan canonical registry; Archive is empty in the artist registry. Existing shared dot is the explicit interim artwork, not a replacement icon. Remove each registry `fallbackSrc` after its vector is supplied and synchronize consumers before release.
+- Canonical Listen vector: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/media/play/play.svg`.
+- Canonical Store vector: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/commerce/shopping/bag.svg`.
+- Artist Archive vector: `/Users/artan/Documents/Neuroartan/artandavoodi/docs/assets/icons/actions/archive.svg`.
+- Store Orders vector is also empty: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/commerce/orders/order.svg`. The pinned store manifest confirms its other authentication vectors are populated. Apple/phone providers remain deferred, not enabled by artwork.
+
 - Hosted payment functions and webhook deployment, followed by sandbox payment-to-file verification.
 - Real Google sign-in and email-to-password recovery completed by the account owner.
 - Hosted Supabase authorization/storage verification; CI does not emulate its full services.

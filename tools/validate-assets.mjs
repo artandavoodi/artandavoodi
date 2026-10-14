@@ -115,6 +115,16 @@ if (site) {
   }
 }
 await scanFiles(path.join(root, 'assets'));
+const iconRegistry = await json('assets/data/icons.json');
+for (const icon of iconRegistry?.items || []) {
+  if (!(await localFile(icon.src, 'assets/'))) continue;
+  const populated = /<(?:path|circle|rect|line|polygon|polyline|ellipse|use|image|text)\b/.test(await readFile(path.join(root, icon.src), 'utf8'));
+  if (!populated) requireValue(nonempty(icon.fallbackSrc), `Empty icon requires registered fallback: ${icon.id}`);
+  if (icon.fallbackSrc && await localFile(icon.fallbackSrc, 'assets/')) {
+    requireValue(!populated, `Vector supplied: remove pending fallback for ${icon.id}`);
+    requireValue(/<(?:path|circle|rect|line|polygon|polyline|ellipse|use|image|text)\b/.test(await readFile(path.join(root, icon.fallbackSrc), 'utf8')), `Empty fallback: ${icon.id}`);
+  }
+}
 if (failures.length) {
   console.error(failures.join('\n'));
   process.exitCode = 1;
