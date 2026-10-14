@@ -3,7 +3,7 @@ export const concertUrl=event=>`/concerts/${event.id}/`;
 export function concertCalendar(event,origin) {
   const clean=value=>String(value).replace(/\\/g,'\\\\').replace(/\r?\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;');
   const stamp=value=>new Date(value).toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
-  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Artan Davoodi//Concerts//EN','BEGIN:VEVENT',`UID:${event.id}@${new URL(origin).hostname}`,`DTSTAMP:${stamp(event.startDate)}`,`DTSTART:${stamp(event.startDate)}`,...(event.endDate?[`DTEND:${stamp(event.endDate)}`]:[]),`SUMMARY:${clean(event.name)}`,`LOCATION:${clean(event.venue+', '+event.city+', '+event.country)}`,`URL:${origin+concertUrl(event)}`,`STATUS:${event.status==='Cancelled'?'CANCELLED':event.status==='Postponed'?'TENTATIVE':'CONFIRMED'}`,'END:VEVENT','END:VCALENDAR'];
+  const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Artan Davoodi//Concerts//EN','BEGIN:VEVENT',`UID:${event.id}@${new URL(origin).hostname}`,`DTSTAMP:${stamp(event.updatedAt)}`,`SEQUENCE:${event.sequence||0}`,`DTSTART:${stamp(event.startDate)}`,...(event.endDate?[`DTEND:${stamp(event.endDate)}`]:[]),`SUMMARY:${clean(event.name)}`,`LOCATION:${clean(event.venue+', '+event.city+', '+event.country)}`,`URL:${origin+concertUrl(event)}`,`STATUS:${event.status==='Cancelled'?'CANCELLED':event.status==='Postponed'?'TENTATIVE':'CONFIRMED'}`,'END:VEVENT','END:VCALENDAR'];
   return lines.map(line=>{let result='',length=0;for(const char of line){const bytes=Buffer.byteLength(char);if(length+bytes>73){result+='\r\n ';length=1;}result+=char;length+=bytes;}return result;}).join('\r\n')+'\r\n';
 }
 
@@ -17,7 +17,9 @@ export function concertPageData(schedule, artistId, origin) {
     new Intl.DateTimeFormat('en-GB',{timeZone:event.timeZone}).format(new Date(event.startDate));
     if(event.ticketUrl && new URL(event.ticketUrl).protocol!=='https:') throw new Error('Concert ticket URL must use HTTPS');
     if(event.status && !['Scheduled','Cancelled','Postponed','Rescheduled'].includes(event.status)) throw new Error('Invalid concert status');
-    for(const date of [event.endDate,event.previousStartDate].filter(Boolean)) if(!/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(date)||!Number.isFinite(Date.parse(date))) throw new Error('Invalid concert date');
+    if(!event.updatedAt) throw new Error('Concert requires an explicit revision timestamp');
+    if(event.sequence!==undefined&&(!Number.isInteger(event.sequence)||event.sequence<0)) throw new Error('Invalid concert revision sequence');
+    for(const date of [event.updatedAt,event.endDate,event.previousStartDate].filter(Boolean)) if(!/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(date)||!Number.isFinite(Date.parse(date))) throw new Error('Invalid concert date');
     if(event.endDate && Date.parse(event.endDate)<=Date.parse(event.startDate)) throw new Error('Concert end must follow start');
     if(event.status==='Rescheduled'&&!event.previousStartDate) throw new Error('Rescheduled concerts require their original date');
   }

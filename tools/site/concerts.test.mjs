@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFile} from 'node:fs/promises';
 import {concertPageData,concertCalendar} from './concerts.mjs';
 const schedule=JSON.parse(await readFile(new URL('../../docs/assets/data/concerts.json',import.meta.url)));
-const event={id:'fixture',name:'Fixture performance',startDate:'2027-01-01T20:00:00+01:00',timeZone:'Europe/Zagreb',venue:'Fixture venue',city:'Zagreb',country:'HR',ticketUrl:'https://example.com/tickets'};
+const event={id:'fixture',name:'Fixture performance',startDate:'2027-01-01T20:00:00+01:00',updatedAt:'2026-10-14T18:00:00Z',timeZone:'Europe/Zagreb',venue:'Fixture venue',city:'Zagreb',country:'HR',ticketUrl:'https://example.com/tickets'};
 const render=events=>concertPageData({...schedule,events},'https://example.com/#artist','https://example.com');
 test('empty schedule does not invent events',()=>assert.equal(render([]).graph.length,0));
 test('event page and calendar preserve canonical identity and timezone',()=>{

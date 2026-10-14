@@ -12,6 +12,9 @@ Optional `status` is Scheduled, Cancelled, Postponed or Rescheduled; rescheduled
 events require `previousStartDate`. Preserve IDs when changing a performance.
 Optional `endDate` must follow the start; no duration is invented if absent.
 Each performance generates its own canonical page and `event.ics` calendar file.
+Set `updatedAt` to the record's actual revision time, including timezone. Increment
+optional `sequence` after calendar changes so clients can reconcile the same UID.
+Calendar timestamps come from the record, never the build clock or concert date.
 Cancellation preserves the public record while removing its ticket action.
 
 Build and validate before publishing. Dates are sorted chronologically, displayed
