@@ -7,8 +7,12 @@ The artist website and independent store are deployed. The store's iCloud SMTP
 sender is `contact@artandavoodi.com`; an invitation delivery was confirmed.
 SMTP delivery alone does not register an inbox brand logo.
 
-- [ ] Inspect existing iCloud custom domains and mail authentication read-only.
-  Preserve MX, SPF, DKIM and DMARC; review any proposed DNS change separately.
+- [x] Inspect existing iCloud custom domains and mail authentication read-only.
+  All twelve confirmed aliases already exist across the four domains. Preserve
+  MX, SPF, DKIM and DMARC; review any proposed DNS change separately.
+  Neuroartan is authoritative on Cloudflare; the other three remain on Porkbun.
+  DMARC was absent on Neuroartan, artist and label domains. Neuroartan's `sig1`
+  DKIM CNAME was absent at its authoritative server; validate before repairing.
 - [ ] Verify Apple Business eligibility and account access before enrolling brands.
   No Developer Program purchase is needed merely to investigate branded mail.
 - [ ] Register separate brand/domain identities for Neuroartan, Artan Records,
@@ -27,6 +31,22 @@ SMTP delivery alone does not register an inbox brand logo.
 
 References: https://business.apple.com/ and
 https://support.apple.com/en-us/108340.
+
+## Separate backend setup status (2026-10-14)
+
+- Neuroartan: existing ICOS project preserved. Unsaved SMTP preparation uses
+  `contact@neuroartan.com`, sender name Neuroartan, iCloud SMTP port 587.
+  Owner entry of an app-specific password and delivery verification are pending.
+- Artan Store: existing project and `contact@artandavoodi.com` sender preserved.
+- Artan Records: isolated Free organization created; no backend project created.
+  Intended public authentication sender is `contact@artanrecords.com`.
+- Artan.live: isolated Free organization created; no backend project created.
+  Intended public music-account sender is `music@artan.live`.
+- Both new project forms explicitly block creation because the owner already has
+  two active free projects. No upgrade, pausing, deletion or data merger approved.
+- Organization creation is not database provisioning, email activation or brand
+  verification. No frontend credentials or live account claims are added for
+  nonexistent projects. Passwords and residential details must stay out of Git.
 
 ## Scope
 
