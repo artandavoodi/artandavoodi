@@ -26,4 +26,20 @@ for(const theme of ['light','dark']) test.describe(theme,()=>{
     await page.keyboard.press('Escape');
     await expect(page.getByRole('button',{name:'Open site menu',exact:true})).toHaveAttribute('aria-expanded','false');
   });
+  test('preference close control uses the canonical borderless motion',async({page})=>{
+    await page.goto('/');
+    await page.getByRole('button',{name:privacy.preferences.settings,exact:true}).click();
+    const close=page.getByRole('button',{name:privacy.preferences.close,exact:true});
+    await close.focus();
+    expect(await close.evaluate(element=>getComputedStyle(element).borderTopWidth)).toBe('0px');
+    expect(await close.evaluate(element=>getComputedStyle(element).outlineStyle)).toBe('none');
+    await expect(close.locator('.global-close-button__line')).toHaveCount(2);
+    await close.hover();
+    await expect.poll(()=>close.evaluate(element=>{
+      const lines=element.querySelectorAll('.global-close-button__line');
+      return getComputedStyle(lines[0]).transform===getComputedStyle(lines[1]).transform;
+    })).toBeTruthy();
+    await close.click();
+    await expect(page.locator('[data-preferences-panel]')).not.toBeVisible();
+  });
 });

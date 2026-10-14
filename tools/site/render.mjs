@@ -81,8 +81,8 @@ ${head(metadata,origin)}
 <link rel="icon" href="/assets/brand/logo/symbol-artan.svg" type="image/svg+xml">
 <script src="/assets/js/core/preference-config.js"></script>
 <script src="/assets/js/core/preference-state.js"></script>
-<script type="module" src="/assets/js/core/preferences.js?v=2"></script>
-<link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css?v=34">
+<script type="module" src="/assets/js/core/preferences.js?v=3"></script>
+<link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css?v=35">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/index.css?v=3">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css?v=3">
 <script type="module" src="/assets/js/layers/site/music-release/document.js?v=2"></script>

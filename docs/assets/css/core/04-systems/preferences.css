@@ -4,8 +4,7 @@
 .privacy-preferences::backdrop { background:var(--glass-overlay-backdrop-bg); backdrop-filter:blur(var(--glass-overlay-backdrop-blur)) saturate(var(--glass-overlay-backdrop-saturate)); -webkit-backdrop-filter:blur(var(--glass-overlay-backdrop-blur)) saturate(var(--glass-overlay-backdrop-saturate)); }
 body:has(.privacy-preferences[open]) { overflow:hidden; }
 .privacy-preferences::-webkit-scrollbar { display:none; }
-.privacy-preferences__close { display:grid; place-items:center; justify-self:end; inline-size:var(--close-control-size); block-size:var(--close-control-size); padding:var(--spacing-none); border:0; background:transparent; }
-.privacy-preferences__close img { inline-size:var(--close-control-line-width); block-size:var(--close-control-line-width); }
+.privacy-preferences__close { justify-self:end; }
 .privacy-preferences h2 { font-size: var(--font-size-lg); }
 .privacy-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); font-size: var(--site-type-caption-size); color: var(--cv-text-secondary); }
 .privacy-links button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; }
