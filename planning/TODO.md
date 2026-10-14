@@ -65,6 +65,22 @@ Keep the setup browser tabs open; do not schedule unattended account operations.
 - Stripe live review, merchant disclosures and deployed/tested payment fulfillment
   are still sales gates. Checkout must remain disabled until these are satisfied.
 
+## Autonomous reliability work (2026-10-14)
+
+- Store chrome is rendered at build time from the pinned fragments and the same
+  content renderer used by runtime fallback. No parallel theme or icon owner added.
+- Account forms reject overlapping requests, expose busy state and restore their
+  original enabled/disabled controls after success or failure.
+- Failed OAuth callbacks are distinguished from expired recovery links, stripped
+  from the address bar and retained through session refresh as actionable guidance.
+- Store account responses are `no-store`; the storefront uses `no-referrer`.
+  Verify those headers on Cloudflare, not merely in the local `_headers` file.
+- The label's obsolete Docs/Studio commands now fail explicitly instead of
+  reporting success without building anything. Independent surface checks pass.
+- Offline store guards cover request locking, recovery classification and rendered
+  chrome. Browser regressions also cover failed callbacks and script-free branding.
+  These do not establish real OAuth sign-in, payment fulfillment or cross-user RLS.
+
 ## Scope
 
 `artandavoodi.com`: artistic expression, art, music and publications.
