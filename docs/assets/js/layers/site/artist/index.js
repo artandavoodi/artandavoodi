@@ -1,7 +1,7 @@
 /* ARTANDAVOODI · Artist identity renderer. */
 import { renderImage } from '../media.js?v=4';
 import { loadJson } from '../../../core/data.js';
-import { homepageMarkup } from './homepage.js?v=3';
+import { homepageMarkup } from './homepage.js?v=4';
 export async function render(data, ui, icons) {
   const biography = document.querySelector('[data-artist-biography]');
   biography.textContent = data.biography || '';
@@ -15,7 +15,7 @@ export async function render(data, ui, icons) {
   const site = await loadJson('assets/data/site.json');
   const [music, gallery, hub] = await Promise.all(['music','gallery','hub'].map(key => loadJson(site.catalogues[key])));
   const concerts = await loadJson('assets/data/concerts.json');
-  const markup = homepageMarkup(data, music, gallery, hub, concerts);
+  const markup = homepageMarkup(data, music, gallery, hub, concerts, icons);
   for (const key of ['actions','latest','visual','concerts']) {
     document.querySelector(`[data-artist-${key}]`).innerHTML = markup[key];
   }

@@ -9,6 +9,10 @@ html:has(main > [data-fragment="artist"]:not([hidden])) [data-fragment="footer"]
 .artist__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); }
 .artist .control { display: inline-flex; align-items: center; justify-content: center; justify-self: start; text-decoration: none; }
 .artist .control[data-emphasis="primary"] { background:var(--text-primary-color); color:var(--bg-color); border-color:var(--text-primary-color); }
+.artist__actions .control { gap:var(--spacing-sm); }
+.artist__actions .control img { inline-size:var(--icon-size-md); block-size:var(--icon-size-md); object-fit:contain; }
+.artist__actions .control[data-emphasis="primary"] img { filter:brightness(0) invert(1); }
+html[data-theme-effective='dark'] .artist__actions .control[data-emphasis="primary"] img { filter:brightness(0); }
 .artist__release { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,var(--artist-portrait-width)),1fr)); align-items: center; gap: var(--spacing-xl); }
 .artist__release > div { display: grid; gap: var(--spacing-md); }
 .artist__release-cover { display: block; overflow: hidden; border-radius: var(--shape-card-radius); }

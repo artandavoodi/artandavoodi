@@ -1,6 +1,8 @@
 {
   "schemaVersion": 1,
   "items": [
+    {"id":"play","src":"assets/icons/actions/play.svg","alt":"","monochrome":true},
+    {"id":"shopping-bag","src":"assets/icons/actions/bag.svg","alt":"","monochrome":true},
     {"id":"account","src":"assets/icons/actions/account.svg","alt":"","monochrome":true},
     { "id": "reset", "src": "assets/icons/actions/reset.svg", "alt": "", "monochrome": true },
     { "id": "chevron-left", "src": "assets/icons/navigation/chevron-left.svg", "alt": "", "monochrome": true },
