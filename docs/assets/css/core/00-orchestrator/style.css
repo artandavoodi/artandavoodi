@@ -1,9 +1,9 @@
 /* ARTANDAVOODI · Stylesheet entry: tokens, foundation, then domain layers. */
-@import url('../01-tokens/00-tokens-all.css?v=12');
+@import url('../01-tokens/00-tokens-all.css?v=13');
 @import url('../02-foundation/themes.css?v=7');
 @import url('../02-foundation/foundation.css?v=7');
 @import url('../03-primitives/fields.css?v=1');
 @import url('../04-systems/close-button.css?v=2');
 @import url('../04-systems/startup.css?v=2');
 @import url('../04-systems/preferences.css?v=3');
-@import url('../../layers/00-orchestrator/00-layers-all.css?v=30');
+@import url('../../layers/00-orchestrator/00-layers-all.css?v=31');
