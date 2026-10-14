@@ -34,9 +34,10 @@ https://support.apple.com/en-us/108340.
 
 ## Separate backend setup status (2026-10-14)
 
-- Neuroartan: existing ICOS project preserved. Unsaved SMTP preparation uses
+- Neuroartan: existing ICOS project preserved. Custom SMTP saved after the owner
+  entered the password directly, then verified enabled after reload. Sender is
   `contact@neuroartan.com`, sender name Neuroartan, iCloud SMTP port 587.
-  Owner entry of an app-specific password and delivery verification are pending.
+  Actual message delivery and branded-template rendering remain unverified.
 - Artan Store: existing project and `contact@artandavoodi.com` sender preserved.
 - Artan Records: isolated Free organization created; no backend project created.
   Intended public authentication sender is `contact@artanrecords.com`.
@@ -47,6 +48,22 @@ https://support.apple.com/en-us/108340.
 - Organization creation is not database provisioning, email activation or brand
   verification. No frontend credentials or live account claims are added for
   nonexistent projects. Passwords and residential details must stay out of Git.
+
+## Next-session owner-dependent gates
+
+The owner requested deferral of steps requiring their input while away at work.
+Keep the setup browser tabs open; do not schedule unattended account operations.
+
+- Decide paid capacity for the two blocked backend projects. Do not pause existing
+  projects, bypass free quotas, purchase plans or merge brand databases.
+- Verify Neuroartan email arrival and complete the store's fresh recovery flow.
+  Password entry and submission belong to the owner; never request email tokens.
+- Resolve Apple Business eligibility, legal-address spelling and any agreement
+  acceptance before registering inbox logos; no paid Developer enrollment planned.
+- Review mail-authentication repairs before DNS changes. Preserve website routing,
+  existing mail delivery and all unrelated domain verification records.
+- Stripe live review, merchant disclosures and deployed/tested payment fulfillment
+  are still sales gates. Checkout must remain disabled until these are satisfied.
 
 ## Scope
 
