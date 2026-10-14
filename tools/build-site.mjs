@@ -15,7 +15,7 @@ const website={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:ar
 if(artist.alternateName) person.alternateName=artist.alternateName;
 const output=async (path,html)=>{
   const url=new URL(path,docs);
-  if(path.endsWith('.html')) html=html.replace('<div data-fragment="navigation"></div>',`<div data-fragment="navigation"><nav aria-label="${escape(ui.navigationLabel)}">${ui.sections.map(s=>`<a href="${s.path}">${escape(s.label)}</a>`).join(' ')}</nav></div>`);
+  if(path.endsWith('.html')) html=html.replace('<div data-fragment="navigation"></div>',`<div data-fragment="navigation"><nav aria-label="${escape(ui.navigationLabel)}">${[...ui.sections,...(ui.menuLinks||[])].map(s=>`<a href="${escape(s.path)}">${escape(s.label)}</a>`).join(' ')}</nav></div>`);
   await mkdir(new URL('./',url),{recursive:true}); await writeFile(url,html);
 };
 const privacy=await json('assets/data/privacy.json');
@@ -112,10 +112,9 @@ for(const item of gallery.items) {
 const imageUse=gallery.imageUse;
 const imageUseContact=hub.links.find(link=>link.category==='email'&&link.url?.startsWith('mailto:'));
 await output('gallery/image-use/index.html',documentPage({title:`${imageUse.title} · ${artist.name}`,description:imageUse.introduction,path:'/gallery/image-use/',graph:[person,website]},`<article class="gallery__image-use"><h1>${escape(imageUse.title)}</h1><p>${escape(imageUse.introduction)}</p>${imageUse.sections.map(section=>`<section><h2>${escape(section.title)}</h2><p>${escape(section.text)}</p></section>`).join('')}${imageUseContact?`<a class="control" href="${escape(imageUseContact.url)}">${escape(imageUse.contactLabel)}</a>`:''}</article>`,origin,galleryLabel).replace('href="/music/"','href="/gallery/"'));
-const urls=['/','/music/','/gallery/','/gallery/image-use/','/hub/','/press/',...gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`/gallery/collections/${c.id}/`),...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
+const urls=['/','/music/','/concerts/','/gallery/','/gallery/image-use/','/hub/','/press/',...gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`/gallery/collections/${c.id}/`),...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
   const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`||p===`/gallery/collections/${i.collection}/`).map(i=>i.image.src):catalogue.items.filter(r=>r.cover&&(p==='/music/'||p===route(r))).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
 }).join('\n')}\n</urlset>\n`);
-await output('sitemap.xml',(await readFile(new URL('sitemap.xml',docs),'utf8')).replace('</urlset>',`  <url><loc>${origin}/concerts/</loc></url>\n</urlset>`));
 console.log(`Generated homepage, concerts, catalogue, ${catalogue.items.length} releases and sitemap.`);
