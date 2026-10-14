@@ -1,5 +1,33 @@
 # Artistic website delivery checklist
 
+## Branded email follow-up (2026-10-14)
+
+The historical initialization checklist below is not a current deployment report.
+The artist website and independent store are deployed. The store's iCloud SMTP
+sender is `contact@artandavoodi.com`; an invitation delivery was confirmed.
+SMTP delivery alone does not register an inbox brand logo.
+
+- [ ] Inspect existing iCloud custom domains and mail authentication read-only.
+  Preserve MX, SPF, DKIM and DMARC; review any proposed DNS change separately.
+- [ ] Verify Apple Business eligibility and account access before enrolling brands.
+  No Developer Program purchase is needed merely to investigate branded mail.
+- [ ] Register separate brand/domain identities for Neuroartan, Artan Records,
+  Artan Davoodi and Artan.live using their existing canonical logo assets.
+  Do not claim business verification or register fabricated business information.
+- [ ] Scope public senders: Neuroartan `contact`/`info`; artist `contact`/`music`/
+  `press`; Artan.live `music`/`press`; Artan Records `contact`/`collaborate`.
+  Founder/personal aliases remain private and are not public-facing senders.
+- [ ] Distinguish inbox branding from logos inside transactional email templates.
+  Inbox display depends on recipient-provider support and brand verification.
+- [ ] Configure transactional templates only in each owning application's
+  dedicated backend. Do not create Supabase projects solely for mailbox logos,
+  reuse store credentials across brands, or mix customer data.
+- [ ] Test each sender's delivery, reply address, logo rendering and accessibility.
+  Do not mark this complete merely because a logo asset was uploaded.
+
+References: https://business.apple.com/ and
+https://support.apple.com/en-us/108340.
+
 ## Scope
 
 `artandavoodi.com`: artistic expression, art, music and publications.
