@@ -5,16 +5,19 @@ import {newestReleases} from '../docs/assets/js/layers/site/music/publication.js
 import {contextMarkup} from '../docs/assets/js/layers/site/music/context/markup.js';
 import {homepageMarkup} from '../docs/assets/js/layers/site/artist/homepage.js';
 import {concertPageData} from './site/concerts.mjs';
+import {documentChrome} from './site/chrome.mjs';
 const root=new URL('../',import.meta.url), docs=new URL('docs/',root);
 const json=async p=>JSON.parse(await readFile(new URL(p,docs),'utf8'));
 const [site,ui,artist,catalogue,icons,hub]=await Promise.all(['assets/data/site.json','assets/data/interface.json','assets/data/artist/profile.json','assets/data/music/releases.json','assets/data/icons.json','assets/data/hub.json'].map(json));
 const origin=`https://${site.identity.domain}`;
+const chrome=documentChrome(await readFile(new URL('assets/fragments/navigation.html',docs),'utf8'),await readFile(new URL('assets/fragments/footer.html',docs),'utf8'),ui,icons,site.identity);
 catalogue.items = newestReleases(catalogue.items);
 const person={'@type':'Person','@id':origin+'/#artist',name:artist.name,url:origin+'/',description:artist.biography,image:{'@type':'ImageObject',contentUrl:origin+'/'+artist.portrait.src,caption:artist.portrait.alt,width:artist.portrait.width,height:artist.portrait.height},sameAs:hub.links.filter(l=>l.url?.startsWith('https:')).map(l=>l.url)};
 const website={'@type':'WebSite','@id':origin+'/#website',url:origin+'/',name:artist.name};
 if(artist.alternateName) person.alternateName=artist.alternateName;
 const output=async (path,html)=>{
   const url=new URL(path,docs);
+  if(path.endsWith('.html') && html.includes('class="music-release-page"') && !html.includes('data-gallery-viewer="true"')) html=html.replace('<body><main',`<body>${chrome.header}<main`).replace('</main></body>',`</main>${chrome.footer}</body>`);
   if(path.endsWith('.html')) html=html.replace('<div data-fragment="navigation"></div>',`<div data-fragment="navigation"><nav aria-label="${escape(ui.navigationLabel)}">${[...ui.sections,...(ui.menuLinks||[])].map(s=>`<a href="${escape(s.path)}">${escape(s.label)}</a>`).join(' ')}</nav></div>`);
   await mkdir(new URL('./',url),{recursive:true}); await writeFile(url,html);
 };

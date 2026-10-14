@@ -27,6 +27,7 @@ export function bindNavigation(ui, icons) {
   }
 
   menuNavigation.setAttribute('aria-label', ui.menuLabel);
+  menuNavigation.replaceChildren();
   for (const section of sections) {
     const link = document.createElement('a');
     link.href = section.path;

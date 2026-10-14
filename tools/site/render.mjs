@@ -85,6 +85,6 @@ ${head(metadata,origin)}
 <link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css?v=35">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/index.css?v=3">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css?v=3">
-<script type="module" src="/assets/js/layers/site/music-release/document.js?v=2"></script>
+<script type="module" src="/assets/js/layers/site/music-release/document.js?v=3"></script>
 </head><body><main class="music-release-page" id="main-content"><a class="site-back-link" data-document-back href="${metadata.path==='/music/'?'/':'/music/'}" aria-label="${escape(backLabel)}">${escape(backLabel)}</a>${body}</main></body></html>`;
 }

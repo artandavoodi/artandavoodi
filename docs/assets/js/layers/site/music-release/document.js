@@ -1,9 +1,15 @@
 /* Enhance generated documents without replacing their crawlable content. */
-import {initializeTheme} from '../../../core/theme.js';
+import {initializeTheme,bindTheme} from '../../../core/theme.js';
+import {bindNavigation} from '../navigation.js?v=16';
 import {loadJson} from '../../../core/data.js';
 import {renderIcon} from '../media.js';
 initializeTheme();
 const [ui,icons]=await Promise.all([loadJson('assets/data/interface.json'),loadJson('assets/data/icons.json')]);
+if(document.querySelector('[data-site-navigation]')) {
+  document.querySelector('[data-skip]').textContent=ui.skipLabel;
+  bindTheme(ui.theme);
+  bindNavigation(ui,icons);
+}
 const back=document.querySelector('[data-document-back]');
 const icon=renderIcon(ui.musicBack.icon,icons);
 if(icon && back) { icon.alt=''; back.replaceChildren(icon); }
