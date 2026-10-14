@@ -6,7 +6,7 @@ import { applyMetadata } from '../../core/metadata.js?v=1';
 import { bindRoutes } from './routes.js?v=3';
 import { render as renderFeatured } from './featured/index.js';
 const modules = {
-  artist: () => import('./artist/index.js?v=6'),
+  artist: () => import('./artist/index.js?v=7'),
   music: () => import('./music/index.js?v=16'),
   gallery: () => import('./gallery/index.js?v=14'),
   hub: () => import('./hub/index.js?v=5'),
