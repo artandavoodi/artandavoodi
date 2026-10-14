@@ -5,5 +5,7 @@
   "ticketLabel": "Tickets",
   "upcomingTitle": "Upcoming concerts",
   "scheduleLabel": "View concert schedule",
+  "calendarLabel": "Add to calendar",
+  "statusLabels": {"Scheduled":"Scheduled","Cancelled":"Cancelled","Postponed":"Postponed","Rescheduled":"Rescheduled"},
   "events": []
 }

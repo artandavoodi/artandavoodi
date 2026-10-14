@@ -4,7 +4,7 @@ import {head, image, route, escape, recording, releaseBody, documentPage} from '
 import {newestReleases} from '../docs/assets/js/layers/site/music/publication.js';
 import {contextMarkup} from '../docs/assets/js/layers/site/music/context/markup.js';
 import {homepageMarkup} from '../docs/assets/js/layers/site/artist/homepage.js';
-import {concertPageData} from './site/concerts.mjs';
+import {concertPageData,concertCalendar,concertUrl} from './site/concerts.mjs';
 import {documentChrome} from './site/chrome.mjs';
 const root=new URL('../',import.meta.url), docs=new URL('docs/',root);
 const json=async p=>JSON.parse(await readFile(new URL(p,docs),'utf8'));
@@ -25,6 +25,11 @@ const privacy=await json('assets/data/privacy.json');
 const concerts=await json('assets/data/concerts.json');
 const {body:concertBody,graph:concertGraph}=concertPageData(concerts,person['@id'],origin);
 await output('concerts/index.html',documentPage({title:`${concerts.title} · ${artist.name}`,description:concerts.description,path:'/concerts/',graph:[person,website,...concertGraph]},concertBody,origin,'Back to Artist').replace('href="/music/"','href="/"'));
+for(const event of concerts.events) {
+  const {body,graph}=concertPageData({...concerts,title:event.name,events:[event]},person['@id'],origin);
+  await output(concertUrl(event).slice(1)+'index.html',documentPage({title:`${event.name} · ${artist.name}`,description:`${event.venue} · ${event.city}`,path:concertUrl(event),graph:[person,website,...graph]},body,origin,concerts.scheduleLabel).replace('href="/music/"','href="/concerts/"'));
+  await output(concertUrl(event).slice(1)+'event.ics',concertCalendar(event,origin));
+}
 await output('assets/js/core/preference-config.js',`/* Generated from assets/data/privacy.json. */\nwindow.ArtanPreferenceConfig=Object.freeze(${JSON.stringify(privacy.storage)});\n`);
 const privacyBody=`<article class="privacy-document"><h1>${escape(privacy.title)}</h1><p>${escape(privacy.status)}</p>${privacy.sections.map(section=>`<section><h2>${escape(section.title)}</h2><p>${escape(section.text)}</p>${(section.links||[]).map(link=>`<a href="${escape(link.href)}">${escape(link.label)}</a>`).join('')}</section>`).join('')}<a href="${escape(privacy.contact)}">${escape(privacy.contactLabel)}</a></article>`;
 await output('privacy/index.html',documentPage({title:privacy.title,path:'/privacy/',description:privacy.title,graph:[]},privacyBody,origin,'Back to Hub').replace('href="/music/"','href="/hub/"').replace('index,follow,max-image-preview:large','noindex,follow'));
@@ -116,7 +121,7 @@ for(const item of gallery.items) {
 const imageUse=gallery.imageUse;
 const imageUseContact=hub.links.find(link=>link.category==='email'&&link.url?.startsWith('mailto:'));
 await output('gallery/image-use/index.html',documentPage({title:`${imageUse.title} · ${artist.name}`,description:imageUse.introduction,path:'/gallery/image-use/',graph:[person,website]},`<article class="gallery__image-use"><h1>${escape(imageUse.title)}</h1><p>${escape(imageUse.introduction)}</p>${imageUse.sections.map(section=>`<section><h2>${escape(section.title)}</h2><p>${escape(section.text)}</p></section>`).join('')}${imageUseContact?`<a class="control" href="${escape(imageUseContact.url)}">${escape(imageUse.contactLabel)}</a>`:''}</article>`,origin,galleryLabel).replace('href="/music/"','href="/gallery/"'));
-const urls=['/','/music/','/concerts/','/gallery/','/gallery/image-use/','/hub/','/press/',...gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`/gallery/collections/${c.id}/`),...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
+const urls=['/','/music/','/concerts/',...concerts.events.map(concertUrl),'/gallery/','/gallery/image-use/','/hub/','/press/',...gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id)).map(c=>`/gallery/collections/${c.id}/`),...gallery.items.map(i=>`/gallery/${i.id}/`),...catalogue.items.map(route)];
 await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n${urls.map(p=>{
   const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`||p===`/gallery/collections/${i.collection}/`).map(i=>i.image.src):catalogue.items.filter(r=>r.cover&&(p==='/music/'||p===route(r))).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
