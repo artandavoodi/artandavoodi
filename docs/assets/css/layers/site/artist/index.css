@@ -8,6 +8,7 @@ html:has(main > [data-fragment="artist"]:not([hidden])) [data-fragment="footer"]
 .artist h1 { text-align: center; }
 .artist__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); }
 .artist .control { display: inline-flex; align-items: center; justify-content: center; justify-self: start; text-decoration: none; }
+.artist .control[data-emphasis="primary"] { background:var(--text-primary-color); color:var(--bg-color); border-color:var(--text-primary-color); }
 .artist__release { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,var(--artist-portrait-width)),1fr)); align-items: center; gap: var(--spacing-xl); }
 .artist__release > div { display: grid; gap: var(--spacing-md); }
 .artist__release-cover { display: block; overflow: hidden; border-radius: var(--shape-card-radius); }

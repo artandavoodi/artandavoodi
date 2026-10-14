@@ -1,7 +1,7 @@
 /* ARTANDAVOODI · Artist identity renderer. */
 import { renderImage } from '../media.js?v=4';
 import { loadJson } from '../../../core/data.js';
-import { homepageMarkup } from './homepage.js?v=2';
+import { homepageMarkup } from './homepage.js?v=3';
 export async function render(data, ui, icons) {
   const biography = document.querySelector('[data-artist-biography]');
   biography.textContent = data.biography || '';
