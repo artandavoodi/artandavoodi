@@ -1,10 +1,9 @@
 {
   "navigationLabel": "Main navigation",
-  "accountLink": {"label":"Your account","href":"https://store.artandavoodi.com/account/","icon":"account"},
   "sectionBranding": { "artist": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" }, "music": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" }, "hub": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" }, "gallery": { "icon": "artist-wordmark", "label": "Artan Davoodi", "href": "/" } },
   "musicBack": { "label": "Back to Music", "icon": "back", "href": "index.html#music" },
   "menuLabel": "Site menu",
-  "menuLinks": [{"id":"store","label":"Store","path":"https://store.artandavoodi.com/","after":"music"}],
+  "menuLinks": [{"id":"store","label":"Store","path":"https://store.artandavoodi.com/","after":"music"},{"id":"concerts","label":"Concerts","path":"/concerts/","after":"store"}],
   "menuToggle": { "open": "Open site menu", "close": "Close site menu" },
   "skipLabel": "Skip to content",
   "theme": { "dark": "Dark appearance", "light": "Light appearance" },

@@ -18,6 +18,15 @@ const output=async (path,html)=>{
   await mkdir(new URL('./',url),{recursive:true}); await writeFile(url,html);
 };
 const privacy=await json('assets/data/privacy.json');
+const concerts=await json('assets/data/concerts.json');
+const concertEvents=[...concerts.events].sort((a,b)=>Date.parse(a.startDate)-Date.parse(b.startDate));
+for(const event of concertEvents) {
+  if(!event.name || !event.venue || !event.city || !/^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(event.startDate) || !Number.isFinite(Date.parse(event.startDate))) throw new Error('Concert requires a name, venue, city and date with timezone offset');
+  if(event.ticketUrl && !event.ticketUrl.startsWith('https://')) throw new Error('Concert ticket URL must use HTTPS');
+}
+const concertGraph=concertEvents.map(event=>({'@type':'MusicEvent',name:event.name,startDate:event.startDate,location:{'@type':'Place',name:event.venue,address:{'@type':'PostalAddress',addressLocality:event.city,addressCountry:event.country}},performer:{'@id':person['@id']},url:origin+'/concerts/'}));
+const concertBody=`<article class="privacy-document"><h1>${escape(concerts.title)}</h1><p>${escape(concerts.description)}</p>${concertEvents.length?concertEvents.map(event=>`<section><h2>${escape(event.name)}</h2><p><time datetime="${escape(event.startDate)}">${escape(event.startDate.replace('T',' '))}</time></p><p>${escape(event.venue)} · ${escape(event.city)}</p>${event.ticketUrl?`<a class="control" href="${escape(event.ticketUrl)}">${escape(concerts.ticketLabel)}</a>`:''}</section>`).join(''):`<p>${escape(concerts.emptyMessage)}</p>`}</article>`;
+await output('concerts/index.html',documentPage({title:`${concerts.title} · ${artist.name}`,description:concerts.description,path:'/concerts/',graph:[person,website,...concertGraph]},concertBody,origin,'Back to Artist').replace('href="/music/"','href="/"'));
 await output('assets/js/core/preference-config.js',`/* Generated from assets/data/privacy.json. */\nwindow.ArtanPreferenceConfig=Object.freeze(${JSON.stringify(privacy.storage)});\n`);
 const privacyBody=`<article class="privacy-document"><h1>${escape(privacy.title)}</h1><p>${escape(privacy.status)}</p>${privacy.sections.map(section=>`<section><h2>${escape(section.title)}</h2><p>${escape(section.text)}</p>${(section.links||[]).map(link=>`<a href="${escape(link.href)}">${escape(link.label)}</a>`).join('')}</section>`).join('')}<a href="${escape(privacy.contact)}">${escape(privacy.contactLabel)}</a></article>`;
 await output('privacy/index.html',documentPage({title:privacy.title,path:'/privacy/',description:privacy.title,graph:[]},privacyBody,origin,'Back to Hub').replace('href="/music/"','href="/hub/"').replace('index,follow,max-image-preview:large','noindex,follow'));
@@ -113,4 +122,5 @@ await output('sitemap.xml',`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmln
   const images=p==='/'?[...new Set([artist.portrait.src,...featuredImages])]:p.startsWith('/gallery/')?gallery.items.filter(i=>p==='/gallery/'||p===`/gallery/${i.id}/`||p===`/gallery/collections/${i.collection}/`).map(i=>i.image.src):catalogue.items.filter(r=>r.cover&&(p==='/music/'||p===route(r))).map(r=>r.cover.src);
   return `  <url><loc>${origin}${p}</loc>${images.map(src=>`<image:image><image:loc>${escape(origin+'/'+src)}</image:loc></image:image>`).join('')}</url>`;
 }).join('\n')}\n</urlset>\n`);
-console.log(`Generated homepage, catalogue, ${catalogue.items.length} releases and sitemap.`);
+await output('sitemap.xml',(await readFile(new URL('sitemap.xml',docs),'utf8')).replace('</urlset>',`  <url><loc>${origin}/concerts/</loc></url>\n</urlset>`));
+console.log(`Generated homepage, concerts, catalogue, ${catalogue.items.length} releases and sitemap.`);
