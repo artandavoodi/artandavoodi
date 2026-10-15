@@ -64,7 +64,7 @@
   font-weight: var(--site-type-label-weight);
   letter-spacing: var(--site-type-label-tracking);
   line-height: var(--site-type-label-leading);
-  text-transform: uppercase;
+  text-transform: none;
   cursor: pointer;
   opacity: var(--music-muted-opacity);
 }
@@ -239,7 +239,7 @@
   font-weight: var(--site-type-label-weight);
   letter-spacing: var(--site-type-label-tracking);
   line-height: var(--site-type-label-leading);
-  text-transform: uppercase;
+  text-transform: none;
   opacity: var(--music-muted-opacity);
 }
 

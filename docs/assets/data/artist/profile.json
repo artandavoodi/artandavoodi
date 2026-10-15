@@ -9,7 +9,7 @@
   "summary": "Music and visual work by Artan Davoodi.",
   "biography": "Artan Davoodi is a musician, songwriter and producer whose main instrument is the piano. His work moves between instrumental music and acoustic songs. Memory and personal experience shape his songwriting and musical expression.",
   "homepage": {
-    "actions": [{ "label": "Listen", "href": "/music/", "emphasis":"primary", "icon":"play" }, { "label": "Explore Gallery", "href": "/gallery/", "icon":"gallery-view" }, {"label":"Store","href":"https://store.artandavoodi.com/", "icon":"shopping-bag"}],
+    "actions": [{ "label": "Listen", "href": "/music/", "emphasis":"primary", "icon":"play" }, {"label":"Store","href":"https://store.artandavoodi.com/", "icon":"shopping-bag"}, { "label": "Explore Gallery", "href": "/gallery/", "icon":"gallery-view" }],
     "latestTitle": "Latest release",
     "latestAction": "Listen to this release",
     "visualTitle": "Featured photography",

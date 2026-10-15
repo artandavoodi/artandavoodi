@@ -6,7 +6,7 @@
 .music-release-detail__heading { display: grid; gap: var(--spacing-sm); text-align: center; }
 .music-release-detail__meta, .music-release-detail__story { display: grid; gap: var(--spacing-md); max-inline-size: var(--cv-reading-width); }
 .music-release-detail__row { display: grid; grid-template-columns: minmax(0, var(--spacing-4xl)) minmax(0, 1fr); gap: var(--spacing-md); margin: 0; }
-.music-release-detail__label { color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); text-transform: uppercase; letter-spacing: var(--site-type-label-tracking); }
+.music-release-detail__label { color: var(--cv-text-secondary); font-size: var(--site-type-caption-size); text-transform: none; letter-spacing: var(--site-type-label-tracking); }
 .music-release-detail__value { color: var(--cv-text-primary); min-inline-size: 0; overflow-wrap: anywhere; }
 .music-release-detail__links { display: flex; gap: var(--spacing-md); }
 .music-release-detail__links a { color: var(--cv-text-primary); }
