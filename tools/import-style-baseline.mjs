@@ -9,6 +9,21 @@ const source = process.argv[2];
 if (!source) throw new Error('Provide the audited artan-live repository path.');
 const closeSource=process.argv[3];
 if(!closeSource)throw Error('Provide the verified Neuroartan website path for canonical close controls.');
+if(process.argv.includes('--audio-only')) {
+  const sourceFile='docs/registry/icons/public/assets/core/media/audio/audio.svg';
+  const file='docs/assets/icons/actions/audio.svg';
+  const sourceCommit=execFileSync('git',['-C',closeSource,'rev-parse','HEAD'],{encoding:'utf8'}).trim();
+  const bytes=execFileSync('git',['-C',closeSource,'show',`${sourceCommit}:${sourceFile}`]);
+  const manifestPath=path.join(root,'planning/style-baseline.json');
+  const manifest=JSON.parse(await readFile(manifestPath,'utf8'));
+  await mkdir(path.dirname(path.join(root,file)),{recursive:true});
+  await writeFile(path.join(root,file),bytes);
+  manifest.files=manifest.files.filter(record=>record.file!==file);
+  manifest.files.push({file,sha256:createHash('sha256').update(bytes).digest('hex'),sourceRepository:'artandavoodi/neuroartan-website',sourceCommit,sourceFile});
+  await writeFile(manifestPath,JSON.stringify(manifest,null,2)+'\n');
+  console.log('Imported canonical Audio icon without modifying the style baseline.');
+  process.exit(0);
+}
 const files = [
   'docs/assets/css/core/01-tokens/source/control-center.tokens.css',
   'docs/assets/css/core/01-tokens/source/neuroartan.tokens.css',

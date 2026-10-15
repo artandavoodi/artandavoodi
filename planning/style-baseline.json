@@ -39,6 +39,13 @@
       "sourceRepository": "artandavoodi/neuroartan-website",
       "sourceCommit": "667c8afd65f97d1ac14196dd759f3521798379a7",
       "sourceFile": "docs/assets/css/core/03-primitives/fields.css"
+    },
+    {
+      "file": "docs/assets/icons/actions/audio.svg",
+      "sha256": "c7ae6b59e0f76641105297fa4f7897842ee1a78a69bfd81ae40b583d6a57c357",
+      "sourceRepository": "artandavoodi/neuroartan-website",
+      "sourceCommit": "a997d6a1a7e89a84a120d5a1e3857dd804f9462b",
+      "sourceFile": "docs/registry/icons/public/assets/core/media/audio/audio.svg"
     }
   ]
 }

@@ -8,7 +8,7 @@
     {
       "id": "labels",
       "title": "Label",
-      "description": "Independent record label.",
+      "description": "",
       "link": { "label": "Artan Records", "url": "https://artanrecords.com/", "icon": "artan-records-wordmark" },
       "items": []
     },
