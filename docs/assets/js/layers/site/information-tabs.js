@@ -5,6 +5,9 @@ export function bindInformationTabs() {
   const list = page.querySelector('nav');
   const tabs = [...list.querySelectorAll('a')];
   const panels = tabs.map(tab => page.querySelector(tab.getAttribute('href')));
+  const picker=page.querySelector('[data-information-select]');
+  const pickerLabel=picker?.closest('label');
+  const phone=matchMedia('(max-width: 600px)');
   list.setAttribute('role', 'tablist');
   tabs.forEach((tab, index) => {
     tab.id = `tab-${panels[index].id}`;
@@ -14,16 +17,29 @@ export function bindInformationTabs() {
     panels[index].setAttribute('aria-labelledby', tab.id);
     panels[index].tabIndex = 0;
   });
-  const activate = index => tabs.forEach((tab, i) => {
+  const activate = index => {
+    if(picker){picker.value=String(index);picker.setAttribute('aria-controls',panels[index].id);}
+    tabs.forEach((tab, i) => {
     tab.setAttribute('aria-selected', String(i === index));
     tab.tabIndex = i === index ? 0 : -1;
     panels[i].hidden = i !== index;
-  });
+    });
+  };
   const fromHash = () => activate(Math.max(0, panels.findIndex(panel => `#${panel.id}` === location.hash)));
   const select = index => {
     activate(index);
     history.replaceState(null, '', tabs[index].getAttribute('href'));
   };
+  if(picker){
+    const syncControls=()=>{
+      list.hidden=phone.matches;
+      pickerLabel.hidden=!phone.matches;
+      panels.forEach(panel=>panel.setAttribute('role',phone.matches?'region':'tabpanel'));
+    };
+    picker.addEventListener('change',()=>select(picker.selectedIndex));
+    phone.addEventListener('change',syncControls);
+    syncControls();
+  }
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', event => { event.preventDefault(); select(index); });
     tab.addEventListener('keydown', event => {

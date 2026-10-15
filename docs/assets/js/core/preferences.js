@@ -13,10 +13,13 @@ export async function initializePreferences() {
   const actions = document.createElement('div'); actions.className = 'artist__actions';
   for (const [choice,label] of [['allow',data.preferences.allow],['reject',data.preferences.reject]]) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'control'; button.textContent = label;
+    const icon=renderIcon(choice==='allow' ? data.preferences.allowIcon : data.preferences.rejectIcon,icons);
+    if(icon){icon.alt='';button.prepend(icon);}
     button.addEventListener('click',()=>{state.setChoice(choice); if(choice==='allow')state.saveTheme(document.documentElement.dataset.themeEffective); panel.close();});
     actions.append(button);
   }
   const privacy = document.createElement('a'); privacy.href = '/privacy/'; privacy.textContent = data.preferences.link;
+  privacy.className='privacy-preferences__notice';
   const close=document.createElement('button');close.type='button';close.className='privacy-preferences__close global-close-button';close.setAttribute('aria-label',data.preferences.close);window.NeuroartanCloseButtons.initCloseButtonPrimitive(close);close.addEventListener('click',()=>panel.close());
   panel.append(close,title,description,actions,privacy); document.body.append(panel);
   const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);

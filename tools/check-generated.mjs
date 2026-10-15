@@ -26,6 +26,10 @@ for(const id of homepageProfile.homepage.pressPortraitIds)assert.ok(press.includ
 assert.ok((await read('hub/index.html')).includes('https://artan.live/about/'),'Hub links directly to the portfolio biography');
 assert.ok((await read('hub/index.html')).includes('href="/press/"'));
 assert.ok((await read('privacy/index.html')).includes('noindex,follow'));
+const privacyHtml=await read('privacy/index.html');
+assert.ok(privacyHtml.indexOf('id="privacy-0"')<privacyHtml.indexOf('<nav aria-label="Privacy &amp; preferences"'),'Privacy introduction precedes topic navigation');
+assert.ok(privacyHtml.includes('data-information-select') && privacyHtml.includes('Read a section'),'Phone section picker is generated from the same topics');
+assert.ok(!privacyHtml.includes('href="#privacy-0"'),'Introduction is not a hidden tab');
 for(const collection of gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id))) {
   const path=`gallery/collections/${collection.id}/index.html`;
   assert.ok((await read(path)).includes(`https://artandavoodi.com/gallery/collections/${collection.id}/`));

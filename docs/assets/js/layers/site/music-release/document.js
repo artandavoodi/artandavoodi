@@ -3,7 +3,7 @@ import {initializeTheme,bindTheme} from '../../../core/theme.js';
 import {bindNavigation} from '../navigation.js?v=16';
 import {loadJson} from '../../../core/data.js';
 import {renderIcon} from '../media.js';
-import {bindInformationTabs} from '../information-tabs.js';
+import {bindInformationTabs} from '../information-tabs.js?v=2';
 initializeTheme();
 bindInformationTabs();
 const [ui,icons]=await Promise.all([loadJson('assets/data/interface.json'),loadJson('assets/data/icons.json')]);

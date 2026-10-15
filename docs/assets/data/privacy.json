@@ -3,8 +3,9 @@
   "status": "Draft for review",
   "contact": "mailto:contact@artandavoodi.com",
   "contactLabel": "Privacy enquiries",
+  "sectionLabel": "Read a section",
   "storage": { "choiceKey": "artandavoodi-preferences", "themeKey": "artandavoodi-theme", "introKey": "artandavoodi-intro", "version": 1, "validDays": 180 },
-  "preferences": { "title": "Remember your preferences?", "description": "Optional browser storage remembers your appearance choice and the introduction. It is not used for advertising or analytics. You can change this choice at any time.", "allow": "Allow preferences", "reject": "Continue without saving", "settings": "Privacy Preferences", "link": "Privacy Notice", "close":"Close privacy preferences", "withdraw": "Stop remembering preferences" },
+  "preferences": { "title": "Remember your preferences?", "description": "Save your appearance choice for future visits. You can change this choice at any time.", "allow": "Allow", "reject": "Skip", "allowIcon": "check", "rejectIcon": "close", "settings": "Privacy Preferences", "link": "Privacy Notice", "close":"Close privacy preferences", "withdraw": "Stop remembering preferences" },
   "intro": { "icon": "artist-wordmark" },
   "sections": [
     { "title": "About this notice", "text": "This notice explains how information is handled when you visit Artan Davoodi's music and visual portfolio, and the choices available to you." },
