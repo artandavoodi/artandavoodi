@@ -60,14 +60,15 @@ function sections(item, ui, icons, parent) {
     else if (!parent || value !== publishedValue(parent,field.key)) body=paragraphs(value);
     body += rows(metadataRows(item,ui.musicSectionDetails?.[field.key],parent));
     if (!body) return '';
-    return `<details class="release-document__section" id="${escape(item.id)}-${escape(field.key)}"><summary>${escape(field.label)}${disclosureIcon(ui,icons)}</summary>${body}</details>`;
+    return `<details class="release-document__section" data-music-section="${escape(field.key)}" id="${escape(item.id)}-${escape(field.key)}"><summary>${escape(field.label)}${disclosureIcon(ui,icons)}</summary>${body}</details>`;
   }).join('\n');
 }
 export function releaseBody(item, ui, icons) {
   const meta=rows(metadataRows(item,ui.musicDetails));
+  const performance=[item,...(item.tracks || [])].some(record=>publishedValue(record,'lyrics') || (publishedValue(record,'archive')?.tabs || []).some(tab=>archiveAssets(tab).length));
   return `<article class="music-release-detail music">
 ${item.cover ? `<figure class="music-release-detail__cover">${image(item.cover)}</figure>` : ''}
-<header class="music-release-detail__heading"><h1>${escape(item.title)}</h1><p>${escape(item.type)} · ${escape(item.artist)}</p></header>
+<header class="music-release-detail__heading"><h1>${escape(item.title)}</h1><p>${escape(item.type)} · ${escape(item.artist)}</p>${performance ? `<button class="control" type="button" data-performance-toggle aria-pressed="false">${escape(ui.musicPerformance.open)}</button>` : ''}</header>
 ${paragraphs(item.description)}<div class="music-release-detail__meta">${meta}</div>
 ${links(item.links,icons)}${sections(item,ui,icons)}
 ${item.tracks?.length ? `<section><h2>${escape(ui.musicTrackListLabel)}</h2><ol class="release-document__tracks">${item.tracks.map(t=>`<li id="track-${escape(t.id)}"><details><summary>${escape(t.title)} <span>${escape(displayDuration(t,ui,item))}</span>${disclosureIcon(ui,icons)}</summary>${sections(t,ui,icons,item)}${links(t.links,icons)}</details></li>`).join('')}</ol></section>`:''}
@@ -84,7 +85,7 @@ ${head(metadata,origin)}
 <script type="module" src="/assets/js/core/preferences.js?v=3"></script>
 <link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css?v=38">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/index.css?v=3">
-<link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css?v=3">
-<script type="module" src="/assets/js/layers/site/music-release/document.js?v=4"></script>
+<link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css?v=5">
+<script type="module" src="/assets/js/layers/site/music-release/document.js?v=5"></script>
 </head><body><main class="music-release-page" id="main-content"><a class="site-back-link" data-document-back href="${metadata.path==='/music/'?'/':'/music/'}" aria-label="${escape(backLabel)}">${escape(backLabel)}</a>${body}</main></body></html>`;
 }

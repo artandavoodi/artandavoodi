@@ -48,6 +48,7 @@
     { "key": "key", "label": "Key" },
     { "key": "notes", "label": "Notes" }
   ],
+  "musicPerformance": { "open": "Performance view", "close": "Exit performance view" },
   "musicReaderFields": [
     { "key": "story", "label": "Story" },
     { "key": "lyrics", "label": "Lyrics" },

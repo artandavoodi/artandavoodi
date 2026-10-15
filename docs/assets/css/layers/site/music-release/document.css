@@ -12,3 +12,12 @@ details[open] > summary > .release-document__disclosure { transform: rotate(90de
 .release-document__tracks summary span { margin-inline-start: var(--spacing-md); font-variant-numeric: tabular-nums; }
 .music-release__cover > a > img { inline-size: 100%; block-size: auto; border-radius: var(--shape-card-radius); }
 .music-release__content h2 a { color: inherit; text-decoration: none; }
+.music-performance [data-music-section="lyrics"] > p { font-size: var(--site-type-heading-size); line-height: var(--site-type-body-leading); }
+.music-performance .release-document__section { margin-block: var(--spacing-lg); }
+.music-performance .release-document__section > img { max-block-size: none; object-fit: contain; }
+.music-release-detail__heading [data-performance-toggle] { inline-size: auto; justify-self: center; }
+.music-performance .music-release-detail__cover,
+.music-performance .music-release-detail__meta,
+.music-performance .music-release__links,
+.music-performance .music-release-detail > p,
+.music-performance [data-music-section]:not([data-music-section="lyrics"]):not([data-music-section="archive"]) { display: none; }

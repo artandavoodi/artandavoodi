@@ -134,4 +134,6 @@ const icons=JSON.parse(await read('assets/data/icons.json'));
 const specimen={...data.items[0],tracks:[],archive:{tabs:[{label:'Score',assets:[{title:'Piano score',url:'https://example.com/score.pdf',instrument:'Piano',version:'1',preview:data.items[0].cover}]}]}};
 const specimenHtml=releaseBody(specimen,ui,icons);
 assert.ok(specimenHtml.includes('https://example.com/score.pdf') && specimenHtml.includes('Piano score') && specimenHtml.includes('Version'));
+assert.ok(specimenHtml.includes('data-performance-toggle'),'Published archive assets enable performance reading');
+assert.ok(specimenHtml.includes('data-music-section="archive"'),'Archive sections retain semantic ownership');
 console.log('PASS: editorial visibility, inherited details, archive assets and release-link boundaries.');

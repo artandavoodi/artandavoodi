@@ -7,6 +7,22 @@ import {bindInformationTabs} from '../information-tabs.js';
 initializeTheme();
 bindInformationTabs();
 const [ui,icons]=await Promise.all([loadJson('assets/data/interface.json'),loadJson('assets/data/icons.json')]);
+const performanceToggle=document.querySelector('[data-performance-toggle]');
+let readingState=[];
+performanceToggle?.addEventListener('click',()=>{
+  const active=performanceToggle.getAttribute('aria-pressed')!=='true';
+  performanceToggle.setAttribute('aria-pressed',String(active));
+  performanceToggle.textContent=active ? ui.musicPerformance.close : ui.musicPerformance.open;
+  document.documentElement.classList.toggle('music-performance',active);
+  if(active){
+    readingState=[...document.querySelectorAll('details')].map(section=>[section,section.open]);
+    document.querySelectorAll('[data-music-section="lyrics"], [data-music-section="archive"]').forEach(section=>{
+      section.open=true;
+      const track=section.closest('li')?.querySelector('details');
+      if(track) track.open=true;
+    });
+  } else readingState.forEach(([section,open])=>{section.open=open;});
+});
 if(document.querySelector('[data-site-navigation]')) {
   document.querySelector('[data-skip]').textContent=ui.skipLabel;
   bindTheme(ui.theme);
