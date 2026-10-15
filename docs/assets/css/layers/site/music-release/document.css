@@ -15,9 +15,9 @@ details[open] > summary > .release-document__disclosure { transform: rotate(90de
 .music-performance [data-music-section="lyrics"] > p { font-size: var(--site-type-heading-size); line-height: var(--site-type-body-leading); }
 .music-performance .release-document__section { margin-block: var(--spacing-lg); }
 .music-performance .release-document__section > img { max-block-size: none; object-fit: contain; }
-.music-release-detail__heading [data-performance-toggle] { inline-size: auto; justify-self: center; }
+[data-music-section="musicalDetails"] [data-performance-toggle] { inline-size: auto; margin-block: var(--spacing-md); }
 .music-performance .music-release-detail__cover,
 .music-performance .music-release-detail__meta,
 .music-performance .music-release__links,
 .music-performance .music-release-detail > p,
-.music-performance [data-music-section]:not([data-music-section="lyrics"]):not([data-music-section="archive"]) { display: none; }
+.music-performance [data-music-section]:not([data-music-section="lyrics"]):not([data-music-section="archive"]):not([data-music-section="musicalDetails"]) { display: none; }

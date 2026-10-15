@@ -135,5 +135,7 @@ const specimen={...data.items[0],tracks:[],archive:{tabs:[{label:'Score',assets:
 const specimenHtml=releaseBody(specimen,ui,icons);
 assert.ok(specimenHtml.includes('https://example.com/score.pdf') && specimenHtml.includes('Piano score') && specimenHtml.includes('Version'));
 assert.ok(specimenHtml.includes('data-performance-toggle'),'Published archive assets enable performance reading');
+assert.ok(!/<header[^>]*>[\s\S]*?data-performance-toggle[\s\S]*?<\/header>/.test(specimenHtml),'Performance action must not be promoted in the release heading');
+assert.ok(/data-music-section="musicalDetails"[\s\S]*?data-performance-toggle/.test(specimenHtml),'Performance action belongs to musical details');
 assert.ok(specimenHtml.includes('data-music-section="archive"'),'Archive sections retain semantic ownership');
 console.log('PASS: editorial visibility, inherited details, archive assets and release-link boundaries.');
