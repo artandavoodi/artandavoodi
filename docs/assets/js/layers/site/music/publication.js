@@ -22,7 +22,7 @@ export function displayDuration(item, ui, parent) {
 export function metadataRows(item, fields, parent) {
   return (fields || []).flatMap(field => {
     const value = field.key === 'trackCount' ? item.tracks?.length : publishedValue(item, field.key);
-    if (!value || (field.when && value !== field.when)) return [];
+    if (value === undefined || value === null || value === '' || (field.when && value !== field.when)) return [];
     if (parent && value === publishedValue(parent, field.key)) return [];
     return [{ label: field.label, value }];
   });
@@ -30,4 +30,13 @@ export function metadataRows(item, fields, parent) {
 
 export function archiveAssets(tab) {
   return (tab.assets || []).filter(asset => asset.status !== 'draft');
+}
+
+export function hasPerformanceMaterial(item, ui) {
+  const fields=(ui.musicSectionDetails?.musicalDetails || []).filter(field=>field.performance);
+  return [item,...(item.tracks || [])].some(record=>
+    publishedValue(record,'lyrics') ||
+    metadataRows(record,fields).length ||
+    (publishedValue(record,'archive')?.tabs || []).some(tab=>archiveAssets(tab).length)
+  );
 }

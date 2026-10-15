@@ -1,5 +1,5 @@
 /* Public documents generated from catalogue data; no separately authored release copy. */
-import { publishedValue, metadataRows, archiveAssets, displayDuration } from '../../docs/assets/js/layers/site/music/publication.js';
+import { publishedValue, metadataRows, archiveAssets, displayDuration, hasPerformanceMaterial } from '../../docs/assets/js/layers/site/music/publication.js';
 export const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 export const route = item => `/music/${item.id}/`;
 const paragraphs = text => String(text || '').split(/\n\n+/).filter(Boolean).map(p => `<p>${escape(p)}</p>`).join('\n');
@@ -52,7 +52,6 @@ function disclosureIcon(ui, icons) {
   return icon ? `<img class="release-document__disclosure" src="/${escape(icon.src)}" alt=""${icon.monochrome?' data-monochrome="true"':''}>` : '';
 }
 const rows = records => records.map(record => `<p class="music-release-detail__row"><span class="music-release-detail__label">${escape(record.label)}</span><span class="music-release-detail__value">${escape(record.value)}</span></p>`).join('');
-const hasPerformance = item => [item,...(item.tracks || [])].some(record=>publishedValue(record,'lyrics') || (publishedValue(record,'archive')?.tabs || []).some(tab=>archiveAssets(tab).length));
 function sections(item, ui, icons, parent) {
   return ui.musicReaderFields.map(field=>{
     let body='';
@@ -60,7 +59,7 @@ function sections(item, ui, icons, parent) {
     if(field.key==='archive') body=(value?.tabs || []).filter(tab=>archiveAssets(tab).length).map(tab=>`<h3>${escape(tab.label)}</h3>${paragraphs(tab.description)}${archiveAssets(tab).map(a=>`${a.preview ? image(a.preview,true) : ''}<p><a href="${escape(a.url || '/'+a.path)}">${escape(a.title || a.label)}</a></p>${rows(metadataRows(a,ui.musicArchiveAssetDetails))}`).join('')}`).join('');
     else if (!parent || value !== publishedValue(parent,field.key)) body=paragraphs(value);
     body += rows(metadataRows(item,ui.musicSectionDetails?.[field.key],parent));
-    if(field.key==='musicalDetails' && !parent && hasPerformance(item)) body+=`<button class="control" type="button" data-performance-toggle aria-pressed="false">${escape(ui.musicPerformance.open)}</button>`;
+    if(field.key==='musicalDetails' && !parent && hasPerformanceMaterial(item,ui)) body+=`<button class="control" type="button" data-performance-toggle aria-pressed="false">${escape(ui.musicPerformance.open)}</button>`;
     if (!body) return '';
     return `<details class="release-document__section" data-music-section="${escape(field.key)}" id="${escape(item.id)}-${escape(field.key)}"><summary>${escape(field.label)}${disclosureIcon(ui,icons)}</summary>${body}</details>`;
   }).join('\n');
@@ -84,9 +83,9 @@ ${head(metadata,origin)}
 <script src="/assets/js/core/preference-config.js"></script>
 <script src="/assets/js/core/preference-state.js"></script>
 <script type="module" src="/assets/js/core/preferences.js?v=3"></script>
-<link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css?v=39">
+<link rel="stylesheet" href="/assets/css/core/00-orchestrator/style.css?v=40">
 <link rel="stylesheet" href="/assets/css/layers/site/music-release/index.css?v=3">
-<link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css?v=6">
-<script type="module" src="/assets/js/layers/site/music-release/document.js?v=6"></script>
+<link rel="stylesheet" href="/assets/css/layers/site/music-release/document.css?v=7">
+<script type="module" src="/assets/js/layers/site/music-release/document.js?v=7"></script>
 </head><body><main class="music-release-page" id="main-content"><a class="site-back-link" data-document-back href="${metadata.path==='/music/'?'/':'/music/'}" aria-label="${escape(backLabel)}">${escape(backLabel)}</a>${body}</main></body></html>`;
 }

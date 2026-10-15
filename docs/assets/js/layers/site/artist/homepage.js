@@ -13,6 +13,12 @@ export function homepageMarkup(profile, music, gallery, hub, concerts, icons) {
     if (!item) throw Error(`Unknown homepage visual: ${id}`);
     return `<a href="/gallery/${escape(item.id)}/" aria-label="${escape(item.image.alt)}">${picture(item.image,'(max-width: 860px) 100vw, 33vw')}</a>`;
   });
+  const portraits=(config.pressPortraitIds || []).map(id=>{
+    const item=gallery.items.find(record=>record.id===id);
+    if(!item || item.collection!=='portfolio')throw Error(`Unknown press portrait: ${id}`);
+    return `<a href="/gallery/${escape(item.id)}/" aria-label="${escape(item.image.alt)}">${picture(item.image)}</a>`;
+  });
+  portraits.unshift(`<a href="/${escape(profile.portrait.src)}" aria-label="${escape(profile.portrait.alt)}">${picture(profile.portrait)}</a>`);
   return {
     concerts: `<h2>${escape(concerts.upcomingTitle)}</h2>${upcoming.map(event=>`<section><h3><a href="/concerts/${escape(event.id)}/">${escape(event.name)}</a></h3><p><time datetime="${escape(event.startDate)}">${escape(new Intl.DateTimeFormat('en-GB',{dateStyle:'long',timeStyle:'short',timeZone:event.timeZone}).format(new Date(event.startDate)))}</time> · ${escape(event.timeZone)}</p><p>${escape(event.venue)} · ${escape(event.city)}</p><div class="artist__actions">${event.ticketUrl?action({label:concerts.ticketLabel,href:event.ticketUrl}):''}${action({label:concerts.calendarLabel,href:`/concerts/${event.id}/event.ics`})}</div></section>`).join('')||`<p>${escape(concerts.emptyMessage)}</p>`}${action({label:concerts.scheduleLabel,href:'/concerts/'})}`,
     imageSources: [latest?.cover?.src, ...config.visualIds.map(id => gallery.items.find(item => item.id === id).image.src)].filter(Boolean),
@@ -23,6 +29,6 @@ export function homepageMarkup(profile, music, gallery, hub, concerts, icons) {
     }).join(''),
     latest: latest ? `<h2>${escape(config.latestTitle)}</h2><div class="artist__release"><a class="artist__release-cover" href="/music/${escape(latest.id)}/" aria-label="${escape(latest.title)}">${picture(latest.cover)}</a><div><h3>${escape(latest.title)}</h3><p>${escape(latest.type)} · <time datetime="${escape(latest.releaseDate)}">${escape(latest.releaseDate)}</time></p><p>${escape(latest.description)}</p>${action({label:config.latestAction,href:`/music/${latest.id}/`})}</div></div>` : '',
     visual: `<h2>${escape(config.visualTitle)}</h2><div class="artist__visual-grid">${visuals.join('')}</div>${action({label:config.visualAction,href:'/gallery/'})}`,
-    press: `<h1>${escape(config.pressTitle)}</h1><p>${escape(config.pressIntroduction)}</p><p>${escape(profile.biography)}</p><div class="artist__actions">${contact ? action({label:contact.label,href:contact.url}) : ''}<a class="control" href="/${escape(config.biographyPath)}" download>${escape(config.biographyAction)}</a>${action({label:config.portraitAction,href:`/${profile.portrait.src}`})}</div><div class="artist__actions">${hub.contacts.filter(record=>record.id!=='press').map(record=>action({label:record.label,href:record.url})).join('')}</div>`
+    press: `<h1>${escape(config.pressTitle)}</h1><p>${escape(config.pressIntroduction)}</p><div class="artist__actions">${contact ? action({label:contact.label,href:contact.url}) : ''}${action({label:config.biographyAction,href:'#biography'})}${action({label:config.portraitAction,href:'#press-portraits'})}</div><div class="artist__actions">${hub.contacts.filter(record=>record.id!=='press').map(record=>action({label:record.label,href:record.url})).join('')}</div><section id="biography"><h2>${escape(config.biographyTitle)}</h2><p>${escape(profile.biography)}</p></section><section id="press-portraits"><h2>${escape(config.portraitsTitle)}</h2><div class="artist__visual-grid">${portraits.join('')}</div></section>`
   };
 }

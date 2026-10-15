@@ -47,3 +47,19 @@ metadata toggle, Artan Records disclosure, loaded portrait, X/email/hub links,
 and dark-mode icon filtering. Browser console reported no errors. Phone (390px)
 homepage/gallery and tablet (834px) music view had no horizontal overflow.
 Desktop homepage reviewed visually. Hardware-device testing is still outstanding.
+
+## Performance material audit — 2026-10-15
+
+The supplied Remnant content specification confirms keys and tempos for Station,
+Shadow, Wonder, Elsewhere, You, Lullaby and Filippa. Wonder and Elsewhere retain
+their provisional key labels; Station and You retain reference tempo labels.
+The confirmed ten-part Still studio form is now stored on that Remnant track,
+not copied to the separate live acoustic master.
+
+No explicit chord sequences, progression counts, time signatures, tunings, capo
+settings, notation files or approved score files were found in the supplied
+specification. Do not infer them from key or audio. The existing musical-details
+renderer accepts these fields when verified; score attachments remain owned by
+the archive asset registry. Draft fields and draft assets remain unpublished.
+Performance reading opens lyrics, musical details and published score references;
+it is public presentation, not a private authenticated rehearsal workspace.

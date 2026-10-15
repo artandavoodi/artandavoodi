@@ -16,7 +16,7 @@ performanceToggle?.addEventListener('click',()=>{
   document.documentElement.classList.toggle('music-performance',active);
   if(active){
     readingState=[...document.querySelectorAll('details')].map(section=>[section,section.open]);
-    document.querySelectorAll('[data-music-section="lyrics"], [data-music-section="archive"]').forEach(section=>{
+    document.querySelectorAll('[data-music-section="lyrics"], [data-music-section="archive"], [data-music-section="musicalDetails"]').forEach(section=>{
       section.open=true;
       const track=section.closest('li')?.querySelector('details');
       if(track) track.open=true;
@@ -46,6 +46,6 @@ revealTrack();
 window.addEventListener('hashchange',revealTrack);
 document.querySelectorAll('details.release-document__section').forEach(section=>{
   section.addEventListener('toggle',()=>{
-    if(section.open) history.replaceState(null,'',`#${section.id}`);
+    if(section.open && !document.documentElement.classList.contains('music-performance')) history.replaceState(null,'',`#${section.id}`);
   });
 });

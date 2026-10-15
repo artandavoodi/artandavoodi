@@ -3,7 +3,7 @@ import {readFile} from 'node:fs/promises';
 import assert from 'node:assert/strict';
 import {escape,route,releaseBody} from './site/render.mjs';
 import {selection,photoUrl} from '../docs/assets/js/layers/site/gallery/model.js';
-import {publishedValue, metadataRows, archiveAssets, newestReleases, displayDuration} from '../docs/assets/js/layers/site/music/publication.js';
+import {publishedValue, metadataRows, archiveAssets, newestReleases, displayDuration, hasPerformanceMaterial} from '../docs/assets/js/layers/site/music/publication.js';
 const docs=new URL('../docs/',import.meta.url);
 const read=p=>readFile(new URL(p,docs),'utf8');
 const data=JSON.parse(await read('assets/data/music/releases.json'));
@@ -20,6 +20,10 @@ assert.ok((await read(homepageProfile.homepage.biographyPath)).includes(homepage
 assert.ok(!home.includes(escape(homepageProfile.homepage.pressTitle)));
 assert.ok((await read('press/index.html')).includes(escape(homepageProfile.homepage.pressTitle)));
 assert.ok((await read('press/index.html')).includes('mailto:press@artandavoodi.com'));
+const press=await read('press/index.html');
+assert.ok(press.includes('href="#biography"') && !press.includes(' download'),'Biography is readable without a download action');
+for(const id of homepageProfile.homepage.pressPortraitIds)assert.ok(press.includes(`href="/gallery/${id}/"`),'Press portraits reuse gallery records');
+assert.ok((await read('hub/index.html')).includes('https://artan.live/about/'),'Hub links directly to the portfolio biography');
 assert.ok((await read('hub/index.html')).includes('href="/press/"'));
 assert.ok((await read('privacy/index.html')).includes('noindex,follow'));
 for(const collection of gallery.collections.filter(c=>gallery.items.some(i=>i.collection===c.id))) {
@@ -138,4 +142,10 @@ assert.ok(specimenHtml.includes('data-performance-toggle'),'Published archive as
 assert.ok(!/<header[^>]*>[\s\S]*?data-performance-toggle[\s\S]*?<\/header>/.test(specimenHtml),'Performance action must not be promoted in the release heading');
 assert.ok(/data-music-section="musicalDetails"[\s\S]*?data-performance-toggle/.test(specimenHtml),'Performance action belongs to musical details');
 assert.ok(specimenHtml.includes('data-music-section="archive"'),'Archive sections retain semantic ownership');
+assert.equal(hasPerformanceMaterial({key:'A minor'},ui),true,'Confirmed musical metadata enables performance reading');
+assert.equal(hasPerformanceMaterial({key:'A minor',editorial:{key:'draft'}},ui),false,'Draft metadata does not enable a published performance action');
+assert.equal(metadataRows({capo:0},[{key:'capo',label:'Capo'}])[0].value,0,'Zero capo is valid musical data');
+const chordSpecimen=releaseBody({...specimen,archive:undefined,key:'A minor',chords:'Am F C G',chordProgression:'i VI III VII',timeSignature:'4/4',structure:'Verse / Chorus'},ui,icons);
+for(const value of ['Am F C G','i VI III VII','4/4','Verse / Chorus'])assert.ok(chordSpecimen.includes(escape(value)),'Performance metadata must remain crawlable');
+assert.ok((await read('music/remnant/index.html')).includes('Climax Chorus'),'Confirmed Remnant form is published');
 console.log('PASS: editorial visibility, inherited details, archive assets and release-link boundaries.');

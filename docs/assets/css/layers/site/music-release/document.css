@@ -15,6 +15,7 @@ details[open] > summary > .release-document__disclosure { transform: rotate(90de
 .music-performance [data-music-section="lyrics"] > p { font-size: var(--site-type-heading-size); line-height: var(--site-type-body-leading); }
 .music-performance .release-document__section { margin-block: var(--spacing-lg); }
 .music-performance .release-document__section > img { max-block-size: none; object-fit: contain; }
+[data-music-section="musicalDetails"] .music-release-detail__value { white-space: pre-line; }
 [data-music-section="musicalDetails"] [data-performance-toggle] { inline-size: auto; margin-block: var(--spacing-md); }
 .music-performance .music-release-detail__cover,
 .music-performance .music-release-detail__meta,
