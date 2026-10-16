@@ -1,6 +1,8 @@
 # Artistic website delivery checklist
 
 ## Artist enquiries and press (2026-10-16)
+- Press previews are equal 140px squares with face-oriented crops; only the approved press selection links to original downloads. Gallery pages do not offer downloads.
+- Shared document focus controls use the registered visibility-on/off pair and preserve a restore control. Local switching was checked; hosted deployment verification remains separate.
 - Press portrait previews use one square frame; original files and download actions remain separate.
 - Enquiry purposes route to the matching public inbox. The current action explicitly opens email, not a claimed server delivery.
 - Separate Apps Script project created for artist enquiries; label project must not be reused or changed.
@@ -9,6 +11,12 @@
 - CAPTCHA API activation currently awaits approval of Google Cloud terms. Do not add billing or a paid plan without separate approval.
 - The independent Apps Script source is `tools/site/artist-enquiries.gs`; its Google project is “Artan Davoodi Artist Enquiries”. Do not configure it with label storage or credentials.
 - Retain desktop-only section snapping; mobile/tablet scroll naturally.
+
+## Outstanding release gates (2026-10-16)
+- Keep direct artist enquiries open until dedicated CAPTCHA keys, public deployment, a real CAPTCHA submission, spreadsheet storage and notification delivery are verified.
+- Keep live checkout disabled until merchant/legal requirements and hosted purchase, webhook, entitlement, private-download and cross-account access checks are satisfied. Local source checks are not evidence of real payment delivery.
+- Keep owner Google sign-in and password-recovery checks open until the full hosted journeys are confirmed; SMTP invitation delivery alone does not verify recovery.
+- Legal review, physical-product details, additional score/chord source material, replacement icon vectors and private Studio operations remain pending where previously deferred. Do not mark them complete from visual or static checks.
 
 ## Branded email follow-up (2026-10-14)
 

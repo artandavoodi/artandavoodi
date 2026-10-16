@@ -24,7 +24,7 @@ html[data-theme-effective='dark'] .artist__actions .control[data-emphasis="prima
 .artist__press > p { max-inline-size: var(--cv-reading-width); color: var(--cv-text-secondary); }
 .artist__press .artist__actions { justify-content: start; }
 .artist__press section { display: grid; gap: var(--spacing-md); scroll-margin-block-start: var(--spacing-4xl); }
-.artist__press .artist__visual-grid { grid-template-columns:repeat(auto-fit,minmax(0,calc(var(--featured-card-width) / 2))); }
+.artist__press .artist__visual-grid { grid-template-columns:repeat(auto-fit,minmax(0,var(--press-portrait-preview-width))); }
 .artist__press .artist__visual-grid a { aspect-ratio:1; }
 .artist__press .artist__visual-grid img { inline-size:100%; block-size:100%; object-fit:cover; object-position:center top; }
 .artist__enquiry { display:grid; gap:var(--spacing-lg); max-inline-size:var(--cv-reading-width); }
