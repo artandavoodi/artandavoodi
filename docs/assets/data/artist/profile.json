@@ -23,6 +23,9 @@
     "portraitsTitle": "Press portraits",
     "pressPortraitIds": ["artan-portrait", "artan-davoodi-winter-portrait"],
     "portraitAction": "Browse press portraits",
+    "portraitPath": "/press/portrait/",
+    "downloadPortraitLabel": "Download portrait",
+    "enquiry": {"title":"Enquiries","description":"Choose the subject and prepare your message. Continue in email opens your email app; the message is sent only when you send it there.","name":"Your name","email":"Reply email","purpose":"What is your enquiry about?","message":"Your message","submit":"Continue in email","purposes":[{"value":"press","label":"Press or interview"},{"value":"music","label":"Music or performance"},{"value":"general","label":"General enquiry"}]},
     "biographyPath": "assets/data/artist/artan-davoodi-biography.txt"
   },
   "icon": "artist-mark",

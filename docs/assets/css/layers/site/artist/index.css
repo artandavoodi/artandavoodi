@@ -24,11 +24,15 @@ html[data-theme-effective='dark'] .artist__actions .control[data-emphasis="prima
 .artist__press > p { max-inline-size: var(--cv-reading-width); color: var(--cv-text-secondary); }
 .artist__press .artist__actions { justify-content: start; }
 .artist__press section { display: grid; gap: var(--spacing-md); scroll-margin-block-start: var(--spacing-4xl); }
-.artist__press .artist__visual-grid img { aspect-ratio: auto; object-fit: contain; }
+.artist__press .artist__visual-grid img { aspect-ratio: 1; object-fit: cover; }
+.artist__enquiry { display:grid; gap:var(--spacing-lg); max-inline-size:var(--cv-reading-width); }
+.artist__enquiry label { display:grid; gap:var(--spacing-sm); }
+.artist__contacts { display:grid; gap:var(--spacing-md); }
+.artist__contacts a { color:inherit; text-decoration:none; }
 @media (hover:hover) and (pointer:fine) { .artist__release-cover:hover img, .artist__visual-grid a:hover img { transform: scale(var(--effect-scale-subtle)); } }
 .artist__portrait { inline-size: min(100%, var(--artist-portrait-width)); }
 .artist__portrait img { inline-size: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--radius-circle); }
-@media (max-width: 860px) {
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
   html:has(main > [data-fragment="artist"]:not([hidden])) { scroll-snap-type: none; }
   .artist__screen { min-block-size: auto; scroll-snap-align: none; scroll-snap-stop: normal; }
 }

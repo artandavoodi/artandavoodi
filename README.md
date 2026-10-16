@@ -48,3 +48,8 @@ publications and brand folders. JSON catalogue registration lives in
 Run `node tools/validate-assets.mjs` to check catalogue structure and media paths.
 See `planning/assets.md` for record rules and `planning/TODO.md` for the ordered
 GitHub, deployment, domain, iCloud+ email and deferred migration work.
+
+## Shared interaction rules
+Scroll snapping and wheel/touch interception are desktop-only (wide viewport,
+fine pointer and hover). Mobile and tablet views use natural document scrolling.
+Legal notices retain explicit effective and updated dates from their owning data.

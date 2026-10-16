@@ -1,5 +1,12 @@
 # Artistic website delivery checklist
 
+## Artist enquiries and press (2026-10-16)
+- Press portrait previews use one square frame; original files and download actions remain separate.
+- Enquiry purposes route to the matching public inbox. The current action explicitly opens email, not a claimed server delivery.
+- Separate Apps Script project created for artist enquiries; label project must not be reused or changed.
+- Direct submission remains pending dedicated verification keys, service configuration, owner authorization and a hosted delivery test.
+- Retain desktop-only section snapping; mobile/tablet scroll naturally.
+
 ## Branded email follow-up (2026-10-14)
 
 The historical initialization checklist below is not a current deployment report.

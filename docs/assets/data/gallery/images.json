@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "originalImageLabel": "View original image",
+  "downloadLabel": "Download image",
   "imageUse": {
     "title": "Image use",
     "introduction": "For editorial, creative or commercial image-use enquiries, get in touch with the intended project and the photographs you would like to use.",
