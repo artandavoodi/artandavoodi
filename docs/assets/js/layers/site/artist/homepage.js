@@ -16,9 +16,9 @@ export function homepageMarkup(profile, music, gallery, hub, concerts, icons) {
   const portraits=(config.pressPortraitIds || []).map(id=>{
     const item=gallery.items.find(record=>record.id===id);
     if(!item || item.collection!=='portfolio')throw Error(`Unknown press portrait: ${id}`);
-    return `<a href="/gallery/${escape(item.id)}/" aria-label="${escape(item.image.alt)}">${picture(item.image)}</a>`;
+    return `<a href="/${escape(item.image.src)}" download aria-label="${escape(config.downloadPortraitLabel)}: ${escape(item.image.alt)}">${picture(item.image)}</a>`;
   });
-  portraits.unshift(`<a href="${escape(config.portraitPath)}" aria-label="${escape(profile.portrait.alt)}">${picture(profile.portrait)}</a>`);
+  portraits.unshift(`<a href="/${escape(profile.portrait.src)}" download aria-label="${escape(config.downloadPortraitLabel)}: ${escape(profile.portrait.alt)}">${picture(profile.portrait)}</a>`);
   const enquiry=config.enquiry;
   const contacts=hub.contacts.map(record=>`<p>${escape(record.label)}<br><a href="${escape(record.url)}">${escape(record.url.replace(/^mailto:/,''))}</a></p>`).join('');
   const enquiryForm=`<section id="enquiries"><h2>${escape(enquiry.title)}</h2><p>${escape(enquiry.description)}</p><form class="artist__enquiry" data-artist-enquiry><label>${escape(enquiry.name)} *<input class="ui-field" name="name" autocomplete="name" required maxlength="150"></label><label>${escape(enquiry.email)} *<input class="ui-field" name="email" type="email" autocomplete="email" required maxlength="254"></label><label>${escape(enquiry.purpose)} *<select class="ui-field" name="purpose" required>${enquiry.purposes.map(p=>`<option value="${escape(p.value)}">${escape(p.label)}</option>`).join('')}</select></label><label>${escape(enquiry.message)} *<textarea class="ui-field" name="message" required maxlength="5000"></textarea></label><button class="control" type="submit">${escape(enquiry.submit)}</button></form><div class="artist__contacts">${contacts}</div></section>`;

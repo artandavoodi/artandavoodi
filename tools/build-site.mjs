@@ -113,7 +113,7 @@ for(const item of gallery.items) {
   const index=gallery.items.indexOf(item);
   const adjacent=(record,key,iconId)=>{const icon=icons.items.find(i=>i.id===iconId);return `<a data-photo-${key} ${record?`href="/gallery/${escape(record.id)}/"`:'hidden'} aria-label="${escape(gallery.controls[key])}"><img data-monochrome="true" src="/${escape(icon.src)}" alt=""></a>`;};
   const contact=hub.links.find(link=>link.category==='email'&&link.url?.startsWith('mailto:'));
-  const enquiry=(contact?`<a class="gallery__image-enquiry" href="/gallery/image-use/">${escape(gallery.controls.imageUse)}</a>`:'')+(item.collection==='portfolio'?`<a class="control" href="/${escape(item.image.src)}" download>${escape(gallery.downloadLabel)}</a>`:'');
+  const enquiry=contact?`<a class="gallery__image-enquiry" href="/gallery/image-use/">${escape(gallery.controls.imageUse)}</a>`:'';
   const navigation=`<nav class="gallery__viewer-nav" aria-label="${escape(gallery.controls.photos)}">${adjacent(gallery.items[index-1],'previous','chevron-left')}<div class="gallery__viewer-information"><span data-photo-count>${index+1} / ${gallery.items.length}</span>${enquiry}</div>${adjacent(gallery.items[index+1],'next','chevron-right')}</nav>`;
   const atmosphere=`<div class="gallery__photo-atmosphere" aria-hidden="true">${image({...item.image,alt:''})}</div>`;
   const filmstrip=`<nav class="gallery__filmstrip" data-gallery-filmstrip aria-label="${escape(gallery.controls.filmstrip)}">${gallery.items.map(i=>{const preview=i.image.variants?.[0]||i.image;return `<a href="/gallery/${escape(i.id)}/" aria-label="${escape(i.image.alt)}"${i.id===item.id?' aria-current="page"':''}>${image({...i.image,src:preview.src,variants:[]},true)}</a>`;}).join('')}</nav>`;

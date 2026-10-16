@@ -21,8 +21,13 @@ assert.ok(!home.includes(escape(homepageProfile.homepage.pressTitle)));
 assert.ok((await read('press/index.html')).includes(escape(homepageProfile.homepage.pressTitle)));
 assert.ok((await read('press/index.html')).includes('mailto:press@artandavoodi.com'));
 const press=await read('press/index.html');
-assert.ok(press.includes('href="#biography"') && !press.includes(' download'),'Biography is readable without a download action');
-for(const id of homepageProfile.homepage.pressPortraitIds)assert.ok(press.includes(`href="/gallery/${id}/"`),'Press portraits reuse gallery records');
+assert.ok(press.includes('href="#biography"'),'Biography is readable on the press page');
+for(const id of homepageProfile.homepage.pressPortraitIds){
+  const record=gallery.items.find(item=>item.id===id);
+  assert.ok(press.includes(`href="/${record.image.src}" download`),'Approved press portraits download the original');
+  assert.ok(!press.includes(`href="/gallery/${id}/"`),'Press downloads must not redirect to the gallery');
+  assert.ok(!(await read(`gallery/${id}/index.html`)).includes(' download'),'Gallery pages do not offer press downloads');
+}
 assert.ok((await read('hub/index.html')).includes('https://artan.live/about/'),'Hub links directly to the portfolio biography');
 assert.ok((await read('hub/index.html')).includes('href="/press/"'));
 assert.ok((await read('privacy/index.html')).includes('noindex,follow'));
