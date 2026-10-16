@@ -8,8 +8,8 @@ import { render as renderFeatured } from './featured/index.js?v=2';
 const modules = {
   artist: () => import('./artist/index.js?v=12'),
   music: () => import('./music/index.js?v=18'),
-  gallery: () => import('./gallery/index.js?v=14'),
-  hub: () => import('./hub/index.js?v=5'),
+  gallery: () => import('./gallery/index.js?v=15'),
+  hub: () => import('./hub/index.js?v=6'),
 };
 export async function initializeSite() {
   const [site, ui, metadata, icons] = await Promise.all([

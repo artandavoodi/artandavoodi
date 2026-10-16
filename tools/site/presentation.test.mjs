@@ -1,0 +1,46 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile,readdir} from 'node:fs/promises';
+import vm from 'node:vm';
+const docs=new URL('../../docs/',import.meta.url);
+const read=path=>readFile(new URL(path,docs),'utf8');
+test('shared entrances reverse, disconnect, and fall back without observers',async()=>{
+  const source=(await read('assets/js/layers/site/entrances.js')).replace('export ','');
+  let callback,disconnected=false;
+  const target={attributes:new Set(),setAttribute(name){this.attributes.add(name);},toggleAttribute(name,value){value?this.attributes.add(name):this.attributes.delete(name);}};
+  const context=vm.createContext({window:{IntersectionObserver:true},IntersectionObserver:class{constructor(cb){callback=cb;}observe(){}disconnect(){disconnected=true;}}});
+  vm.runInContext(source+'\nthis.observe=observeEntrances;',context);
+  const stop=context.observe([target]);
+  callback([{target,isIntersecting:true}]);assert.ok(target.attributes.has('data-content-visible'));
+  callback([{target,isIntersecting:false}]);assert.equal(target.attributes.has('data-content-visible'),false);
+  stop();assert.equal(disconnected,true);
+  const fallback=vm.createContext({window:{}});
+  vm.runInContext(source+'\nthis.observe=observeEntrances;',fallback);
+  assert.equal(typeof fallback.observe([target]),'function');
+  assert.doesNotMatch(source,/preventDefault|scrollTo|setTimeout/);
+});
+test('all published page shells have identity, navigation and crawlable content',async()=>{
+  async function walk(directory){
+    const entries=await readdir(directory,{withFileTypes:true});
+    return (await Promise.all(entries.filter(entry=>entry.name!=='assets').map(async entry=>{
+      const path=new URL(entry.name+(entry.isDirectory()?'/':''),directory);
+      return entry.isDirectory()?walk(path):entry.name.endsWith('.html')?[path]:[];
+    }))).flat();
+  }
+  for(const file of await walk(docs)){
+    const html=await readFile(file,'utf8');
+    assert.match(html,/<title>[^<]+<\/title>/,file.pathname);
+    if(/http-equiv="refresh"/.test(html))continue;
+    assert.match(html,/<h1[\s>]/,file.pathname);
+    if(html.includes('data-gallery-viewer="true"')){
+      assert.match(html,/data-photo-next/,'Immersive photos retain their own navigation');
+      continue;
+    }
+    assert.match(html,/data-fragment="navigation"/,file.pathname);
+    assert.match(html,/data-fragment="footer"/,file.pathname);
+  }
+  assert.match(await read('404.html'),/Page not found/);
+  assert.match(await read('music/workspace/index.html'),/url=\/music\//);
+  assert.match(await read('assets/js/core/preferences.js'),/footer\.insertBefore/);
+  assert.match(await read('assets/css/layers/site/content-motion.css'),/:focus-within/);
+});

@@ -26,7 +26,9 @@ export async function initializePreferences() {
   links.append(privacy.cloneNode(true));
   const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;
   settings.addEventListener('click',()=>{if(!panel.open)panel.showModal();}); links.append(settings);
-  (document.querySelector('.site-footer') || document.querySelector('main')).append(links);
+  const footer=document.querySelector('.site-footer');
+  if(footer)footer.insertBefore(links,footer.querySelector('[data-copyright]'));
+  else document.querySelector('main').append(links);
   const show = () => { if(state.choice()===null&&!panel.open)panel.showModal(); };
   const intro = async () => {
     if (location.pathname!=='/' || state.introSeen() || matchMedia('(prefers-reduced-motion: reduce)').matches) { show(); return; }

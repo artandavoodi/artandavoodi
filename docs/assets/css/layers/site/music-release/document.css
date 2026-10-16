@@ -1,4 +1,6 @@
 /* Generated documents use existing typography, cover and streaming controls. */
+.music-release-page > article:not(.music-release-detail):not([data-gallery-photo]) { display:grid; gap:var(--spacing-xl); }
+.music-release-page > article > p { max-inline-size:var(--reading-width-md); }
 .release-document__section, .release-document__tracks { inline-size: 100%; min-inline-size: 0; }
 .release-document__section > p { max-inline-size: var(--cv-reading-width); }
 .release-document__section > img { max-inline-size: 100%; block-size: auto; }

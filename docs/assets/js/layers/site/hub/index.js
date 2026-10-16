@@ -1,5 +1,6 @@
 /* ARTANDAVOODI · Hub connection renderer; hub content remains JSON-owned. */
 import { renderIcon } from '../media.js?v=5';
+import { observeEntrances } from '../entrances.js';
 export function render(data, ui, icons) {
   document.querySelector('[data-hub-title]').textContent = data.title;
   document.querySelector('[data-hub-description]').textContent = data.description;
@@ -46,4 +47,5 @@ export function render(data, ui, icons) {
     section.append(heading, links);
     target.append(section);
   }
+  observeEntrances(document.querySelectorAll('.hub h1,.hub__group h3,.hub__group-links'));
 }

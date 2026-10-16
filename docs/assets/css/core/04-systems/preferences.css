@@ -17,6 +17,7 @@ html[data-theme-effective='dark'] .artist-brand-intro img { filter: brightness(0
 .press-document, .press-document > div, .privacy-document { display: grid; gap: var(--spacing-md); }
 .press-document .control { display: inline-flex; text-decoration: none; }
 .privacy-document section { display: grid; gap: var(--spacing-sm); }
+.privacy-document p, .press-document p { max-inline-size:var(--reading-width-md); }
 .privacy-document a { text-decoration:none; }
 [data-information-tabs] nav { display:flex; overflow-x:auto; }
 [data-information-tabs] nav[hidden] { display:none; }

@@ -40,7 +40,3 @@ html[data-theme-effective='dark'] img[data-dark-monochrome] { filter: brightness
 .site-back-link { display: inline-grid; place-items: center; justify-self: start; inline-size: var(--control-height-sm); block-size: var(--control-height-sm); appearance: none; border: 0; padding: 0; background: transparent; color: var(--cv-text-primary); text-decoration: none; cursor: pointer; transition: opacity var(--duration-base) var(--ease-standard); }
 .site-back-link img { inline-size: var(--icon-size-md); block-size: var(--icon-size-md); }
 .site-back-link:hover { opacity: var(--opacity-muted); }
-@media (prefers-reduced-motion:no-preference) {
-  [data-content-reveal] { transition:opacity var(--site-content-motion-duration) var(--ease-standard),transform var(--site-content-motion-duration) var(--ease-standard); }
-  [data-content-reveal]:not([data-content-visible]) { opacity:0; transform:translateY(var(--spacing-lg)); }
-}

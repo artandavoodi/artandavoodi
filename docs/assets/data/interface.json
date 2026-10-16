@@ -6,6 +6,7 @@
   "menuLinks": [{"id":"store","label":"Store","path":"https://store.artandavoodi.com/","after":"music"},{"id":"concerts","label":"Concerts","path":"/concerts/","after":"store"}],
   "menuToggle": { "open": "Open site menu", "close": "Close site menu" },
   "skipLabel": "Skip to content",
+  "notFound": {"title":"Page not found","description":"The page may have moved. Return to the artist website to continue."},
   "theme": { "dark": "Dark appearance", "light": "Light appearance" },
   "sections": [
     { "id": "artist", "label": "Artist", "path": "/" },

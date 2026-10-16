@@ -4,6 +4,7 @@
   "metadata": "assets/data/metadata/site.json",
   "icons": "assets/data/icons.json",
   "featured": "assets/data/featured.json",
+  "redirects": [{"path":"/music/workspace/","target":"/music/","label":"Music"}],
   "catalogues": {
     "artist": "assets/data/artist/profile.json",
     "gallery": "assets/data/gallery/images.json",

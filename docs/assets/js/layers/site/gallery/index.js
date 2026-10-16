@@ -3,12 +3,15 @@ import { renderImage, renderIcon } from '../media.js?v=6';
 import { bindGalleryGrain } from './grain.js';
 import { selection, photoUrl } from './model.js';
 import { rememberGallery, restoreGallery } from './continuity.js';
+import { observeEntrances } from '../entrances.js';
 let stopGrain;
 let controlEvents;
 export function render(data, ui, icons) {
   controlEvents?.abort();
   controlEvents = new AbortController();
   const target = document.querySelector('[data-gallery-items]');
+  let disconnectEntrances=()=>{};
+  observeEntrances(document.querySelectorAll('.gallery h1'));
   stopGrain?.();
   stopGrain = bindGalleryGrain(document.querySelector('[data-gallery-grain]'), data.header?.grain);
   const params = new URLSearchParams(location.search);
@@ -95,6 +98,7 @@ export function render(data, ui, icons) {
   count.setAttribute('aria-live', 'polite'); controls.append(count);
   document.querySelector('[data-gallery-controls]')?.replaceChildren(controls);
   function update() {
+    disconnectEntrances();
     const records = selection(data, params);
     target.dataset.view = data.views.some(v => v.id === params.get('view')) ? params.get('view') : data.views[0].id;
     options.querySelectorAll('button').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.galleryView === target.dataset.view)));
@@ -134,6 +138,7 @@ export function render(data, ui, icons) {
     return section;
     }));
     if (!records.length) { const empty = document.createElement('p'); empty.className = 'gallery__empty'; empty.textContent = data.controls.empty; target.append(empty); }
+    disconnectEntrances=observeEntrances(target.querySelectorAll('.gallery__collection h3,.gallery__images > a'));
   }
   update();
   window.addEventListener('site:ready', restoreGallery, {once:true,signal:controlEvents.signal});
