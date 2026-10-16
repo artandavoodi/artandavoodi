@@ -5,6 +5,7 @@
 - Enquiry purposes route to the matching public inbox. The current action explicitly opens email, not a claimed server delivery.
 - Separate Apps Script project created for artist enquiries; label project must not be reused or changed.
 - Direct submission remains pending dedicated verification keys, service configuration, owner authorization and a hosted delivery test.
+- The independent Apps Script source is `tools/site/artist-enquiries.gs`; its Google project is “Artan Davoodi Artist Enquiries”. Do not configure it with label storage or credentials.
 - Retain desktop-only section snapping; mobile/tablet scroll naturally.
 
 ## Branded email follow-up (2026-10-14)
