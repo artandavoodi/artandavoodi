@@ -4,7 +4,9 @@
 - Press portrait previews use one square frame; original files and download actions remain separate.
 - Enquiry purposes route to the matching public inbox. The current action explicitly opens email, not a claimed server delivery.
 - Separate Apps Script project created for artist enquiries; label project must not be reused or changed.
-- Direct submission remains pending dedicated verification keys, service configuration, owner authorization and a hosted delivery test.
+- Owner authorization completed and the separate enquiry spreadsheet was created successfully. Public-inbox routing is configured server-side.
+- Direct submission remains pending dedicated CAPTCHA keys, public web-app deployment and a hosted delivery test. The separate Cloud project is “Artan Artist Website”; do not create another project or reuse label keys.
+- CAPTCHA API activation currently awaits approval of Google Cloud terms. Do not add billing or a paid plan without separate approval.
 - The independent Apps Script source is `tools/site/artist-enquiries.gs`; its Google project is “Artan Davoodi Artist Enquiries”. Do not configure it with label storage or credentials.
 - Retain desktop-only section snapping; mobile/tablet scroll naturally.
 
