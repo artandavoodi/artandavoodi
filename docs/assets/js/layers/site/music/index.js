@@ -6,6 +6,7 @@ import { renderTracks } from './tracks.js?v=3';
 import { observeDividers } from './dividers.js';
 import { collectTracks, renderTrackDirectory } from './track-directory.js?v=3';
 import { metadataRows, newestReleases } from './publication.js?v=2';
+import { observeEntrances } from '../entrances.js';
 
 const DEFAULT_STATUS = 'all';
 
@@ -130,8 +131,10 @@ export async function render(data, ui, icons) {
   let activeCategory = ui.musicDefaultCategory;
   let activeStatus = DEFAULT_STATUS;
   let disconnectDividers = () => {};
+  let disconnectEntrances = () => {};
   const update = () => {
     disconnectDividers();
+    disconnectEntrances();
     const items = sortedItems(data.items).filter(item => {
       const categoryMatches = activeCategory === 'release' || activeCategory === 'tracks' || item.category === activeCategory;
       const statusMatches = activeStatus === DEFAULT_STATUS || String(item.status).toLowerCase() === activeStatus;
@@ -147,6 +150,7 @@ export async function render(data, ui, icons) {
     else if (activeCategory !== 'tracks' && items.length) target.replaceChildren(...items.map(item => renderRelease(item, ui, icons)));
     else renderEmpty(target, ui.empty.music);
     disconnectDividers = observeDividers([...target.querySelectorAll('.music-release, .music-tracks__link, .music-track-directory__row')]);
+    disconnectEntrances=observeEntrances(target.querySelectorAll('.music-release__cover,.music-release__title'));
     for (const button of categories.children) button.setAttribute('aria-pressed', String(button.dataset.category === activeCategory));
     for (const button of status.children) button.setAttribute('aria-pressed', String(button.dataset.status === activeStatus));
   };
@@ -166,4 +170,5 @@ export async function render(data, ui, icons) {
   }
   update();
   await renderContext(icons);
+  observeEntrances(document.querySelectorAll('.music > h1,.music-context__brand'));
 }

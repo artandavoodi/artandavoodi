@@ -1,10 +1,11 @@
 {
   "title": "Concerts",
   "description": "Live performances by Artan Davoodi. Dates, venues and official ticket links are announced here.",
-  "emptyMessage": "New performance dates will be announced here.",
+  "emptyMessage": "No concerts available yet",
   "ticketLabel": "Tickets",
   "upcomingTitle": "Upcoming concerts",
-  "scheduleLabel": "View concert schedule",
+  "scheduleLabel": "View concerts",
+  "scheduleIcon": "chevron-right",
   "calendarLabel": "Add to calendar",
   "statusLabels": {"Scheduled":"Scheduled","Cancelled":"Cancelled","Postponed":"Postponed","Rescheduled":"Rescheduled"},
   "events": []

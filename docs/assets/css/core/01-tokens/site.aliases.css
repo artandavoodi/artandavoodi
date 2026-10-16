@@ -21,6 +21,10 @@
   --gallery-preview-aspect-ratio: 1;
   --gallery-panel-width: min(var(--reading-width-md), calc(100vw - var(--site-gutter) * 2));
   --featured-card-width: 14rem;
+  --site-primary-action-background: var(--color-primary1);
+  --site-primary-action-text: var(--color-white);
+  --site-content-motion-duration: var(--nav-institutional-motion-panel-slow);
+  --artist-carousel-dot-size: var(--layout-home-featured-functions-dot-size);
   --press-portrait-preview-width:calc(var(--featured-card-width) * 0.625);
   --site-brand-width: 9rem;
   --music-context-wordmark-width: calc(var(--featured-card-width) / 2);

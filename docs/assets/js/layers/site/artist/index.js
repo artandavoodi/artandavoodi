@@ -1,7 +1,8 @@
 /* ARTANDAVOODI · Artist identity renderer. */
 import { renderImage } from '../media.js?v=5';
 import { loadJson } from '../../../core/data.js';
-import { homepageMarkup } from './homepage.js?v=5';
+import { homepageMarkup } from './homepage.js?v=6';
+import { observeEntrances } from '../entrances.js';
 export async function render(data, ui, icons) {
   const biography = document.querySelector('[data-artist-biography]');
   biography.textContent = data.biography || '';
@@ -19,4 +20,12 @@ export async function render(data, ui, icons) {
   for (const key of ['actions','latest','visual','concerts']) {
     document.querySelector(`[data-artist-${key}]`).innerHTML = markup[key];
   }
+}
+
+export function bindMotion(){
+  const artist=document.querySelector('.artist');
+  if(!artist||artist.hasAttribute('data-home-motion-ready')||!('IntersectionObserver' in window))return;
+  const targets=artist.querySelectorAll('h1,h2,.artist__biography,.artist__actions,.artist__portrait,.artist__release-cover,.artist__release > div,.artist__visual-grid > a,.artist__concerts > p,.artist__concerts > .control,.featured__items');
+  observeEntrances(targets);
+  artist.setAttribute('data-home-motion-ready','');
 }

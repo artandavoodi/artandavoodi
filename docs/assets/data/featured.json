@@ -1,6 +1,10 @@
 {
   "schemaVersion": 1,
   "title": "Selected music",
+  "navigationLabel": "Choose a release",
+  "listenLabel": "Listen",
+  "listenEmphasis": "primary",
+  "listenIcon": "play",
   "items": [
     { "catalogue": "music", "id": "salim", "href": "/music/salim/", "enabled": true },
     { "catalogue": "music", "id": "solum", "href": "/music/solum/", "enabled": true },

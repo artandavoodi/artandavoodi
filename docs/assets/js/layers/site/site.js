@@ -1,13 +1,13 @@
 /* ARTANDAVOODI · Site domain importer, menu navigation and section lifecycle. */
 import { loadJson } from '../../core/data.js?v=9';
-import { bindTheme } from '../../core/theme.js?v=5';
+import { bindTheme } from '../../core/theme.js?v=6';
 import { bindNavigation } from './navigation.js?v=15';
 import { applyMetadata } from '../../core/metadata.js?v=1';
 import { bindRoutes } from './routes.js?v=3';
-import { render as renderFeatured } from './featured/index.js';
+import { render as renderFeatured } from './featured/index.js?v=2';
 const modules = {
-  artist: () => import('./artist/index.js?v=10'),
-  music: () => import('./music/index.js?v=16'),
+  artist: () => import('./artist/index.js?v=12'),
+  music: () => import('./music/index.js?v=18'),
   gallery: () => import('./gallery/index.js?v=14'),
   hub: () => import('./hub/index.js?v=5'),
 };
@@ -46,6 +46,9 @@ export async function initializeSite() {
     error.hidden = false;
     throw new AggregateError(failed.map(result => result.reason), 'Catalogue loading failed');
   }
-  if (active === 'artist') await renderFeatured(await loadJson(site.featured), site);
+  if (active === 'artist') {
+    await renderFeatured(await loadJson(site.featured), site, icons);
+    (await modules.artist()).bindMotion();
+  }
   bindRoutes(ui, metadata);
 }

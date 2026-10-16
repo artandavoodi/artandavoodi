@@ -7,6 +7,7 @@ export function initializeTheme() {
 function applyTheme(value) {
   document.documentElement.dataset.theme = value;
   document.documentElement.dataset.themeEffective = value;
+  document.documentElement.style.colorScheme = value;
   for (const image of document.querySelectorAll('img[data-light-src][data-dark-src]')) {
     image.src = value === 'dark' ? image.dataset.darkSrc : image.dataset.lightSrc;
   }
@@ -14,6 +15,8 @@ function applyTheme(value) {
 export function bindTheme(labels) {
   const button = document.querySelector('[data-theme-toggle]');
   if (!(button instanceof HTMLButtonElement)) return;
+  if(button.dataset.themeBound==='true')return;
+  button.dataset.themeBound='true';
   const render = () => {
     const dark = document.documentElement.dataset.theme === 'dark';
     button.setAttribute('aria-label', dark ? labels.light : labels.dark);

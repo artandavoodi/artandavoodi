@@ -12,6 +12,8 @@
     "actions": [{ "label": "Listen", "href": "/music/", "emphasis":"primary", "icon":"play" }, {"label":"Store","href":"https://store.artandavoodi.com/", "icon":"shopping-bag"}, { "label": "Explore Gallery", "href": "/gallery/", "icon":"gallery-view" }],
     "latestTitle": "Latest release",
     "latestAction": "Listen to this release",
+    "latestEmphasis": "primary",
+    "latestIcon": "play",
     "visualTitle": "Featured photography",
     "visualIds": ["photograph-02", "photograph-06", "photograph-10"],
     "visualAction": "Explore Art & Gallery",

@@ -4,6 +4,7 @@ import {head, image, route, escape, recording, releaseBody, documentPage} from '
 import {newestReleases} from '../docs/assets/js/layers/site/music/publication.js';
 import {contextMarkup} from '../docs/assets/js/layers/site/music/context/markup.js';
 import {homepageMarkup} from '../docs/assets/js/layers/site/artist/homepage.js';
+import {featuredMarkup} from '../docs/assets/js/layers/site/featured/markup.js';
 import {concertPageData,concertCalendar,concertUrl} from './site/concerts.mjs';
 import {documentChrome} from './site/chrome.mjs';
 const root=new URL('../',import.meta.url), docs=new URL('docs/',root);
@@ -71,9 +72,9 @@ for(const selection of featured.items.filter(item=>item.enabled!==false)) {
   const item=records.items.find(item=>item.id===selection.id);
   if(!item) throw new Error('Unknown featured item');
   featuredImages.push((item.cover || item.image).src);
-  featuredCards.push(`<a class="featured__item" href="${escape(selection.href)}"><figure>${image(item.cover || item.image,true)}</figure><h3>${escape(item.title)}</h3><p>${escape(item.subtitle || item.type)}</p></a>`);
+  featuredCards.push({record:item,href:selection.href});
 }
-shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p><div class="artist__actions">${homepage.actions}</div></div><section class="site-section artist__screen artist__latest">${homepage.latest}</section><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2><div class="featured__items">${featuredCards.join('')}</div></section></div><section class="site-section artist__screen artist__visual">${homepage.visual}</section></section>`);
+shell=shell.replace('{{ARTIST}}',`<section class="artist"><div class="site-section artist__screen artist__introduction"><div class="artist__portrait"><figure>${image(artist.portrait)}</figure></div><h1>${escape(artist.name)}</h1><p class="artist__biography">${escape(artist.biography)}</p><div class="artist__actions">${homepage.actions}</div></div><section class="site-section artist__screen artist__latest">${homepage.latest}</section><div class="site-section artist__screen"><section class="featured"><h2>${escape(featured.title)}</h2>${featuredMarkup(featured,featuredCards,icons)}</section></div><section class="site-section artist__screen artist__visual">${homepage.visual}</section></section>`);
 await output('press/index.html',documentPage({title:`${artist.homepage.pressTitle} · ${artist.name}`,description:artist.homepage.pressIntroduction,path:'/press/',graph:[person,website]},`<article class="artist__press press-document">${homepage.press}</article>`,origin,'Back to Hub').replace('href="/music/"','href="/hub/"'));
 shell=shell.replace('<div class="site-section artist__screen"><section class="featured">',`<section class="site-section artist__screen artist__concerts">${homepage.concerts}</section><div class="site-section artist__screen"><section class="featured">`);
 await output('index.html',shell);
