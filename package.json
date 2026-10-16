@@ -7,6 +7,6 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "build": "node tools/build-site.mjs",
-    "check": "node tools/validate-assets.mjs && node tools/check-site.mjs && node tools/check-generated.mjs && node --test tools/site/concerts.test.mjs"
+    "check": "node tools/validate-assets.mjs && node tools/check-site.mjs && node tools/check-generated.mjs && node --test tools/site/concerts.test.mjs tools/site/artist-enquiries.test.mjs"
   }
 }
