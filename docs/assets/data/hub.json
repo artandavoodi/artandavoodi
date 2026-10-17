@@ -7,7 +7,7 @@
     { "id": "press", "label": "Press enquiries", "url": "mailto:press@artandavoodi.com" },
     { "id": "music", "label": "Music enquiries", "url": "mailto:music@artandavoodi.com" }
   ],
-  "pages": [{ "label": "Press & contact", "href": "/press/" }, { "label": "Concerts", "href": "/concerts/" }, { "label": "About Artan", "href": "https://artan.live/about/" }],
+  "pages": [{ "label": "Press & contact", "href": "/press/" }, { "label": "Concerts", "href": "/concerts/" }, { "label": "About Artan", "href": "https://artan.live/about/" }, { "label": "Artan Store", "href": "https://store.artandavoodi.com/" }],
   "groups": [
     { "id": "streaming", "label": "Streaming", "presentation": "icons" },
     { "id": "social", "label": "Social", "presentation": "icons" },
