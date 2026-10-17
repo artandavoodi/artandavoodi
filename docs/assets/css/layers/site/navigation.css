@@ -63,6 +63,7 @@ html[data-header-hidden]:not([data-menu-open]) .site-navigation button { pointer
 .site-menu-toggle:focus-visible { opacity: var(--opacity-strong); }
 .site-menu-toggle__line {
   grid-area: 1 / 1;
+  justify-self: end;
   inline-size: var(--site-menu-line-size);
   block-size: var(--border-width-hairline);
   background: currentColor;
