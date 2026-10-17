@@ -1,7 +1,6 @@
 /* Optional preference UI; no trackers, account systems or payments are initialized. */
 import {loadJson} from './data.js';
 import {renderIcon} from '../layers/site/media.js?v=6';
-import './close-button.js?v=1';
 export async function initializePreferences() {
   const [data,icons] = await Promise.all([loadJson('assets/data/privacy.json'),loadJson('assets/data/icons.json')]);
   const state = window.ArtanPreferences;
@@ -20,8 +19,8 @@ export async function initializePreferences() {
   }
   const privacy = document.createElement('a'); privacy.href = '/privacy/'; privacy.textContent = data.preferences.link;
   privacy.className='privacy-preferences__notice';
-  const close=document.createElement('button');close.type='button';close.className='privacy-preferences__close global-close-button';close.setAttribute('aria-label',data.preferences.close);window.NeuroartanCloseButtons.initCloseButtonPrimitive(close);close.addEventListener('click',()=>panel.close());
-  panel.append(close,title,description,actions,privacy); document.body.append(panel);
+  panel.addEventListener('cancel',()=>state.setChoice('reject'));
+  panel.append(title,description,actions,privacy); document.body.append(panel);
   const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);
   links.append(privacy.cloneNode(true));
   const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;
