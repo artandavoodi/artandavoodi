@@ -15,7 +15,8 @@ test('selected music uses catalogue records, native slides and registered icons'
   assert.equal((markup.match(/data-featured-dot=/g)||[]).length,3);
   for(const entry of entries)assert.ok(markup.includes(`href="${entry.href}"`));
   assert.ok(markup.includes('data-emphasis="primary"'));
-  assert.ok(markup.includes(icons.items.find(icon=>icon.id===config.listenIcon).fallbackSrc));
+  const listen=icons.items.find(icon=>icon.id===config.listenIcon);
+  assert.ok(markup.includes(listen.fallbackSrc||listen.src));
 });
 test('allowed appearance survives a fresh page; declined storage stays declined',async()=>{
   const config=(await json('docs/assets/data/privacy.json')).storage;

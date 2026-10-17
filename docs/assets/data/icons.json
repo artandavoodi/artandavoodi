@@ -1,32 +1,163 @@
 {
   "schemaVersion": 1,
   "items": [
-    {"id":"check","src":"assets/icons/actions/check.svg","alt":"","monochrome":true},
-    {"id":"audio","src":"assets/icons/actions/audio.svg","alt":"","monochrome":true},
-    {"id":"play","src":"assets/icons/actions/play.svg","fallbackSrc":"assets/icons/actions/placeholder.svg","alt":"","monochrome":true},
-    {"id":"shopping-bag","src":"assets/icons/actions/bag.svg","fallbackSrc":"assets/icons/actions/placeholder.svg","alt":"","monochrome":true},
-    {"id":"account","src":"assets/icons/actions/account.svg","alt":"","monochrome":true},
-    { "id": "reset", "src": "assets/icons/actions/reset.svg", "alt": "", "monochrome": true },
-    { "id": "chevron-left", "src": "assets/icons/navigation/chevron-left.svg", "alt": "", "monochrome": true },
-    { "id": "gallery-view", "src": "assets/icons/actions/preview.svg", "alt": "", "monochrome": true },
-    { "id": "close", "src": "assets/icons/actions/close.svg", "alt": "", "monochrome": true },
-    { "id": "artist-wordmark", "src": "assets/brand/logo/typo-artan.svg", "alt": "Artan", "darkMonochrome": true },
-    { "id": "public-hub", "src": "assets/brand/logo/symbol-artan.svg", "alt": "", "darkMonochrome": true },
-    { "id": "artan-records", "src": "assets/brand/logo/artan-records-symbol-black.svg", "darkSrc": "assets/brand/logo/artan-records-symbol-white.svg", "alt": "" },
-    { "id": "artan-records-wordmark", "src": "assets/brand/logo/artan-records-wordmark-black.svg", "darkSrc": "assets/brand/logo/artan-records-wordmark-white.svg", "alt": "Artan Records" },
-    { "id": "youtube", "src": "assets/icons/social/platforms/youtube.svg", "alt": "", "monochrome": true },
-    { "id": "tiktok", "src": "assets/icons/social/platforms/tiktok.svg", "alt": "", "monochrome": true },
-    { "id": "facebook", "src": "assets/icons/social/platforms/facebook.svg", "alt": "", "monochrome": true },
-    { "id": "home", "src": "assets/icons/navigation/home.svg", "alt": "", "monochrome": true },
-    { "id": "solum", "src": "assets/media/music/albums/solum/icons/solum-icon.svg", "alt": "Solum release mark", "monochrome": true },
-    { "id": "salim", "src": "assets/media/music/albums/salim/icons/salim-icon.svg", "alt": "Salim release mark", "monochrome": true },
-    { "id": "back", "src": "assets/icons/navigation/back.svg", "alt": "", "monochrome": true },
-    { "id": "chevron-right", "src": "assets/icons/navigation/chevron-right.svg", "alt": "", "monochrome": true },
-    { "id": "instagram", "src": "assets/icons/social/platforms/instagram.svg", "alt": "", "monochrome": true },
-    { "id": "chevron-down", "src": "assets/icons/actions/chevron-down.svg", "alt": "", "monochrome": true },
-    { "id": "x", "src": "assets/icons/social/platforms/x.svg", "alt": "", "monochrome": true },
-    { "id": "email", "src": "assets/icons/social/platforms/email.svg", "alt": "", "monochrome": true },
-    { "id": "globe", "src": "assets/icons/navigation/globe.svg", "alt": "", "monochrome": true },
+    {
+      "id": "check",
+      "src": "assets/icons/actions/check.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "audio",
+      "src": "assets/icons/actions/audio.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "play",
+      "src": "assets/icons/actions/play.svg",
+      "fallbackSrc": "assets/icons/actions/placeholder.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "shopping-bag",
+      "src": "assets/icons/actions/bag.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "account",
+      "src": "assets/icons/actions/account.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "reset",
+      "src": "assets/icons/actions/reset.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "chevron-left",
+      "src": "assets/icons/navigation/chevron-left.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "gallery-view",
+      "src": "assets/icons/actions/preview.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "close",
+      "src": "assets/icons/actions/close.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "artist-wordmark",
+      "src": "assets/brand/logo/typo-artan.svg",
+      "alt": "Artan",
+      "darkMonochrome": true
+    },
+    {
+      "id": "public-hub",
+      "src": "assets/brand/logo/symbol-artan.svg",
+      "alt": "",
+      "darkMonochrome": true
+    },
+    {
+      "id": "artan-records",
+      "src": "assets/brand/logo/artan-records-symbol-black.svg",
+      "darkSrc": "assets/brand/logo/artan-records-symbol-white.svg",
+      "alt": ""
+    },
+    {
+      "id": "artan-records-wordmark",
+      "src": "assets/brand/logo/artan-records-wordmark-black.svg",
+      "darkSrc": "assets/brand/logo/artan-records-wordmark-white.svg",
+      "alt": "Artan Records"
+    },
+    {
+      "id": "youtube",
+      "src": "assets/icons/social/platforms/youtube.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "tiktok",
+      "src": "assets/icons/social/platforms/tiktok.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "facebook",
+      "src": "assets/icons/social/platforms/facebook.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "home",
+      "src": "assets/icons/navigation/home.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "solum",
+      "src": "assets/media/music/albums/solum/icons/solum-icon.svg",
+      "alt": "Solum release mark",
+      "monochrome": true
+    },
+    {
+      "id": "salim",
+      "src": "assets/media/music/albums/salim/icons/salim-icon.svg",
+      "alt": "Salim release mark",
+      "monochrome": true
+    },
+    {
+      "id": "back",
+      "src": "assets/icons/navigation/back.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "chevron-right",
+      "src": "assets/icons/navigation/chevron-right.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "instagram",
+      "src": "assets/icons/social/platforms/instagram.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "chevron-down",
+      "src": "assets/icons/actions/chevron-down.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "x",
+      "src": "assets/icons/social/platforms/x.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "email",
+      "src": "assets/icons/social/platforms/email.svg",
+      "alt": "",
+      "monochrome": true
+    },
+    {
+      "id": "globe",
+      "src": "assets/icons/navigation/globe.svg",
+      "alt": "",
+      "monochrome": true
+    },
     {
       "id": "artist-mark",
       "src": "assets/brand/logo/symbol-artan.svg",

@@ -16,7 +16,7 @@
 
 ## Remaining verification or owner-dependent decisions
 
-- Owner vectors pending: Listen/play and Store/bag are empty in the Neuroartan canonical registry; Archive is empty in the artist registry. Existing shared dot is the explicit interim artwork, not a replacement icon. Remove each registry `fallbackSrc` after its vector is supplied and synchronize consumers before release.
+- Owner vectors pending: Listen/play is empty and Store/bag has a dot in the Neuroartan canonical registry; Archive is empty in the artist registry. Existing shared dot is the explicit interim artwork, not a replacement icon. The registered-actions importer records source commits and removes a fallback only when the owning SVG has geometry. Synchronize consumers before release.
 - Canonical Listen vector: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/media/play/play.svg`.
 - Canonical Store vector: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/commerce/shopping/bag.svg`.
 - Artist Archive vector: `/Users/artan/Documents/Neuroartan/artandavoodi/docs/assets/icons/actions/archive.svg`.
