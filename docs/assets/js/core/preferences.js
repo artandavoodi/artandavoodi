@@ -2,6 +2,7 @@
 import {loadJson} from './data.js';
 import {renderIcon} from '../layers/site/media.js?v=6';
 export async function initializePreferences() {
+  if(document.documentElement.hasAttribute('data-gallery-viewer'))return;
   const [data,icons] = await Promise.all([loadJson('assets/data/privacy.json'),loadJson('assets/data/icons.json')]);
   const state = window.ArtanPreferences;
   if (!state || document.querySelector('[data-preferences-panel]')) return;

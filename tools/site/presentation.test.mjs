@@ -44,3 +44,15 @@ test('all published page shells have identity, navigation and crawlable content'
   assert.match(await read('assets/js/core/preferences.js'),/footer\.insertBefore/);
   assert.match(await read('assets/css/layers/site/content-motion.css'),/:focus-within/);
 });
+test('immersive gallery keeps thumbnail sizing separate from arrow icons',async()=>{
+  const css=await read('assets/css/layers/site/gallery/index.css');
+  assert.match(css,/\.gallery__viewer-nav > a img/);
+  assert.doesNotMatch(css,/\.gallery__viewer-nav img\s*\{/);
+  assert.match(css,/\.gallery__filmstrip img[^}]*block-size: var\(--spacing-4xl\)/);
+  assert.match(css,/\.gallery__filmstrip\s*\{[^}]*overflow-x: auto[^}]*scrollbar-width:none/);
+  assert.match(css,/\.gallery__filmstrip::-webkit-scrollbar\s*\{\s*display:none/);
+  assert.match(css,/\.gallery__filmstrip a\[aria-current\][^}]*outline:none/);
+  assert.match(await read('assets/js/core/preferences.js'),/hasAttribute\('data-gallery-viewer'\)\)return/);
+  const page=await read('gallery/artan-davoodi-close-up-portrait/index.html');
+  assert.match(page,/class="gallery__viewer-nav"[^>]*>[\s\S]*data-photo-previous[\s\S]*data-gallery-filmstrip[\s\S]*data-photo-next/);
+});
