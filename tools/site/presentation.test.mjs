@@ -7,17 +7,25 @@ const read=path=>readFile(new URL(path,docs),'utf8');
 test('shared entrances reverse, disconnect, and fall back without observers',async()=>{
   const source=(await read('assets/js/layers/site/entrances.js')).replace('export ','');
   let callback,disconnected=false;
-  const target={attributes:new Set(),setAttribute(name){this.attributes.add(name);},toggleAttribute(name,value){value?this.attributes.add(name):this.attributes.delete(name);}};
+  const target={style:{setProperty(){}},attributes:new Set(),setAttribute(name){this.attributes.add(name);},hasAttribute(name){return this.attributes.has(name);},toggleAttribute(name,value){value?this.attributes.add(name):this.attributes.delete(name);}};
   const context=vm.createContext({window:{IntersectionObserver:true},IntersectionObserver:class{constructor(cb){callback=cb;}observe(){}disconnect(){disconnected=true;}}});
   vm.runInContext(source+'\nthis.observe=observeEntrances;',context);
   const stop=context.observe([target]);
-  callback([{target,isIntersecting:true}]);assert.ok(target.attributes.has('data-content-visible'));
-  callback([{target,isIntersecting:false}]);assert.equal(target.attributes.has('data-content-visible'),false);
+  callback([{target,isIntersecting:true,intersectionRatio:0.2}]);assert.ok(target.attributes.has('data-content-visible'));
+  callback([{target,isIntersecting:true,intersectionRatio:0.14}]);assert.ok(target.attributes.has('data-content-visible'),'Small threshold changes must not reverse an entrance');
+  callback([{target,isIntersecting:false,boundingClientRect:{bottom:-1},rootBounds:{top:0}}]);assert.equal(target.attributes.has('data-content-visible'),false);
   stop();assert.equal(disconnected,true);
   const fallback=vm.createContext({window:{}});
   vm.runInContext(source+'\nthis.observe=observeEntrances;',fallback);
   assert.equal(typeof fallback.observe([target]),'function');
   assert.doesNotMatch(source,/preventDefault|scrollTo|setTimeout/);
+});
+test('gallery selection is positioned before fetching and preserves matching server thumbnails',async()=>{
+  const viewer=await read('assets/js/layers/site/gallery/viewer.js');
+  assert.ok(viewer.indexOf('revealSelection();')<viewer.indexOf('await loadJson'));
+  assert.match(viewer,/if\(matches\)existing\.forEach/);
+  assert.doesNotMatch(viewer,/scrollIntoView/);
+  assert.match(viewer,/addEventListener\('pageshow',revealSelection\)/);
 });
 test('all published page shells have identity, navigation and crawlable content',async()=>{
   async function walk(directory){

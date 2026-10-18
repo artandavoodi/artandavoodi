@@ -4,6 +4,16 @@ import { selection, photoUrl } from './model.js';
 import { returnContext } from './continuity.js';
 import { renderImage } from '../media.js?v=6';
 import { assetUrl } from '../../../core/data.js';
+const strip = document.querySelector('[data-gallery-filmstrip]');
+function revealSelection(){
+  const selected=strip.querySelector('[aria-current="page"]');
+  if(!selected)return;
+  const frame=strip.getBoundingClientRect(),photo=selected.getBoundingClientRect();
+  if(photo.left>=frame.left&&photo.right<=frame.right)return;
+  strip.scrollTo({left:strip.scrollLeft+photo.left-frame.left-(strip.clientWidth-photo.width)/2,behavior:'instant'});
+}
+revealSelection();
+addEventListener('pageshow',revealSelection);
 const data = await loadJson('assets/data/gallery/images.json');
 const article = document.querySelector('[data-gallery-photo]');
 const params = new URLSearchParams(location.search);
@@ -23,8 +33,10 @@ const context = returnContext();
 back.href = context ? `${context.path}${context.query}` : `/gallery/${params.size ? `?${params}` : ''}`;
 back.setAttribute('aria-label', data.controls.back);
 document.querySelector('[data-photo-count]').textContent = `${index + 1} / ${items.length}`;
-const strip = document.querySelector('[data-gallery-filmstrip]');
-strip.replaceChildren(...items.map(item => {
+const existing=[...strip.querySelectorAll('a')];
+const matches=existing.length===items.length&&existing.every((link,i)=>new URL(link.href).pathname===`/gallery/${items[i].id}/`);
+if(matches)existing.forEach((link,i)=>{link.href=photoUrl(items[i],params);});
+else strip.replaceChildren(...items.map(item => {
   const link = document.createElement('a');
   link.href = photoUrl(item, params); link.setAttribute('aria-label', item.image.alt);
   if (item.id === current.id) link.setAttribute('aria-current', 'page');
@@ -32,7 +44,8 @@ strip.replaceChildren(...items.map(item => {
   link.append(renderImage({...item.image,src:preview.src,variants:[]}));
   return link;
 }));
-strip.querySelector('[aria-current]')?.scrollIntoView({block:'nearest',inline:'center'});
+revealSelection();
+if('ResizeObserver' in window)new ResizeObserver(revealSelection).observe(strip);
 // Respect data-saving mode and only warm the two neighbouring responsive previews.
 if (!navigator.connection?.saveData) for (const item of [items[index-1],items[index+1]].filter(Boolean)) {
   const preview = new Image();

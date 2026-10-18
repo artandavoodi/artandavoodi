@@ -9,6 +9,7 @@ export async function initializePreferences() {
   const panel = document.createElement('dialog'); panel.dataset.preferencesPanel = '';
   panel.className = 'privacy-preferences'; panel.setAttribute('aria-label',data.preferences.title);
   const title = document.createElement('h2'); title.textContent = data.preferences.title;
+  const symbol=renderIcon('cookies',icons);if(symbol){symbol.alt='';title.prepend(symbol);}
   const description = document.createElement('p'); description.textContent = data.preferences.description;
   const actions = document.createElement('div'); actions.className = 'artist__actions';
   for (const [choice,label] of [['allow',data.preferences.allow],['reject',data.preferences.reject]]) {

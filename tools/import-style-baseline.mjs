@@ -13,11 +13,12 @@ if(process.argv.includes('--registered-actions-only')){
   const sourceCommit=execFileSync('git',['-C',closeSource,'rev-parse','HEAD'],{encoding:'utf8'}).trim();
   const manifestPath=path.join(root,'planning/style-baseline.json'),manifest=JSON.parse(await readFile(manifestPath,'utf8'));
   const registryPath=path.join(root,'docs/assets/data/icons.json'),registry=JSON.parse(await readFile(registryPath,'utf8'));
-  for(const [name,sourceFile] of Object.entries({play:'docs/registry/icons/public/assets/core/media/play/play.svg',bag:'docs/registry/icons/public/assets/core/commerce/shopping/bag.svg'})){
+  for(const [name,sourceFile] of Object.entries({play:'docs/registry/icons/public/assets/core/media/play/play.svg',bag:'docs/registry/icons/public/assets/core/commerce/shopping/bag.svg',cookies:'docs/registry/icons/public/assets/core/interface/cookies/cookies.svg'})){
     const file=`docs/assets/icons/actions/${name}.svg`,bytes=execFileSync('git',['-C',closeSource,'show',`${sourceCommit}:${sourceFile}`]);
     await writeFile(path.join(root,file),bytes);manifest.files=manifest.files.filter(record=>record.file!==file);
     manifest.files.push({file,sha256:createHash('sha256').update(bytes).digest('hex'),sourceRepository:'artandavoodi/neuroartan-website',sourceCommit,sourceFile});
-    const icon=registry.items.find(icon=>icon.src===file.slice(5));
+    let icon=registry.items.find(icon=>icon.src===file.slice(5));
+    if(!icon){icon={id:name,src:file.slice(5),alt:'',monochrome:true};registry.items.push(icon);}
     if(/<(?:path|circle|rect|line|polygon|polyline|ellipse|use|image|text)\b/.test(bytes.toString()))delete icon.fallbackSrc;
   }
   await writeFile(manifestPath,JSON.stringify(manifest,null,2)+'\n');await writeFile(registryPath,JSON.stringify(registry,null,2)+'\n');process.exit(0);

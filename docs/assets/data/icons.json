@@ -16,7 +16,6 @@
     {
       "id": "play",
       "src": "assets/icons/actions/play.svg",
-      "fallbackSrc": "assets/icons/actions/placeholder.svg",
       "alt": "",
       "monochrome": true
     },
@@ -222,6 +221,12 @@
       "monochrome": true,
       "src": "assets/icons/social/platforms/tidal.svg",
       "alt": ""
+    },
+    {
+      "id": "cookies",
+      "src": "assets/icons/actions/cookies.svg",
+      "alt": "",
+      "monochrome": true
     }
   ]
 }
