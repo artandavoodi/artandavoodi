@@ -25,12 +25,15 @@ export async function initializePreferences() {
   panel.addEventListener('cancel',()=>state.setChoice('reject'));
   panel.append(brand,title,description,actions,privacy); document.body.append(panel);
   const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);
-  links.append(privacy.cloneNode(true));
+  const notice=privacy.cloneNode(true);notice.removeAttribute('class');links.append(notice);
   const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;
   settings.addEventListener('click',()=>{if(!panel.open)panel.showModal();}); links.append(settings);
-  const footer=document.querySelector('.site-footer');
-  if(footer)footer.insertBefore(links,footer.querySelector('[data-copyright]'));
-  else document.querySelector('main').append(links);
+  const mountFooterPreferences=()=>{
+    const footer=document.querySelector('.site-footer');
+    if(footer)footer.insertBefore(links,footer.querySelector('[data-copyright]'));
+  };
+  mountFooterPreferences();
+  window.addEventListener('site:ready',mountFooterPreferences,{once:true});
   const show = () => { if(state.choice()===null&&!panel.open)panel.showModal(); };
   const intro = async () => {
     if (location.pathname!=='/' || state.introSeen() || matchMedia('(prefers-reduced-motion: reduce)').matches) { show(); return; }

@@ -9,6 +9,9 @@ test('footer links and preference buttons share color, opacity and hover ownersh
   assert.match(css,/\.site-footer :is\(a,button\) \{[^}]*color:var\(--cv-text-primary\); opacity:var\(--opacity-muted\)/);
   assert.match(css,/\.site-footer :is\(a,button\):is\(:hover,:focus-visible\)/);
   assert.doesNotMatch(await read('assets/css/core/04-systems/preferences.css'),/\.privacy-links button \{[^}]*color:/);
+  const controller=await read('assets/js/core/preferences.js');
+  assert.match(controller,/addEventListener\('site:ready',mountFooterPreferences/);
+  assert.doesNotMatch(controller,/querySelector\('main'\)\.append\(links\)/);
 });
 test('shared entrances reverse, disconnect, and fall back without observers',async()=>{
   const source=(await read('assets/js/layers/site/entrances.js')).replace('export ','');
