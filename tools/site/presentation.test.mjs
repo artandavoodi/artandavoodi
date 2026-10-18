@@ -52,6 +52,18 @@ test('all published page shells have identity, navigation and crawlable content'
   assert.match(await read('assets/js/core/preferences.js'),/footer\.insertBefore/);
   assert.match(await read('assets/css/layers/site/content-motion.css'),/:focus-within/);
 });
+test('consent uses defined Neuroartan dimensions and registered animated artwork',async()=>{
+  const css=await read('assets/css/core/04-systems/preferences-presentation.css');
+  assert.match(css,/--dialog-consent-brand-symbol-size:2\.3rem;/);
+  assert.match(css,/--dialog-consent-brand-symbol-size-mobile:1\.9rem;/);
+  assert.match(css,/animation:cookieConsentIconFloat 5\.8s/);
+  assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+  assert.doesNotMatch(await read('assets/css/core/04-systems/preferences.css'),/--icon-size-md/);
+  const controller=await read('assets/js/core/preferences.js');
+  assert.match(controller,/\[\['allow',[\s\S]*\['reject',/);
+  const registry=JSON.parse(await read('assets/data/icons.json'));
+  assert.ok(registry.items.some(icon=>icon.id==='cookies'));
+});
 test('immersive gallery keeps thumbnail sizing separate from arrow icons',async()=>{
   const css=await read('assets/css/layers/site/gallery/index.css');
   assert.match(css,/\.gallery__viewer-nav > a img/);
