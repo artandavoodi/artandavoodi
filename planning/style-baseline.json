@@ -58,14 +58,14 @@
       "file": "docs/assets/icons/actions/play.svg",
       "sha256": "e12059ce8e2de342f5d92213581641c5021c69effc241edc3eae4e30bf835c57",
       "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "961ccb3f1d3f84502bb09571b46d62d49dd141dd",
+      "sourceCommit": "9b31c3ddb8175484582d9cd351b5393912204b1b",
       "sourceFile": "docs/registry/icons/public/assets/core/media/play/play.svg"
     },
     {
       "file": "docs/assets/icons/actions/bag.svg",
-      "sha256": "457a03f462b2e0529752b45fbcdbcad5eb3e334ad8b8d4ffcccf81c9695a2997",
+      "sha256": "84cae5b0e2f44cdc2b551b1501d4b2a9b7f594b6f7b0261cb2321847bd6753a8",
       "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "961ccb3f1d3f84502bb09571b46d62d49dd141dd",
+      "sourceCommit": "9b31c3ddb8175484582d9cd351b5393912204b1b",
       "sourceFile": "docs/registry/icons/public/assets/core/commerce/shopping/bag.svg"
     }
   ]

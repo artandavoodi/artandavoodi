@@ -68,7 +68,8 @@ for(const item of gallery.items) {
   assert.ok(html.includes(`<h1 hidden>${escape(item.title)}</h1>`));
   assert.ok(html.includes('data-photo-next') && html.includes('data-photo-previous'));
   assert.ok(html.includes('gallery__photo-atmosphere') && html.includes('srcset='));
-  assert.ok(html.includes('data-gallery-filmstrip') && html.includes('href="/gallery/image-use/"'));
+  assert.ok(html.includes('data-gallery-filmstrip') && html.includes(`<summary>${escape(gallery.controls.description)}</summary>`));
+  assert.ok(html.includes(`<p>${escape(item.description||item.image.alt)}</p>`));
   assert.ok(html.includes(`href="/${item.image.src}" aria-label="View original image"`));
   const visible=html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g,'').split('<body>')[1];
   assert.ok(!visible.includes(person.alternateName),'Legal name must remain metadata-only');

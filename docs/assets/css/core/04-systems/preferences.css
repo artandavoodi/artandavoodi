@@ -7,6 +7,8 @@ body:has(.privacy-preferences[open]) { overflow:hidden; }
 .privacy-preferences h2 { font-size: var(--site-type-heading-size); }
 .privacy-preferences > .privacy-preferences__notice { justify-self:center; text-decoration:none; color:var(--cv-text-secondary); font-weight:var(--font-weight-medium); }
 .privacy-preferences > .privacy-preferences__notice:hover { color:var(--cv-text-primary); }
+.privacy-preferences__action { display:inline-flex; align-items:center; justify-content:center; gap:var(--spacing-sm); padding:var(--spacing-sm) var(--spacing-md); min-block-size:var(--control-height-md); border:0; border-radius:var(--shape-control-radius); color:var(--cv-text-primary); background:transparent; cursor:pointer; }
+.privacy-preferences__action:hover, .privacy-preferences__action:focus-visible { outline:none; background:var(--control-bg-hover); }
 .privacy-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); font-size: var(--site-type-caption-size); color: var(--cv-text-secondary); }
 .privacy-links button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; }
 .privacy-links a { text-decoration: none; }

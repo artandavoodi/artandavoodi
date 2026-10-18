@@ -12,7 +12,7 @@ export async function initializePreferences() {
   const description = document.createElement('p'); description.textContent = data.preferences.description;
   const actions = document.createElement('div'); actions.className = 'artist__actions';
   for (const [choice,label] of [['allow',data.preferences.allow],['reject',data.preferences.reject]]) {
-    const button = document.createElement('button'); button.type = 'button'; button.className = 'control'; button.textContent = label;
+    const button = document.createElement('button'); button.type = 'button'; button.className = 'privacy-preferences__action'; button.textContent = label;
     const icon=renderIcon(choice==='allow' ? data.preferences.allowIcon : data.preferences.rejectIcon,icons);
     if(icon){icon.alt='';button.prepend(icon);}
     button.addEventListener('click',()=>{state.setChoice(choice); if(choice==='allow')state.saveTheme(document.documentElement.dataset.themeEffective); panel.close();});
