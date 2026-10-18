@@ -9,9 +9,10 @@ export async function initializePreferences() {
   const panel = document.createElement('dialog'); panel.dataset.preferencesPanel = '';
   panel.className = 'privacy-preferences'; panel.setAttribute('aria-label',data.preferences.title);
   const title = document.createElement('h2'); title.textContent = data.preferences.title;
-  const symbol=renderIcon('cookies',icons);if(symbol){symbol.alt='';title.prepend(symbol);}
+  const brand=document.createElement('span');brand.className='privacy-preferences__symbol';brand.setAttribute('aria-hidden','true');
+  const symbol=renderIcon('cookies',icons);if(symbol){symbol.alt='';brand.append(symbol);}
   const description = document.createElement('p'); description.textContent = data.preferences.description;
-  const actions = document.createElement('div'); actions.className = 'artist__actions';
+  const actions = document.createElement('div'); actions.className = 'privacy-preferences__actions';
   for (const [choice,label] of [['allow',data.preferences.allow],['reject',data.preferences.reject]]) {
     const button = document.createElement('button'); button.type = 'button'; button.className = 'privacy-preferences__action'; button.textContent = label;
     const icon=renderIcon(choice==='allow' ? data.preferences.allowIcon : data.preferences.rejectIcon,icons);
@@ -22,7 +23,7 @@ export async function initializePreferences() {
   const privacy = document.createElement('a'); privacy.href = '/privacy/'; privacy.textContent = data.preferences.link;
   privacy.className='privacy-preferences__notice';
   panel.addEventListener('cancel',()=>state.setChoice('reject'));
-  panel.append(title,description,actions,privacy); document.body.append(panel);
+  panel.append(brand,title,description,actions,privacy); document.body.append(panel);
   const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);
   links.append(privacy.cloneNode(true));
   const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;

@@ -9,6 +9,38 @@ const source = process.argv[2];
 if (!source) throw new Error('Provide the audited artan-live repository path.');
 const closeSource=process.argv[3];
 if(!closeSource)throw Error('Provide the verified Neuroartan website path for canonical close controls.');
+if(process.argv.includes('--preference-presentation-only')){
+  const revision=execFileSync('git',['-C',closeSource,'rev-parse','HEAD'],{encoding:'utf8'}).trim();
+  const tokenFile='docs/assets/css/core/01-tokens/interaction.tokens.css';
+  const motionFile='docs/assets/css/layers/website/overlays/cookie/cookie-consent.css';
+  const tokens=execFileSync('git',['-C',closeSource,'show',`${revision}:${tokenFile}`],{encoding:'utf8'});
+  const motion=execFileSync('git',['-C',closeSource,'show',`${revision}:${motionFile}`],{encoding:'utf8'});
+  const names=['dialog-consent-brand-symbol-wrap-size','dialog-consent-brand-symbol-size','dialog-consent-brand-symbol-size-mobile','dialog-consent-brand-gap','dialog-consent-eyebrow-size','dialog-consent-eyebrow-weight','dialog-consent-eyebrow-line-height','dialog-consent-copy-size','dialog-consent-copy-weight','dialog-consent-copy-line-height','dialog-consent-action-gap','dialog-consent-action-min-height','dialog-consent-action-padding-y','dialog-consent-action-padding-x','dialog-consent-action-size','dialog-consent-action-weight','dialog-consent-action-line-height','dialog-consent-action-tracking','dialog-consent-row-icon-size','overlay-motion-duration','overlay-motion-ease','dialog-overlay-transform-closed','dialog-overlay-transform-open'];
+  const declarations=names.map(name=>{const declaration=tokens.match(new RegExp(`--${name}:[^;]+;`))?.[0];if(!declaration)throw Error(`Missing canonical consent token: ${name}`);return declaration;});
+  const start=motion.indexOf('@keyframes cookieConsentIconFloat{');if(start<0)throw Error('Missing canonical cookie motion');
+  let end=start,depth=0;for(;end<motion.length;end++){if(motion[end]==='{')depth++;if(motion[end]==='}'&&--depth===0){end++;break;}}
+  const file='docs/assets/css/core/04-systems/preferences-presentation.css';
+  const iconAnimation=motion.match(/animation:cookieConsentIconFloat[^;]+;/)?.[0];if(!iconAnimation)throw Error('Missing canonical cookie animation timing');
+  const css=`/* Generated from Neuroartan consent tokens and icon motion; edit the source, not this distribution. */
+:root{${declarations.join('\n')}}
+${motion.slice(start,end)}
+.privacy-preferences[open]{animation:preferencePanelEntrance var(--overlay-motion-duration) var(--overlay-motion-ease) both;}
+.privacy-preferences h2{margin:0;font-size:var(--dialog-consent-eyebrow-size);font-weight:var(--dialog-consent-eyebrow-weight);line-height:var(--dialog-consent-eyebrow-line-height);}
+.privacy-preferences > p{font-size:var(--dialog-consent-copy-size);font-weight:var(--dialog-consent-copy-weight);line-height:var(--dialog-consent-copy-line-height);}
+.privacy-preferences__symbol{position:relative;display:block;justify-self:center;inline-size:var(--dialog-consent-brand-symbol-wrap-size);block-size:var(--dialog-consent-brand-symbol-wrap-size);}
+.privacy-preferences__symbol img{position:absolute;top:50%;left:50%;inline-size:var(--dialog-consent-brand-symbol-size);block-size:var(--dialog-consent-brand-symbol-size);max-inline-size:none;object-fit:contain;transform:translate(-50%,-50%);transform-origin:center;${iconAnimation}}
+.privacy-preferences__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:var(--dialog-consent-action-gap);}
+.privacy-preferences__action{display:inline-flex;flex:1 1 0;align-items:center;justify-content:center;gap:var(--dialog-consent-action-gap);min-block-size:var(--dialog-consent-action-min-height);padding:var(--dialog-consent-action-padding-y) var(--dialog-consent-action-padding-x);font-size:var(--dialog-consent-action-size);font-weight:var(--dialog-consent-action-weight);line-height:var(--dialog-consent-action-line-height);letter-spacing:var(--dialog-consent-action-tracking);}
+.privacy-preferences__action img{inline-size:var(--dialog-consent-row-icon-size);block-size:var(--dialog-consent-row-icon-size);object-fit:contain;}
+@keyframes preferencePanelEntrance{from{opacity:0;transform:var(--dialog-overlay-transform-closed);}to{opacity:1;transform:var(--dialog-overlay-transform-open);}}
+@media(max-width:1024px){.privacy-preferences__symbol img{inline-size:var(--dialog-consent-brand-symbol-size-mobile);block-size:var(--dialog-consent-brand-symbol-size-mobile);}}
+@media(prefers-reduced-motion:reduce){.privacy-preferences[open],.privacy-preferences__symbol img{animation:none;}}
+`;
+  await writeFile(path.join(root,file),css);
+  const manifestPath=path.join(root,'planning/style-baseline.json'),manifest=JSON.parse(await readFile(manifestPath,'utf8'));
+  manifest.files=manifest.files.filter(record=>record.file!==file);manifest.files.push({file,sha256:createHash('sha256').update(css).digest('hex'),sourceRepository:'artandavoodi/neuroartan-website',sourceCommit:revision,sourceFiles:[tokenFile,motionFile]});
+  await writeFile(manifestPath,JSON.stringify(manifest,null,2)+'\n');process.exit(0);
+}
 if(process.argv.includes('--registered-actions-only')){
   const sourceCommit=execFileSync('git',['-C',closeSource,'rev-parse','HEAD'],{encoding:'utf8'}).trim();
   const manifestPath=path.join(root,'planning/style-baseline.json'),manifest=JSON.parse(await readFile(manifestPath,'utf8'));
