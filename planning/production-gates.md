@@ -16,11 +16,11 @@
 
 ## Remaining verification or owner-dependent decisions
 
-- Owner vectors pending: Listen/play is empty and Store/bag has a dot in the Neuroartan canonical registry; Archive is empty in the artist registry. Existing shared dot is the explicit interim artwork, not a replacement icon. The registered-actions importer records source commits and removes a fallback only when the owning SVG has geometry. Synchronize consumers before release.
-- Canonical Listen vector: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/media/play/play.svg`.
-- Canonical Store vector: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/commerce/shopping/bag.svg`.
+- Listen/play, Store/bag and Orders now contain supplied vectors. The Control Center owns their editable sources; the website registry and application assets are generated, pinned distributions. Do not replace supplied artwork with fallback dots.
+- Canonical Listen vector: `/Users/artan/Documents/Neuroartan/control-center/registry/icons/source/core/media/play/play.svg`.
+- Canonical Store vector: `/Users/artan/Documents/Neuroartan/control-center/registry/icons/source/core/commerce/shopping/bag.svg`.
 - Artist Archive vector: `/Users/artan/Documents/Neuroartan/artandavoodi/docs/assets/icons/actions/archive.svg`.
-- Store Orders vector is also empty: `/Users/artan/Documents/Neuroartan/website/docs/registry/icons/public/assets/core/commerce/orders/order.svg`. The pinned store manifest confirms its other authentication vectors are populated. Apple/phone providers remain deferred, not enabled by artwork.
+- Canonical Orders vector: `/Users/artan/Documents/Neuroartan/control-center/registry/icons/source/core/commerce/orders/order.svg`. Apple/phone providers remain deferred, not enabled by artwork.
 
 - Hosted payment functions and webhook deployment, followed by sandbox payment-to-file verification.
 - Real Google sign-in and email-to-password recovery completed by the account owner.
