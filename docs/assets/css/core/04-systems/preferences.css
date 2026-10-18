@@ -10,7 +10,7 @@ body:has(.privacy-preferences[open]) { overflow:hidden; }
 .privacy-preferences__action { border:0; border-radius:var(--shape-control-radius); color:var(--cv-text-primary); background:transparent; cursor:pointer; }
 .privacy-preferences__action:hover, .privacy-preferences__action:focus-visible { outline:none; background:var(--control-bg-hover); }
 .privacy-links { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--spacing-md); font-size: var(--site-type-caption-size); color: var(--cv-text-secondary); }
-.privacy-links button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; }
+.privacy-links button { padding: 0; border: 0; background: transparent; cursor:pointer; }
 .privacy-links a { text-decoration: none; }
 .artist-brand-intro { position: fixed; inset: 0; z-index: var(--z-header-controls); display: grid; place-items: center; background: var(--cv-page-bg); pointer-events: none; }
 .artist-brand-intro img { inline-size: min(var(--artist-portrait-width),var(--cv-page-width)); block-size: auto; }

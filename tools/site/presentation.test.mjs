@@ -4,6 +4,12 @@ import {readFile,readdir} from 'node:fs/promises';
 import vm from 'node:vm';
 const docs=new URL('../../docs/',import.meta.url);
 const read=path=>readFile(new URL(path,docs),'utf8');
+test('footer links and preference buttons share color, opacity and hover ownership',async()=>{
+  const css=await read('assets/css/layers/site/site.css');
+  assert.match(css,/\.site-footer :is\(a,button\) \{[^}]*color:var\(--cv-text-primary\); opacity:var\(--opacity-muted\)/);
+  assert.match(css,/\.site-footer :is\(a,button\):is\(:hover,:focus-visible\)/);
+  assert.doesNotMatch(await read('assets/css/core/04-systems/preferences.css'),/\.privacy-links button \{[^}]*color:/);
+});
 test('shared entrances reverse, disconnect, and fall back without observers',async()=>{
   const source=(await read('assets/js/layers/site/entrances.js')).replace('export ','');
   let callback,disconnected=false;

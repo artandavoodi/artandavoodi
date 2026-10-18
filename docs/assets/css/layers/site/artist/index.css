@@ -27,6 +27,11 @@ html:has(main > [data-fragment="artist"]:not([hidden])) [data-fragment="footer"]
 .artist__visual-grid img { inline-size: 100%; aspect-ratio: 1; object-fit: cover; }
 .artist__release-cover img, .artist__visual-grid img { transition: transform var(--nav-institutional-motion-panel-slow) var(--ease-standard); }
 @media (prefers-reduced-motion:no-preference) {
+  .artist[data-home-motion-ready] .artist__introduction h1 { transition-delay:var(--duration-fast); }
+  .artist[data-home-motion-ready] .artist__introduction .artist__biography { transition-delay:var(--duration-base); }
+  .artist[data-home-motion-ready] .artist__introduction .artist__actions { transition-delay:var(--duration-slow); }
+  .artist[data-home-motion-ready] .artist__portrait { transform-origin:center; transition-duration:var(--nav-institutional-motion-panel-slow); }
+  .artist[data-home-motion-ready] .artist__portrait[data-content-reveal]:not([data-content-visible]) { transform:translateY(var(--spacing-lg)) scale(var(--layout-home-intro-logo-scale-settle)); }
   .artist[data-home-motion-ready] .artist__visual-grid > a:nth-child(2) { transition-delay:var(--duration-base); }
   .artist[data-home-motion-ready] .artist__visual-grid > a:nth-child(3) { transition-delay:calc(var(--duration-base) * 2); }
 }
