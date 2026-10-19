@@ -9,7 +9,7 @@
       "id": "labels",
       "title": "Label",
       "description": "",
-      "link": { "label": "Artan Records", "url": "https://artanrecords.com/", "icon": "artan-records-wordmark" },
+      "link": { "label": "Artanrecords", "url": "https://artanrecords.com/", "icon": "artan-records-wordmark" },
       "items": []
     },
     { "id": "projects", "title": "Music projects", "description": "", "items": [] },

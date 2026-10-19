@@ -1,4 +1,4 @@
-/* Gallery composition reuses Artan Records' grain and artwork-motion settings. */
+/* Gallery composition reuses Artanrecords' grain and artwork-motion settings. */
 html[data-initial-route='gallery'] main { inline-size: 100%; }
 html[data-initial-route='gallery'] [data-fragment='navigation'] { position: fixed; inset-inline: 0; }
 #gallery { padding-block-start: var(--spacing-none); }

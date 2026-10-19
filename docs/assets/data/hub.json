@@ -28,7 +28,7 @@
     { "label": "Instagram", "category": "social", "order": 2, "icon": "instagram", "url": "https://www.instagram.com/artandavoodi/" },
     { "label": "Public hub", "category": "website", "order": 1, "icon": "public-hub", "url": "https://artan.live/" },
     { "label": "Official website", "category": "website", "order": 0, "icon": "globe", "url": "https://artandavoodi.com/" },
-    { "label": "Artan Records", "category": "website", "order": 2, "icon": "artan-records", "url": "https://artanrecords.com/" },
+    { "label": "Artanrecords", "category": "website", "order": 2, "icon": "artan-records", "url": "https://artanrecords.com/" },
     { "label": "contact@artandavoodi.com", "category": "email", "order": 1, "icon": "email", "url": "mailto:contact@artandavoodi.com" }
   ]
 }

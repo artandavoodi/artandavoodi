@@ -1,4 +1,4 @@
-/* Pixel/tile algorithm and JSON settings match Artan Records' artist-grain.js.
+/* Pixel/tile algorithm and JSON settings match Artanrecords' artist-grain.js.
    Gallery ownership changes only the bounds and adds explicit lifecycle cleanup. */
 export function bindGalleryGrain(canvas, grain) {
   if (!canvas || !grain) return;
