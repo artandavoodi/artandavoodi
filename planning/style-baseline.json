@@ -20,20 +20,6 @@
       "sha256": "23d80888ad0ec02cfb99da6e9faae1b924ad5f206e421f21d17bd5c2eafdcb98"
     },
     {
-      "file": "docs/assets/css/core/04-systems/close-button.css",
-      "sha256": "7520a27614ccfd7ea9b7f9fd94f04590e0a79a9a6ebdc7a587461d3847396c20",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "667c8afd65f97d1ac14196dd759f3521798379a7",
-      "sourceFile": "docs/assets/css/core/04-systems/close-button.css"
-    },
-    {
-      "file": "docs/assets/js/core/close-button.js",
-      "sha256": "3f5bde8e08d4f1e18cad86394b6d16ac083faa66edb00e0a63e0a8d86f074e01",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "667c8afd65f97d1ac14196dd759f3521798379a7",
-      "sourceFile": "docs/assets/js/core/01-foundation/close-button.js"
-    },
-    {
       "file": "docs/assets/css/core/03-primitives/fields.css",
       "sha256": "bd4836b6119acd5f7e7ddae414176cd7592560f42d85175a871fa36c2946480f",
       "sourceRepository": "artandavoodi/neuroartan-website",
@@ -84,6 +70,20 @@
         "docs/assets/css/core/01-tokens/interaction.tokens.css",
         "docs/assets/css/layers/website/overlays/cookie/cookie-consent.css"
       ]
+    },
+    {
+      "file": "docs/assets/css/core/04-systems/close-button.css",
+      "sha256": "b5ad572ef1c8bad5d0c36107b80d6293bc08c511f68838ec981b9dd1ec38d60e",
+      "sourceRepository": "artandavoodi/neuroartan-website",
+      "sourceCommit": "dd328e1c6247eaf199ed52641f9a8f2671613989",
+      "sourceFile": "docs/assets/css/core/04-systems/close-button.css"
+    },
+    {
+      "file": "docs/assets/js/core/close-button.js",
+      "sha256": "3f5bde8e08d4f1e18cad86394b6d16ac083faa66edb00e0a63e0a8d86f074e01",
+      "sourceRepository": "artandavoodi/neuroartan-website",
+      "sourceCommit": "dd328e1c6247eaf199ed52641f9a8f2671613989",
+      "sourceFile": "docs/assets/js/core/01-foundation/close-button.js"
     }
   ]
 }
