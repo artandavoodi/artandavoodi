@@ -29,37 +29,32 @@
     {
       "file": "docs/assets/icons/actions/audio.svg",
       "sha256": "c7ae6b59e0f76641105297fa4f7897842ee1a78a69bfd81ae40b583d6a57c357",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "a997d6a1a7e89a84a120d5a1e3857dd804f9462b",
-      "sourceFile": "docs/registry/icons/public/assets/core/media/audio/audio.svg"
+      "sourceRepository": "artandavoodi/control-center",
+      "sourceFile": "registry/icons/source/core/media/audio/audio.svg"
     },
     {
       "file": "docs/assets/icons/actions/check.svg",
-      "sha256": "3d5f11cd561884abb16caa769b551368e55249bfa4305570c533214e669e8ec6",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "a997d6a1a7e89a84a120d5a1e3857dd804f9462b",
-      "sourceFile": "docs/registry/icons/public/assets/core/actions/check/check.svg"
+      "sha256": "ee2070bd7306eae4e561d26c72fbd521f5e85ad92b77dabc36c9ae59b6f6a0f9",
+      "sourceRepository": "artandavoodi/control-center",
+      "sourceFile": "registry/icons/source/core/actions/check/check.svg"
     },
     {
       "file": "docs/assets/icons/actions/play.svg",
       "sha256": "5bcef4c280757a185f027b17610819c6f02a140fc752802b8d7eeb605a1814b3",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "130135270b202e715ad481dfe68eb2ef46689159",
-      "sourceFile": "docs/registry/icons/public/assets/core/media/play/play.svg"
+      "sourceRepository": "artandavoodi/control-center",
+      "sourceFile": "registry/icons/source/core/media/play/play.svg"
     },
     {
       "file": "docs/assets/icons/actions/bag.svg",
       "sha256": "bb431b7c0c7379cde0ba1fa7ee82a4f00aa1131f2df999570dc0f21bcec845e8",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "130135270b202e715ad481dfe68eb2ef46689159",
-      "sourceFile": "docs/registry/icons/public/assets/core/commerce/shopping/bag.svg"
+      "sourceRepository": "artandavoodi/control-center",
+      "sourceFile": "registry/icons/source/core/commerce/shopping/bag.svg"
     },
     {
       "file": "docs/assets/icons/actions/cookies.svg",
       "sha256": "2d9260b8fd642aaf72d428eed614ff92aee24a639154214d3fa19d19cc5bc9e7",
-      "sourceRepository": "artandavoodi/neuroartan-website",
-      "sourceCommit": "130135270b202e715ad481dfe68eb2ef46689159",
-      "sourceFile": "docs/registry/icons/public/assets/core/interface/cookies/cookies.svg"
+      "sourceRepository": "artandavoodi/control-center",
+      "sourceFile": "registry/icons/source/core/interface/cookies/cookies.svg"
     },
     {
       "file": "docs/assets/css/core/04-systems/preferences-presentation.css",
