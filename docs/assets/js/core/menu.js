@@ -17,6 +17,7 @@ export function bindMenu({ openLabel, closeLabel, selectors = {}, persistentHead
   if (persistentHeader) window.addEventListener('resize', measureDrawer, { passive: true });
   let pending = false;
   let menuScrollY = window.scrollY;
+  const pageOverflow = root.style.overflow;
   const revealHeader = () => root.removeAttribute('data-header-hidden');
   const updateHeader = () => {
     const snapping = getComputedStyle(root).scrollSnapType !== 'none';
@@ -57,7 +58,7 @@ export function bindMenu({ openLabel, closeLabel, selectors = {}, persistentHead
     toggle.setAttribute('aria-expanded', String(value));
     toggle.setAttribute('aria-label', value ? closeLabel : openLabel);
     document.documentElement.toggleAttribute('data-menu-open', value);
-    document.body.toggleAttribute('data-menu-locked', value);
+    root.style.overflow = value ? 'hidden' : pageOverflow;
     background.forEach(element => { element.inert = value; });
     menuControls.forEach(element => { element.hidden = false; element.inert = !value; });
     if (persistentHeader) updateHeader();
