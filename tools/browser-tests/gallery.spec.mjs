@@ -3,7 +3,7 @@ import {test,expect} from '@playwright/test';
 for(const theme of ['light','dark']) test.describe(theme,()=>{
   test.beforeEach(async({page})=>{
     await page.goto('/gallery/');
-    await page.getByRole('button',{name:'Allow preferences',exact:true}).click();
+    await page.getByRole('button',{name:'Allow',exact:true}).click();
     await page.getByRole('button',{name:'Open site menu',exact:true}).click();
     const themeControl=page.locator('[data-menu-theme]');
     if(await page.locator('html').getAttribute('data-theme-effective')!==theme) await themeControl.click();
