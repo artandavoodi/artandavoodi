@@ -1,6 +1,7 @@
 /* Optional preference UI; no trackers, account systems or payments are initialized. */
 import {loadJson} from './data.js';
 import {renderIcon} from '../layers/site/media.js?v=6';
+import './close-button.js';
 export async function initializePreferences() {
   if(document.documentElement.hasAttribute('data-gallery-viewer'))return;
   const [data,icons] = await Promise.all([loadJson('assets/data/privacy.json'),loadJson('assets/data/icons.json')]);
@@ -8,6 +9,9 @@ export async function initializePreferences() {
   if (!state || document.querySelector('[data-preferences-panel]')) return;
   const panel = document.createElement('dialog'); panel.dataset.preferencesPanel = '';
   panel.className = 'privacy-preferences'; panel.setAttribute('aria-label',data.preferences.title);
+  const close=document.createElement('button');close.type='button';close.className='global-close-button';close.setAttribute('aria-label',data.preferences.close);
+  window.NeuroartanCloseButtons.initCloseButtonPrimitive(close);
+  close.addEventListener('click',()=>{if(state.choice()===null)state.setChoice('reject');panel.close();});
   const title = document.createElement('h2'); title.textContent = data.preferences.title;
   const brand=document.createElement('span');brand.className='privacy-preferences__symbol';brand.setAttribute('aria-hidden','true');
   const symbol=renderIcon('cookies',icons);if(symbol){symbol.alt='';brand.append(symbol);}
@@ -23,7 +27,7 @@ export async function initializePreferences() {
   const privacy = document.createElement('a'); privacy.href = '/privacy/'; privacy.textContent = data.preferences.link;
   privacy.className='privacy-preferences__notice';
   panel.addEventListener('cancel',()=>state.setChoice('reject'));
-  panel.append(brand,title,description,actions,privacy); document.body.append(panel);
+  panel.append(close,brand,title,description,actions,privacy); document.body.append(panel);
   const links = document.createElement('nav'); links.className = 'privacy-links'; links.setAttribute('aria-label',data.title);
   const notice=privacy.cloneNode(true);notice.removeAttribute('class');links.append(notice);
   const settings = document.createElement('button'); settings.type='button'; settings.textContent=data.preferences.settings;

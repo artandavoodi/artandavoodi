@@ -44,11 +44,13 @@ for(const theme of ['light','dark']) test.describe(theme,()=>{
     expect(await close.evaluate(element=>getComputedStyle(element).borderTopWidth)).toBe('0px');
     expect(await close.evaluate(element=>getComputedStyle(element).outlineStyle)).toBe('none');
     await expect(close.locator('.global-close-button__line')).toHaveCount(2);
-    await close.hover();
-    await expect.poll(()=>close.evaluate(element=>{
-      const lines=element.querySelectorAll('.global-close-button__line');
-      return getComputedStyle(lines[0]).transform===getComputedStyle(lines[1]).transform;
-    })).toBeTruthy();
+    if(await page.evaluate(()=>matchMedia('(hover:hover) and (pointer:fine)').matches)){
+      await close.hover();
+      await expect.poll(()=>close.evaluate(element=>{
+        const lines=element.querySelectorAll('.global-close-button__line');
+        return getComputedStyle(lines[0]).transform===getComputedStyle(lines[1]).transform;
+      })).toBeTruthy();
+    }
     await close.click();
     await expect(page.locator('[data-preferences-panel]')).not.toBeVisible();
   });
